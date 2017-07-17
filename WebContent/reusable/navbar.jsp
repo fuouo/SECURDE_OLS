@@ -29,9 +29,6 @@
              <li class="">
                <a href="./">Meeting Rooms</a>
              </li>
-             <li class="">
-               <a href="inverse.html">Services</a>
-             </li>
              <li class="end">
                <a href="inverse.html">Your Reservations</a>
              </li>

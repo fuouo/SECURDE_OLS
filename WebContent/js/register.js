@@ -1,3 +1,11 @@
+/* REGISTER.JS 
+ * Includes button events and AJAX for registration elements such as
+ * 		1) Birthday Date Picker
+ * 		2) Edit Profile Details Buttons
+ * 		3) Secret Question Ajax
+ */
+
+
 $(document).ready(function(){
   if(user != null){
     //window.location = "index.html";

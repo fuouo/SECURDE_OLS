@@ -1,3 +1,10 @@
+/* RESERVE-RM.JS 
+ * Includes button events for reservation of rm 
+ * 		1) Reserve Book Button events
+ * 		2) Confirm Reservatipn Button events
+ * 		3) Cancel Reservation Button events
+ */
+
 $('#submit-reserve').click(function(){
     alert("Reserved!");
 })

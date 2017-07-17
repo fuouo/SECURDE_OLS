@@ -1,10 +1,11 @@
-var sampleUser = {firstName: "Dyan Raisa",
-          lastName: "Nieva",
-          idNumber:11400366,
-          }
-
-//var user = sampleUser;
-
+/* APP.JS 
+ * Includes button events for elements seen in every page such as:
+ * 		1) Search Toggle Button (the one in nav bar)
+ * 		2) Account Name / Link initialization
+ * 		3) Overlay panel event
+ * 
+ * This must be included in every page. Please. Thank you. -Dyan
+ */
 
 $(document).ready(function(){
 
@@ -24,16 +25,24 @@ function initUserLink(){
 function initSearchToggle(){
   /* do not put in index.html */
   $('#toggle-search').click(function(){
-    $('#overlay-screen').fadeIn("fast", function(){})
+    $('#overlay-screen').fadeIn("fast", function(){});
     $('#content-search').fadeIn(350, function(){});
     $('#search-bar').focus();
-  })
+  });
 
   $('#overlay-screen').click(function(){
-      $('#overlay-screen').fadeOut("fast", function(){})
+      $('#overlay-screen').fadeOut("fast", function(){});
       $('#content-search').fadeOut(350, function(){});
-  })
+  });
 }
 
 
-/* "db" */
+/* OVERLAY */ 
+function showOverlay(){
+	$('#overlay-screen').fadeIn("fast", function(){});
+}
+
+function hideOverlay(){
+	$('#overlay-screen').fadeOut("fast", function(){});
+}
+/* END OVERLAY */
