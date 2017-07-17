@@ -8,22 +8,24 @@
  */
 
 $(document).ready(function(){
-
 	initUserLink();
+	console.log("LOL HI");
 	initSearchToggle();
 });
 
 
 function initUserLink(){
+	/*
   if(user != null){
     $('#account-name').text(user.firstName + " " + user.lastName);
     $('#account-name').parent("a").attr('href', 'profile.html');
     //$('#account-name').("href", "http://www.google.com/");
-  }
+  }*/
 }
 
 function initSearchToggle(){
   /* do not put in index.html */
+	console.log($("#toggle-search"));
   $('#toggle-search').click(function(){
     $('#overlay-screen').fadeIn("fast", function(){});
     $('#content-search').fadeIn(350, function(){});

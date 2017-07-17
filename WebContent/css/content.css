@@ -96,6 +96,8 @@ a{
     position: relative;
     z-index: 999;
     margin-bottom: 50px;
+    background-color: white;
+    border-radius: 5px;
 }
 
 #content-search>#search .form-group .form-control, #content-search>#search .form-group .btn, .form-components-rd{
