@@ -37,10 +37,10 @@
       
 	  <!-- SEARCH BAR -->
       <jsp:include page="reusable/search-bar.jsp"/>    
-       <!-- END OF SEARCH BAR -->
+      <!-- END OF SEARCH BAR -->
 
-        <!--  CAROUSEL -->
-        <div class="container" style="width:100%;">
+       <!--  CAROUSEL -->
+       <div class="container" style="width:100%;">
           <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -75,7 +75,7 @@
             </a>
           </div>
         </div>
-        <!--  END OF CAROUSEL -->
+       <!--  END OF CAROUSEL -->
 
 	<!-- don't go beyond this point -->
     </div> <!-- end of content -->
