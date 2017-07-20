@@ -1,3 +1,4 @@
+
 .content {
     margin: 0 auto;
     padding: 0 80px;
@@ -212,12 +213,8 @@ a{
     color: #6c61f1;
 }
 
-.disabled{
+.disabled, .disabled:hover{
     transition: 0 !important;
-    background-color: #b7b7b7;
-}
-
-.disabled:hover{
     background-color: #b7b7b7 !important;
 }
 
@@ -251,7 +248,7 @@ a{
     border: 0;
 }
 
-.rm-results b#results-found, .rm-reviews b#results-found{
+.rm-results b.results-found, .rm-reviews b.results-found{
     display: block;
     background-color: #004216;
     color: white;

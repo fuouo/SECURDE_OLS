@@ -30,7 +30,7 @@ $(document).ready(function() {
   		console.log($("#account-name").text());
   		if($("#account-name").text() == "Sign In"){
   			console.log("GO TO SIGN IN");
-  			window.location.href = "sign_in_sign_up.jsp";
+  			window.location.href = "sign-in-sign-up.jsp";
   		}
   	});
  

@@ -41,6 +41,29 @@
       <jsp:include page="reusable/search-bar-toggable.jsp"/>    
       <!-- END OF SEARCH BAR -->  
 
+	  <div id="content-edit-book" class="lesser-padding-content" style="display: none;">
+        <h3 align="center">Edit Reading Material</h3>
+        <div class="content" style="margin: 0 10%">
+          <label for="author-name">Location <i>(Dewey Decimal System)</i></label>
+          <input type="text" class="form-control form-components-rd" id="location-id" placeholder="Location" style="width:100%" required>
+
+          <label for="author-name">Author/s <i>(If more then 2 authors, please separated with & (ampersand) )</i></label>
+          <input type="text" class="form-control form-components-rd" id="author-name" placeholder="Author/s" style="width:100%" required>
+
+          <label for="author-name">Publisher</label>
+          <input type="text" class="form-control form-components-rd" id="publisher" placeholder="Publisher" style="width:100%" required>
+
+          <label for="year-published">Year Published</label>
+          <input type="number" class="form-control form-components-rd" id="year-published" placeholder="Year Published" style="width:100%" required>
+
+          <label for="year-published">Tags</label>
+          <input type="number" class="form-control form-components-rd" id="year-published" placeholder="Year Published" style="width:100%" required>
+          <br>
+          <button type="submit" id="submit-edit-rm" class="btn btn-default submit-btn form-components-rd auto-width erase-margin">Edit Reading Material</button>
+        </div>
+      </div>
+
+
       <div class="row rm-gen-details">
       	<div style="position: relative;">
           <div id="edit-rm-btn" style="display: none;">
@@ -149,6 +172,27 @@ function passReview(id){
 $(".btn btn-default").click(function() {
 	$("#reviewForm").submit();
 });
+
+var userType = "admin";
+if(userType == "admin"){
+  $("#edit-rm-btn").css('display', 'block');
+}
+
+$("#edit-rm-btn").click(function(e){
+  e.preventDefault();
+  $("#content-edit-book").fadeIn("fast", function(){});
+  $(".rm-gen-details").fadeOut("fast", function(){});
+  $(".rm-reviews").fadeOut("fast", function(){});
+  
+
+})
+
+$("#submit-edit-rm").click(function(e){
+  //temporary
+  location.reload();
+
+});
+
 </script>
 </body>
 </html>

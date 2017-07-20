@@ -20,84 +20,39 @@
     <link rel="stylesheet" type="text/css" href="img/icons_by_freepik/font/flaticon.css"> 
     <link rel="stylesheet" type="text/css" href="vitalets-bootstrap-datepicker-c7af15b/css/datepicker.css"/>
     <link rel="stylesheet" type="text/css" href="css/content.css"> 
-    <script src="js/jquery-3.0.0.min.js"></script>
-    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    <script src="vitalets-bootstrap-datepicker-c7af15b/js/bootstrap-datepicker.js"></script>
-    <script src="js/app.js"></script>
+
 <body>
 <div class="container-fluid">
   <div class="row">
-    <jsp:include page="reusable/navbar.jsp"/>   
+    <jsp:include page="reusable/admin-navbar.jsp"/>   
     <div class="col-sm-9 col-lg-10 content admin-area">
     	<div class="header">
 	       <h1>SHS Online Library System</h1>
 	       <h2>Reserve Books and Meeting Rooms anytime, anywhere!</h2>
 	    </div>
 	    
-	    <ul class="nav nav-tabs nav-justified"> 
-          <li role="presentation" id="books-tab"><a href class="tab">Manage Books</a></li> 
-          <li role="presentation" id="reservations-tab" ><a href class="tab">Manage Reservations</a></li> 
-          <li role="presentation" class="active" id="accounts-tab" ><a href class="tab">Manage Accounts</a></li> 
-          <li role="presentation" id="log-tab"><a href class="tab">Export Log</a></li> 
-        </ul>
-        <br>
-    
-        <div id ="manage-accounts" class="content lesser-padding-content">
-          <div class="btn-group btn-group-justified" role="group" aria-label="...">
-            <div class="btn-group" role="group">
-              <button id="btn_add_account" type="button" class="btn btn-default">Add Account</button>
-            </div>
-            <div class="btn-group" role="group">
-              <button id="btn_unlock_account" type="button" class="btn btn-default">Unlock Account</button>
-            </div>
-          </div><br>
-          
-          <div class="content-unlock-account" style="display: none;">
-          
-          	<!--  sample -->
-          	<div class="rm-results locked-accounts" style="margin: 0px !important;">
-          	 <div class="row rm-acc-details" style="margin: 10px 0;">
-		      	<div class="col-md-4 name">LastName, FirstName</div>
-		      	<div class="col-md-2 idnumber">1112233</div>
-		      	<div class="col-md-2 usertype">Amazing</div>
-		      	<div class="col-md-2 status reserved-status">LOCKED</div>
-		      	<div class="col-md-2 unlock-btn">
-		      		<button type="submit" id="unlock-acc-btn" 
-		      			class="btn btn-default submit-btn form-components-rd auto-width">Unlock</button>
-		      	</div>
-		      </div>
-		      <div class="row rm-acc-details" style="margin: 10px 0;">
-		      	<div class="col-md-4 name">LastName, FirstName</div>
-		      	<div class="col-md-2 idnumber">1112233</div>
-		      	<div class="col-md-2 usertype">Amazing</div>
-		      	<div class="col-md-2 status reserved-status">LOCKED</div>
-		      	<div class="col-md-2 unlock-btn">
-		      		<button type="submit" id="unlock-acc-btn" 
-		      			class="btn btn-default submit-btn form-components-rd auto-width">Unlock</button>
-		      	</div>
-		      </div>
-		      <!--  end of sample -->
-		      
-		      <c:forEach items="${user}" var = "u" >
-		      <!-- START -->
-		      <div class="row" id="${u.idnumber}">
-		      	<div class="col-md-4 name">${u.lastName}, ${u.firstName}</div>
-		      	<div class="col-md-2 idnumber">${u.idnumber}</div>
-		      	<div class="col-md-2 usertype">${u.userType}</div>
-		      	<div class="col-md-2 status reserved-status">LOCKED</div>
-		      	<div class="col-md-2 unlock-btn">
-		      		<button type="submit" id="unlock-acc-btn" 
-		      			class="btn btn-default submit-btn form-components-rd">Unlock</button>
-		      	</div>
-		      </div>
-		      <!-- END -->
-		      </c:forEach>
-		      </div>
+	    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+          <div class="btn-group"  role="group">
+            <button type="button" id="add-acc-tab" class="btn btn-default">Add an Account</button>
           </div>
+          <div class="btn-group"  role="group">
+            <button type="button" id="unlock-acc-tab" class="btn btn-default">Unlock an Account</button>
+          </div>
+        </div>
+      	<br><br><br>
+	      
+        <div class="content-unlock-account">
+          <div class="rm-results" style="margin: 0px !important;">
+          <table class="table table-striped locked-accounts"> 
+			 <!-- insert ajax here -->
+		  </table>
+         
+	      </div>
+        </div>
           
-          <div class="content-add-account">
-          	<form id = "register-details" style="margin-right: 300px;" action="RegisterUserServlet" method="POST">
-	        <input type="hidden" id="isModAdding" name="isModAdding" value="MOD"/>
+        <div class="content-add-account" style="display: none;">
+          <form id = "register-details" style="margin-right: 300px;" action="RegisterUserServlet" method="POST">
+	      	<input type="hidden" id="isModAdding" name="isModAdding" value="MOD"/>
 	        
 	        <label for="user_type">User Type</label>
 	        <select id = "user_type" name="user_type" class="form-control form-components-rd"
@@ -119,7 +74,8 @@
 	        </div>
 	        <div class="row" align="center">
 	          <div class="col-md-5">
-	            <input type="text" class="form-control form-components-rd" name="first_name" id="first-name" placeholder="Juan Coco" required></div>
+	            <input type="text" class="form-control form-components-rd" name="first_name" id="first-name" placeholder="Juan Coco" required>
+	          </div>
 	          <div class="col-md-2">
 	            <input type="text" class="form-control form-components-rd" name="middle_initial" id="middle-name" placeholder="S" required>
 	          </div>
@@ -159,55 +115,31 @@
 	      </form>
         </div>
           
-        </div>
-     </div>
-   </div>
- </div>
- 
- 
-<form id="addModAccount" action="addModAccount" method="post"></form>
-<form id="ManageBooks" action="AdminAreaServlet" method="post"></form>
-<form id="ManageReservations" action="AdminReservationsServlet" method="post"></form>
-<form id="ManageLog" action="AdminLogServlet" method="post"></form>
 
-<script>
-$("a.tab").click(function(e){
-	e.preventDefault();
-});
+ <!-- don't go beyond this point -->
+    </div> <!-- end of content -->
+  </div> <!-- end of row -->
+</div> <!-- end of container-fluid -->
+<form id="ManageBooks" action="AdminRMServlet" method="post"></form>
+<form id="ManageRMReserve" action="AdminRMReserveServlet" method="post"></form>
+<form id="ManageMRReserve" action="AdminMRReserveServlet" method="post"></form>
+<form id="ManageAccounts" action="AdminAccountsServlet" method="post"></form>
+<form id="ExportLog" action="AdminLogServlet" method="post"></form>
 
-$("#books-tab a").click(function(e){
-	$("#ManageBooks").submit();
-});
-
-$("#reservations-tab a").click(function(e){
-	$("#ManageReservations").submit();
-});
-
-$("#log-tab a").click(function(e){
-  $("#ManageLog").submit();
-});
+<!--  INSERT SCRIPT TAGS HERE -->
+<!-- must be in every page -->
+<script src="js/jquery-3.0.0.min.js"></script>
+<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="js/admin-menu-links.js"></script>
+<script src="js/app.js"></script>				
+<!-- //////////////////// -->
+<script src="js/register.js"></script>
+<script src="js/manage-accounts.js"></script>
 
 
-$("#btn_add_account").click(function(e){
-   $(".content-unlock-account").fadeOut(350, function(){});
-   $(".content-add-account").fadeIn(350, function(){});
-})
 
-$("#btn_unlock_account").click(function(e){
-	$(".content-unlock-account").fadeIn(350, function(){});
-	$(".content-add-account").fadeOut(350, function(){});
-	getAllLockedAccounts();
-})
 
-$("#unlock-acc-btn").click(function(e){
-	console.log("Unlocking Account...");
-	//add ajax here that will unlock account.
-});
 
-function getAllLockedAccounts(){
-	//add ajax here that will display / get all locked accounts from servlet
-}
-  
-</script>
+
 </body>
 </html>

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,24 +19,31 @@
     <link rel="stylesheet" type="text/css" href="img/icons_by_freepik/font/flaticon.css"> 
     <link rel="stylesheet" type="text/css" href="vitalets-bootstrap-datepicker-c7af15b/css/datepicker.css"/>
     <link rel="stylesheet" type="text/css" href="css/content.css"> 
-    <script src="js/jquery-3.0.0.min.js"></script>
-    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    <script src="vitalets-bootstrap-datepicker-c7af15b/js/bootstrap-datepicker.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/register.js"></script>
-    <script>
-    
-    $('.col-md-1').click(function() {
-		   console.log("Delete CLICKED");
-			$("#deleteRMForm").submit();
-		});
-    </script>
+    <link rel="stylesheet" type="text/css" href="css/alert/alert.css"> 
+
 </head>
 
 <body>
 
 <form id="deleteRMForm" action="DeleteRMServlet" method="post"></form>
-
+<!--  TODO: Fix the confirm-override popup pls. Convert to cancellation of reservationss-->
+<div id="overlay-screen" style="display: none;"></div>
+<div id="confirm-override" class="pop-up" style="display: none;">
+  <h3 align="center">Confirm Override?</h3>
+  <div align="center" class="divider"></div>
+  <h3>Cancelling Reservation of </h3>
+  <h4><a href="rm-details.html" class="title">Title</a></h4>
+  <br><br><br><br>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2"><button id="submit-reserve" class="btn btn-default">Confirm</button></div>
+    <div class="col-md-1"></div>
+    <div class="col-md-2"><button id="cancel-reserve" class="btn btn-default">Cancel</button></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-1"></div>
+  </div>
+</div>
 
 <div class="container-fluid">
   <div class="row">
@@ -91,70 +97,20 @@
       <!-- your page content -->
       <div class="header">
        <h1>SHS Online Library System</h1>
-       <h2>Reserve Books and Meeting Rooms anytime, anywhere!</h2>
+       <h2>Manage Books. Add Books. Delete Books. Edit Books.</h2>
+       <h3></h3>
       </div>
-      <div id="overlay-screen" style="display: none;"></div>
-      <div id="confirm-override" class="pop-up" style="display: none;">
-        <h3 align="center">Confirm Override?</h3>
-        <div align="center" class="divider"></div>
-        <h3>Reserving <a href="rm-details.html" class="title">Title</a></h3>
-        <br>
-        <div class="form-group">
-          <label for="override-idnum" class="col-sm-2 control-label">ID #</label>
-          <div class="col-sm-10">
-            <input type="number" class="form-control form-components-rd erase-margin" id="override-idnum" placeholder="ID Number" required>
-          </div>
+      
+
+      <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <div class="btn-group"  role="group">
+          <button type="button" id="browse-rm-tab" class="btn btn-default">Browse Reading Materials</button>
         </div>
-        <br>
-        <div class="form-group">
-          <label for="override-idnum" class="col-sm-2 control-label">On Date: </label>
-          <div class="col-sm-10">
-            <div id="bdaypicker" class="input-append date" data-date-format="yyyy-mm-dd">
-              <input class="span2 form-components-rd" size="11" type="text" value="12-02-2012" readonly="" style="width:80%; margin: 5px 0 !important;" required>
-              <span class="add-on" style="width:10%"><i class="flaticon-calendar"></i></span>
-            </div>
-          </div>
-        </div><br><br>
-
-        <div style="padding: 0 3%;" align="left">
-          <b>Reservation Date</b>: <span class="confirm-reserve-date">07 / 02 / 2017</span>br>
-          <b>Anticipated Return Date</b>: <span class="confirm-return-date">07 / 09 / 2017</span>
-        </div>
-
-        <br>
-
-        <div class="row">
-          <div class="col-md-1"></div>
-          <div class="col-md-2"></div>
-          <div class="col-md-2"><button id="submit-reserve" class="btn btn-default">Confirm</button></div>
-          <div class="col-md-1"></div>
-          <div class="col-md-2"><button id="cancel-reserve" class="btn btn-default">Cancel</button></div>
-          <div class="col-md-2"></div>
-          <div class="col-md-1"></div>
+        <div class="btn-group"  role="group">
+          <button type="button" id="add-rm-tab" class="btn btn-default">Add Reading Material</button>
         </div>
       </div>
-
-
-
-      <div class="visibility-warn"><i class="flaticon-safebox"></i>Visible to Library Officers only</div>
-
-        <div class="panel panel-default">
-          <div class="panel-heading"><h3 class="panel-title">Recent Announcements</h3></div>
-          <div class="panel-body">
-            <ul>
-            <li><B>SECURDE Milestone 1 due on July 6, 2017</B></li>
-            </ul>
-          </div>
-        </div>
-
-
-        <ul class="nav nav-tabs nav-justified"> 
-          <li role="presentation" class="active" id="books-tab"><a href class="tab">Manage Books</a></li> 
-          <li role="presentation" id="reservations-tab" ><a href class="tab">Manage Reservations</a></li> 
-          <li role="presentation" id="accounts-tab" ><a href class="tab">Manage Accounts</a></li> 
-          <li role="presentation" id="log-tab"><a href class="tab">Log</a></li> 
-        </ul>
-        <br>
+      <br><br><br>
 
         <div id = "manage-books" class ="content lesser-padding-content">
           <div class="btn-group btn-group-justified" role="group" aria-label="...">
@@ -343,12 +299,35 @@
 
 
 
-    </div>
-  </div>
-</div>
+<!-- don't go beyond this point -->
+    </div> <!-- end of content -->
+  </div> <!-- end of row -->
+</div> <!-- end of container-fluid -->
+	
+<form id="ManageBooks" action="AdminRMServlet" method="post"></form>
+<form id="ManageRMReserve" action="AdminRMReserveServlet" method="post"></form>
+<form id="ManageMRReserve" action="AdminMRReserveServlet" method="post"></form>
+<form id="ManageAccounts" action="AdminAccountsServlet" method="post"></form>
+<form id="ExportLog" action="AdminLogServlet" method="post"></form>
+<form id="AdminSearchRM" action=AdminRMSearchResultsPageServlet method="post"></form>
 
+<!--  INSERT SCRIPT TAGS HERE -->
+<!-- must be in every page -->
+<script src="js/jquery-3.0.0.min.js"></script>
+<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="js/admin-menu-links.js"></script>
+<script src="js/app.js"></script>			
+<!-- //////////////////// -->
+<script src="js/ohsnap/ohsnap.js"></script>
+<script src="js/register.js"></script>
+<script src="js/manage-books.js"></script>
 
 <script>
+
+$('.col-md-1').click(function() {
+    console.log("Delete CLICKED");
+	$("#deleteRMForm").submit();
+});
 
 $("a.tab").click(function(e){
   e.preventDefault();
