@@ -33,15 +33,16 @@
 	    
 	    <div class="btn-group btn-group-justified" role="group" aria-label="...">
           <div class="btn-group"  role="group">
-            <button type="button" id="add-acc-tab" class="btn btn-default">Unlock an Account</button>
+            <button type="button" id="unlock-acc-tab" class="btn btn-default">Unlock an Account</button>
           </div>
           <div class="btn-group"  role="group">
-            <button type="button" id="unlock-acc-tab" class="btn btn-default">Add an Account</button>
+            <button type="button" id="add-acc-tab" class="btn btn-default">Add an Account</button>
           </div>
         </div>
       	<br><br><br>
-	      
-        <div class="content-unlock-account">
+      	
+	   	<!--  TODO: please make this default visible, and add account default unseen -->
+        <div class="content-unlock-account" style="display: none;">
           <div class="rm-results" style="margin: 0px !important;">
           	  <h3 class="no-results">No Locked Accounts Returned...</h3>
 	          <table class="table table-striped row-container">
@@ -54,9 +55,8 @@
 	      </div>
         </div>
           
-        <div class="content-add-account" style="display: none;">
-          <form id = "register-details" style="margin-right: 300px;" action="RegisterUserServlet" method="POST">
-	      	<input type="hidden" id="isModAdding" name="isModAdding" value="MOD"/>
+        <div class="content-add-account">
+          <form id = "register-details" style="margin-right: 300px;" action="RegisterModeratorServlet" method="POST">
 	        
 	        <label for="user_type">User Type</label>
 	        <select id = "user_type" name="user_type" class="form-control form-components-rd"
@@ -88,9 +88,20 @@
 	          </div>
 	        </div>
 	
+			<label class="text-muted">Automated Password</label>
+		    <div class="input-group">
+		      <input type="text" class="form-control form-components-rd" id="auto-pass" name="passwordHash"
+		      rel="gp" data-size="6" data-character-set="a-z,A-Z,0-9,#" style="width:70%">
+		      <button type="button" class="btn btn-default getNewPass button-w-icon-wo-bg">
+		      	<i class="flaticon-reload"></i>
+		      </button>
+		    </div>
+	
+			<!-- 
 	        <label for="password">Password</label>
 	        <input type="password" class="form-control form-components-rd" name="passwordHash" id="password" placeholder="Password" style="width:70%" required>
-	          
+	         -->
+	        
 	        <label for="email-address">Email Address</label>
 	        <input type="email" class="form-control form-components-rd" name="email_address" id="email-address" placeholder="Email" style="width:70%" required>
 	    
@@ -137,9 +148,11 @@
 <script src="js/admin-menu-links.js"></script>
 <script src="js/app.js"></script>				
 <!-- //////////////////// -->
+<script src="vitalets-bootstrap-datepicker-c7af15b/js/bootstrap-datepicker.js"></script>
 <script src="js/register.js"></script>
 <script src="js/manage-accounts.js"></script>
 <script src="js/bootbox.min.js"></script>
+<script src="js/PasswordGenerator.js"></script>
 
 
 

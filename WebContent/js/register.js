@@ -9,6 +9,8 @@
 $(document).ready(function(){
 	initBdayDatePicker();
     initEditDetailsButton();
+    console.log("lol");
+    getSecretQuestions();
 });
 
 
@@ -49,7 +51,7 @@ function initEditDetailsButton(){
     $(".form-components-rd:not(.btn)").addClass("register-input-disabled");
 
 
-  })
+  });
 
   $("#submit-changes").click(function(e){
     e.preventDefault();
@@ -61,24 +63,25 @@ function initEditDetailsButton(){
     $("#edit-profile").fadeIn("fast", function(){});
 
     //form.submit
-  })
+  });
   
-  function getSecretQuestions() {
-	
+}
+  
+function getSecretQuestions() {
 	$.ajax({
 		url: "RegistrationPageServlet",
-		method: "get",
-		data: {
-		},
-		dataType: "json",
-		success: function(json) {
-			var secretQuestions = json[0];
-			
-			for(var i = 0; i < secretQuestions.length; i ++) {
-				$("#secret-question").append("<option value= "+ i + ">" + secretQuestions[i] +  "</option>");
+	method: "get",
+	data: {
+	},
+	dataType: "json",
+	success: function(json) {
+		var secretQuestions = json[0];
+		
+		for(var i = 0; i < secretQuestions.length; i ++) {
+			$("#secret-question").append("<option value= "+ i + ">" + secretQuestions[i] +  "</option>");
 			}
 		}
 	});
-  }
 }
+
 

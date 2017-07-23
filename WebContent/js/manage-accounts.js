@@ -2,12 +2,12 @@ $(document).ready(function(){
 	
 	getLockedAccounts();
 	
-	$("#btn_add_account").click(function(e){
+	$("#add-acc-tab").click(function(e){
 	   $(".content-unlock-account").fadeOut(350, function(){});
 	   $(".content-add-account").fadeIn(350, function(){});
 	});
 
-	$("#btn_unlock_account").click(function(e){
+	$("#unlock-acc-tab").click(function(e){
 		$(".content-unlock-account").fadeIn(350, function(){});
 		$(".content-add-account").fadeOut(350, function(){});
 		getLockedAccounts();

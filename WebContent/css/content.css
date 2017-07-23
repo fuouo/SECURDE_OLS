@@ -117,7 +117,7 @@ a{
     background: transparent;
 }
 
-.flaticon-loupe:before, .flaticon-message:before, .flaticon-trash:before,
+.flaticon-loupe:before, .flaticon-message:before, .flaticon-trash:before, .flaticon-reload:before,
 .flaticon-paint-brush:before{
     margin:0;
 }
@@ -325,4 +325,9 @@ a{
     position: absolute;
     right: 0;   
     z-index: 999999;
+}
+
+.button-w-icon-wo-bg, .button-w-icon-wo-bg:hover{
+	border: none;
+	background: transparent;
 }
