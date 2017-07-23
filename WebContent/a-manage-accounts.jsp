@@ -33,19 +33,23 @@
 	    
 	    <div class="btn-group btn-group-justified" role="group" aria-label="...">
           <div class="btn-group"  role="group">
-            <button type="button" id="add-acc-tab" class="btn btn-default">Add an Account</button>
+            <button type="button" id="add-acc-tab" class="btn btn-default">Unlock an Account</button>
           </div>
           <div class="btn-group"  role="group">
-            <button type="button" id="unlock-acc-tab" class="btn btn-default">Unlock an Account</button>
+            <button type="button" id="unlock-acc-tab" class="btn btn-default">Add an Account</button>
           </div>
         </div>
       	<br><br><br>
 	      
         <div class="content-unlock-account">
           <div class="rm-results" style="margin: 0px !important;">
-          <table class="table table-striped locked-accounts"> 
-			 <!-- insert ajax here -->
-		  </table>
+          	  <h3 class="no-results">No Locked Accounts Returned...</h3>
+	          <table class="table table-striped row-container">
+          		<thead><tr> <th>#</th> <th>Name</th> <th>ID Number</th> <th>UserType</th> <th>Status</th> <th></th> </tr></thead>
+          		<tbody>
+          		</tbody>
+          		<!--  insert content here -->
+          	  </table>	
          
 	      </div>
         </div>
@@ -135,6 +139,7 @@
 <!-- //////////////////// -->
 <script src="js/register.js"></script>
 <script src="js/manage-accounts.js"></script>
+<script src="js/bootbox.min.js"></script>
 
 
 

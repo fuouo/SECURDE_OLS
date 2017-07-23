@@ -26,6 +26,7 @@ import subservlet.moderator_subservlet.AdminAccountsServlet;
 import subservlet.moderator_subservlet.AdminAreaServlet;
 import subservlet.moderator_subservlet.AdminDisplayAccountsServlet;
 import subservlet.moderator_subservlet.AdminRMSearchResultsPageServlet;
+import subservlet.moderator_subservlet.AdminUnlockAccountServlet;
 import subservlet.moderator_subservlet.DeleteRMServlet;
 import subservlet.moderator_subservlet.EditRMServlet;
 import subservlet.moderator_subservlet.ExportServlet;
@@ -54,6 +55,7 @@ import subservlet.moderator_subservlet.AdminReservationsServlet;
 							AdminReservationsServlet.URL,
 							AdminAccountsServlet.URL,
 							AdminDisplayAccountsServlet.URL,
+							AdminUnlockAccountServlet.URL,
 							ReviewServlet.URL,
 							RMDetailsServlet.URL,
 							RegisterModeratorServlet.URL,
@@ -140,6 +142,9 @@ public class MasterServlet extends HttpServlet {
 					break;
 				case AdminDisplayAccountsServlet.URL:
 					AdminDisplayAccountsServlet.process(request, response, type);
+					break;
+				case AdminUnlockAccountServlet.URL:
+					AdminUnlockAccountServlet.process(request, response, type);
 					break;
 				case ReviewServlet.URL:
 					ReviewServlet.process(request, response, type);
