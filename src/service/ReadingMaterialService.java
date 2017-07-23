@@ -269,6 +269,7 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
+				r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -298,7 +299,7 @@ public class ReadingMaterialService {
 				+ " NATURAL JOIN " + User.TABLE_USER + "\n"
 				+ " WHERE " + ReadingMaterial.COL_RMID + " = ?;";
 
-		String query_reserved = "\nSELECT " + ReadingMaterial.COL_DATERETURNED + "\n"
+		String query_reserved = "\nSELECT *" + "\n"
 				+ " FROM " + ReadingMaterial.TABLE_RESERVEDRM + "\n"
 				+ " WHERE " + ReadingMaterial.COL_RMID + " = ?"
 				+ " AND " + ReadingMaterial.COL_DATERESERVED + " >= CURDATE()";
@@ -358,6 +359,7 @@ public class ReadingMaterialService {
 
 				if(r.next()) {
 					rm.setStatus(RMStatus.RESERVED);
+					rm.setReservedRMID(r.getInt(ReadingMaterial.COL_RESERVEDRMID));
 					rm.setDateAvailable(r.getDate(ReadingMaterial.COL_DATERETURNED));
 				} else {
 					r.close();
@@ -395,6 +397,7 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
+				r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -428,6 +431,7 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
+				r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -476,6 +480,7 @@ public class ReadingMaterialService {
 				rm.setPublisher(r.getString(ReadingMaterial.COL_PUBLISHER));
 				rm.setYear(r.getInt(ReadingMaterial.COL_YEAR));
 				rm.setStatus(RMStatus.getStockValue(r.getString(ReadingMaterial.COL_LIBSTATUS)));
+				rm.setTags(r.getString(ReadingMaterial.COL_TAG));
 
 				rmList.add(rm);
 			}
@@ -509,6 +514,7 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
+				r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -566,6 +572,7 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
+				r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -619,6 +626,7 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
+				r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -685,6 +693,7 @@ public class ReadingMaterialService {
 
 		// for status
 		String query_reserved = "\nSELECT " + ReadingMaterial.COL_DATERETURNED + "\n"
+		String query_reserved = "\nSELECT *" + "\n"
 				+ " FROM " + ReadingMaterial.TABLE_RESERVEDRM + "\n"
 				+ " WHERE " + ReadingMaterial.COL_RMID + " = ?"
 				+ " AND " + ReadingMaterial.COL_DATERESERVED + " >= CURDATE()";
@@ -710,6 +719,7 @@ public class ReadingMaterialService {
 				rm.setPublisher(r.getString(ReadingMaterial.COL_PUBLISHER));
 				rm.setYear(r.getInt(ReadingMaterial.COL_YEAR));
 				rm.setStatus(RMStatus.getStockValue(r.getString(ReadingMaterial.COL_LIBSTATUS)));
+				rm.setTags(r.getString(ReadingMaterial.COL_TAG));
 
 				rmList.add(rm);
 			}
@@ -743,6 +753,7 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
+				r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -799,6 +810,7 @@ public class ReadingMaterialService {
 				rm.setPublisher(r.getString(ReadingMaterial.COL_PUBLISHER));
 				rm.setYear(r.getInt(ReadingMaterial.COL_YEAR));
 				rm.setStatus(RMStatus.getStockValue(r.getString(ReadingMaterial.COL_LIBSTATUS)));
+				rm.setTags(r.getString(ReadingMaterial.COL_TAG));
 				rm.setNumTimesBorrowed(r.getInt("NUMBORROWED"));
 
 				rmList.add(rm);
@@ -833,6 +845,7 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
+				r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -882,6 +895,7 @@ public class ReadingMaterialService {
 				rm.setPublisher(r.getString(ReadingMaterial.COL_PUBLISHER));
 				rm.setYear(r.getInt(ReadingMaterial.COL_YEAR));
 				rm.setStatus(RMStatus.getStockValue(r.getString(ReadingMaterial.COL_LIBSTATUS)));
+				rm.setTags(r.getString(ReadingMaterial.COL_TAG));
 
 				rmList.add(rm);
 			}
@@ -915,6 +929,7 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
+				r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -958,6 +973,7 @@ public class ReadingMaterialService {
 				rm.setDateBorrowed(r.getDate(ReadingMaterial.COL_DATEBORROWED));
 				rm.setDateReturned(r.getDate(ReadingMaterial.COL_DATERETURNED));
 				rm.setStatus(RMStatus.getStockValue(r.getString(ReadingMaterial.COL_LIBSTATUS)));
+				rm.setTags(r.getString(ReadingMaterial.COL_TAG));
 
 				rmList.add(rm);
 			}
@@ -966,6 +982,7 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
+				r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -1008,6 +1025,7 @@ public class ReadingMaterialService {
 				rm.setDateBorrowed(r.getDate(ReadingMaterial.COL_DATEBORROWED));
 				rm.setDateReturned(r.getDate(ReadingMaterial.COL_DATERETURNED));
 				rm.setStatus(RMStatus.getStockValue(ReadingMaterial.COL_LIBSTATUS));
+				rm.setTags(r.getString(ReadingMaterial.COL_TAG));
 
 				rmList.add(rm);
 			}
@@ -1016,6 +1034,7 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
+				r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -1061,6 +1080,7 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
+				r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -1076,6 +1096,7 @@ public class ReadingMaterialService {
 		ReadingMaterial rm = null;
 
 		String query = "\nSELECT "
+				+ ReadingMaterial.COL_RESERVEDRMID + ", "
 				+ ReadingMaterial.COL_RMID + ", "
 				+ ReadingMaterial.COL_TITLE + ", "
 				+ ReadingMaterial.COL_DATERESERVED + ", "
@@ -1093,6 +1114,7 @@ public class ReadingMaterialService {
 
 			while(r.next()) {
 				rm = new ReadingMaterial();
+				rm.setReservedRMID(r.getInt(ReadingMaterial.COL_RESERVEDRMID));
 				rm.setRMID_Location(r.getString(ReadingMaterial.COL_RMID));
 				rm.setTitle(r.getString(ReadingMaterial.COL_TITLE));
 				rm.setDateReserved(r.getDate(ReadingMaterial.COL_DATERESERVED));
@@ -1105,6 +1127,7 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
+				r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -1180,6 +1203,7 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
+				r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();

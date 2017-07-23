@@ -50,11 +50,11 @@ public class AddRMServlet {
     	rm.setAuthor(request.getParameter("author-name"));
     	rm.setPublisher(request.getParameter("publisher"));
     	rm.setYear(Integer.parseInt(request.getParameter("year-published")));
+    	rm.setTags(request.getParameter("tags"));
     	Date today = new Date();
     	rm.setDateArrived(new Date());
-    	
-    	//rm.setRMID_Location(RMID_Location);
-    	
+
+    
     	ReadingMaterialService.addRM(rm);
 	}
     

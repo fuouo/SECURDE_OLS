@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+	getRMSearch();
+	
 	$("#submit-search").click(function(e){
 		e.preventDefault();
 		console.log("Searching...");
@@ -46,20 +48,61 @@ $(document).ready(function(){
 		$("#AddAccountForm").submit();
 	 });
 	 
-	 window.setTimeout(function() {
-	    $(".alert").fadeTo(500, 0).slideUp(500, function(){
-	        $(this).remove(); 
-	    });
-	}, 4000);
+	 $(document).on("click", ".delete-btn", function(){
+		 var rmID = $(this).parent().parent().find(".location").text();
+		 deleteRM(rmID);
+	 });
+	 $(document).on("click", ".override-btn", function(){
+		 var rmID = $(this).parent().parent().find(".location").text();
+		 overrideReservation(rmID);
+	 });
+	 
 });
 
+function overrideReservation(rmIDlocation){
+	//alert(rmIDlocation);
+	///*
+	$.ajax({
+		url: "OverrideReservationRMServlet",
+		method: "post",
+		data: {
+			'rmID_location': rmIDlocation,
+		},
+		dataType: "json",
+		success: function(result) {
+			console.log("yes");
+			getRMSearch();
+		}
+	});
+	
+	//*/
+	
+}
+
+function deleteRM(rmIDlocation){
+	$.ajax({
+		url: "DeleteRMServlet",
+		method: "post",
+		data: {
+			'rmID_location': rmIDlocation,
+		},
+		dataType: "json",
+		success: function(result) {
+			console.log("yes");
+			getRMSearch();
+		}
+	});
+}
+
 function getRMSearch(){
+	$(".rm-results .rm-gen-details").remove();
+	$(".rm-results br").remove();
 	var searchString = $("#search-bar").val();
-	//searchString = "harry potter";
+	searchString = "dyan";
 	var searchFilter = $("#search-filter").val();
-	//searchFilter = "TITLE";
+	searchFilter = "TITLE";
 	var searchCollection = $("#search-collection").val();
-	//searchCollection = "ALL";
+	searchCollection = "ALL";
 	
 	$.ajax({
 		url: "AdminRMSearchResultsPageServlet",
@@ -116,19 +159,21 @@ function setLocationStatus(location, status){
 						    "<div class=\"col-md-3\"></div></b>" +
 						  "</div>";
 	var header = "<div class=\"location-status\">";
-	var rowHeader = "<div class=\"row\">";
+	var rowHeader = "<div class=\"row\" id=\"" + location + "\">";
 	var locationId = "<div class=\"col-md-3\"><span class=\"location\">" + location + "</span></div>";
-	var disabledOverride = "<div onclick=\"clickedType('${loc}')\" class=\"col-md-3\">" +
-							"<button onclick=\"clickedType(${i.RMID_Location })\" " +
-							"class=\"reserve-inline btn btn-default override-btn disabled\">Override<br> Reservation</button></div>";
+	var disabledOverride = "<div class=\"col-md-3\">" +
+							"<button class=\"reserve-inline btn btn-default override-btn disabled\">Override<br> Reservation</button></div>";
 	
-	var abledOverride = "<div onclick=\"clickedType('${loc}')\" class=\"col-md-3\">" +
-	"<button onclick=\"clickedType(${i.RMID_Location })\" " +
-	"class=\"reserve-inline btn btn-default override-btn\">Override<br> Reservation</button></div>";
+	var abledOverride = "<div class=\"col-md-3\">" +
+	"<button class=\"reserve-inline btn btn-default override-btn\">Override<br> Reservation</button></div>";
 	
-	var disabledDelete = "<div class=\"col-md-3\"><button class=\"reserve-inline btn btn-default delete-btn disabled\"><i class=\"flaticon-trash\"></i></button></div>";
+	var disabledDelete = "<div class=\"col-md-3\">" +
+			"<button class=\"reserve-inline btn btn-default delete-btn disabled\">" +
+			"<i class=\"flaticon-trash\"></i></button></div>";
 	
-	var abledDelete = "<div class=\"col-md-3\"><button class=\"reserve-inline btn btn-default delete-btn\"><i class=\"flaticon-trash\"></i></button></div>";
+	var abledDelete = "<div class=\"col-md-3\">" +
+			"<button class=\"reserve-inline btn btn-default delete-btn\">" +
+			"<i class=\"flaticon-trash\"></i></button></div>";
 	
 	var overrideAndDelete = "";
 	
