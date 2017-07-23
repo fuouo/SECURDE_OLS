@@ -42,7 +42,7 @@
       	<br><br><br>
       	
 	   	<!--  TODO: please make this default visible, and add account default unseen -->
-        <div class="content-unlock-account" style="display: none;">
+        <div class="content-unlock-account">
           <div class="rm-results" style="margin: 0px !important;">
           	  <h3 class="no-results">No Locked Accounts Returned...</h3>
 	          <table class="table table-striped row-container">
@@ -55,7 +55,7 @@
 	      </div>
         </div>
           
-        <div class="content-add-account">
+        <div class="content-add-account" style="display: none;">
           <form id = "register-details" style="margin-right: 300px;" action="RegisterModeratorServlet" method="POST">
 	        
 	        <label for="user_type">User Type</label>

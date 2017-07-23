@@ -83,7 +83,8 @@ public class SecretQuestionService {
 	public static SecretQuestion getSecretQuestionByID(int sqID) {
 		SecretQuestion sq = null;
 		
-		String query = "\nSELECT * FROM " + SecretQuestion.TABLE_NAME + " WHERE " + SecretQuestion.COL_SQID + " = ?";
+		String query = "\nSELECT * FROM " + SecretQuestion.TABLE_NAME + 
+						" WHERE " + SecretQuestion.COL_SQID + " = ?";
 		
 		ArrayList<Object> input = new ArrayList<>();
 		input.add(sqID);

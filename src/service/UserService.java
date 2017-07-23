@@ -284,6 +284,7 @@ public class UserService {
 				user.setMiddleInitial(r.getString(User.COL_MI));
 				user.setLastName(r.getString(User.COL_LASTNAME));
 				user.setUserType(UserType.getValue(r.getString(User.COL_USERTYPE)));
+				user.setStatus(UserStatus.getValue(r.getString(User.COL_STATUS)));
 				lockedAccounts.add(user);
 			}
 			

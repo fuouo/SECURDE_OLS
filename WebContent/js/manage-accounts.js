@@ -60,7 +60,7 @@ function displayTableLockedAccounts(accounts){
 	
 	if(accounts.length <= 0){
 		$(".no-results").show();
-		rowContainer.hide();
+		$(".row-container").hide();
 		return;
 	}
 	
@@ -72,7 +72,7 @@ function displayTableLockedAccounts(accounts){
 			"<td>" + accounts[i].lastName + ", " + accounts[i].firstName + "</td>" + 
 			"<td>" + accounts[i].idnumber + "</td>" + 
 			"<td>" + accounts[i].userType + "</td>" + 
-			"<td> <span class=\"reserved-status\">LOCKED</span> </td>" + 
+			"<td> <span class=\"reserved-status\">" + accounts[i].status + "</span> </td>" + 
 			"<td>" + 
 				"<button type=\"submit\" id=\"" + accounts[i].idnumber + "\"" + 
 				"class=\"btn btn-default unlock-btn submit-btn form-components-rd erase-margin auto-width\" " +
