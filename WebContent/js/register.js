@@ -7,12 +7,8 @@
 
 
 $(document).ready(function(){
-  if(user != null){
-    //window.location = "index.html";
-  }
-
 	initBdayDatePicker();
-  initEditDetailsButton();
+    initEditDetailsButton();
 });
 
 

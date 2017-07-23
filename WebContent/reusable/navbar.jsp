@@ -39,9 +39,15 @@
           <a href="http://www.samrayner.com">Sam Rayner</a>
         </p><br><br><br>
         <span class="divider"></span>
-        <a id = "signInSignOut" class="self-menu">
-          <i class="flaticon-user-2"></i><span id="account-name">Sign In</span>
-        </a>
+        
+        
+        <div class="self-menu">
+        	<div id="signInSignOut" style="margin: 10px 0;" class="re-navbar-link">
+        		<i class="flaticon-user-2"></i><span id="account-name">Sign In</span>
+        	</div>
+		    <div class="re-navbar-link">Log out</div>
+		</div>
+        
 
       </div>
     </div>

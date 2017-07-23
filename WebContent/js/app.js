@@ -9,7 +9,6 @@
 
 $(document).ready(function(){
 	initUserLink();
-	console.log("LOL HI");
 	initSearchToggle();
 });
 
@@ -25,7 +24,6 @@ function initUserLink(){
 
 function initSearchToggle(){
   /* do not put in index.html */
-	console.log($("#toggle-search"));
   $('#toggle-search').click(function(){
     $('#overlay-screen').fadeIn("fast", function(){});
     $('#content-search').fadeIn(350, function(){});
