@@ -37,12 +37,12 @@ public class AdminRMSearchResultsPageServlet{
 
     private static void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-    	
+    	System.out.println("RM SEARCH RESULTS PAGE GET");
 	}
 
     private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-    	System.out.println("RM SEARCH RESULTS PAGE GET");
+    	System.out.println("RM SEARCH RESULTS PAGE POST");
     	PrintWriter pw = response.getWriter();
     	String searchString = (String) request.getParameter("stringToSearch");
     	RMFilter rmFilter = RMFilter.getValue((String) request.getParameter(RMFilter.ENUM_RMFilter));

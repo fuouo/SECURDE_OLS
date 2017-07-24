@@ -108,7 +108,11 @@
     </div> <!-- end of content -->
   </div> <!-- end of row -->
 </div> <!-- end of container-fluid -->
-	
+
+<form id="GoToRMDetails" method="post" action="RMDetailsServlet">
+	<input type="hidden" id="rmID_location" name="rmID_location" value=""/>
+</form>	
+
 <form id="ManageBooks" action="AdminRMServlet" method="post"></form>
 <form id="ManageRMReserve" action="AdminRMReserveServlet" method="post"></form>
 <form id="ManageMRReserve" action="AdminMRReserveServlet" method="post"></form>

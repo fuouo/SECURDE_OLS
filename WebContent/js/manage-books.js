@@ -48,6 +48,12 @@ $(document).ready(function(){
 		$("#AddAccountForm").submit();
 	 });
 	 
+	 $(document).on("click", ".title", function(){
+		var rmID = $(this).siblings(".location-status").children(".row").attr('id');
+		alert(rmID);
+		getRMDetails(rmID);
+	 });
+	 
 	 $(document).on("click", ".delete-btn", function(){
 		 var rmID = $(this).parent().parent().find(".location").text();
 		 deleteRM(rmID);
@@ -58,6 +64,11 @@ $(document).ready(function(){
 	 });
 	 
 });
+
+function getRMDetails(rmID){
+	$("#rmID_location").val(rmID);
+	$("#GoToRMDetails").submit();
+}
 
 function overrideReservation(rmIDlocation){
 	//alert(rmIDlocation);
@@ -126,7 +137,7 @@ function getRMSearch(){
 }
 
 function setTitle (title){
-	return "<a onclick=\"review('${rmID}')\" class=\"title\">" + title + "</b></a>";
+	return "<a class=\"title\">" + title + "</b></a>";
 }
 
 function setAuthor(author){
@@ -221,8 +232,7 @@ function addSearchResults(results){
 			"</div>" +
 			"<br><br><br>"
 		);
-		
-		
+	
 		
 	}
 }

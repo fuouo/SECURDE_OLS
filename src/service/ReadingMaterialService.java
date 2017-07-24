@@ -692,7 +692,6 @@ public class ReadingMaterialService {
 		}
 
 		// for status
-		String query_reserved = "\nSELECT " + ReadingMaterial.COL_DATERETURNED + "\n"
 		String query_reserved = "\nSELECT *" + "\n"
 				+ " FROM " + ReadingMaterial.TABLE_RESERVEDRM + "\n"
 				+ " WHERE " + ReadingMaterial.COL_RMID + " = ?"
