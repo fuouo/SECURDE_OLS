@@ -25,7 +25,9 @@ import subservlet.moderator_subservlet.AddRMServlet;
 import subservlet.moderator_subservlet.AdminAccountsServlet;
 import subservlet.moderator_subservlet.AdminAreaServlet;
 import subservlet.moderator_subservlet.AdminDisplayAccountsServlet;
+import subservlet.moderator_subservlet.AdminDisplayRMReservationsServlet;
 import subservlet.moderator_subservlet.AdminRMSearchResultsPageServlet;
+import subservlet.moderator_subservlet.AdminReservationsServlet;
 import subservlet.moderator_subservlet.AdminUnlockAccountServlet;
 import subservlet.moderator_subservlet.DeleteRMServlet;
 import subservlet.moderator_subservlet.EditRMServlet;
@@ -34,7 +36,6 @@ import subservlet.moderator_subservlet.OverrideReservationRMServlet;
 import subservlet.moderator_subservlet.OverrideReservationRoomServlet;
 import subservlet.moderator_subservlet.RegisterModeratorServlet;
 import subservlet.moderator_subservlet.ViewReservedRMServlet;
-import subservlet.moderator_subservlet.AdminReservationsServlet;
 
 /**
  * Servlet implementation class MasterServlet
@@ -56,6 +57,7 @@ import subservlet.moderator_subservlet.AdminReservationsServlet;
 							AdminAccountsServlet.URL,
 							AdminDisplayAccountsServlet.URL,
 							AdminUnlockAccountServlet.URL,
+							AdminDisplayRMReservationsServlet.URL,
 							ReviewServlet.URL,
 							RMDetailsServlet.URL,
 							RegisterModeratorServlet.URL,
@@ -145,6 +147,9 @@ public class MasterServlet extends HttpServlet {
 					break;
 				case AdminUnlockAccountServlet.URL:
 					AdminUnlockAccountServlet.process(request, response, type);
+					break;
+				case AdminDisplayRMReservationsServlet.URL:
+					AdminDisplayRMReservationsServlet.process(request, response, type);
 					break;
 				case ReviewServlet.URL:
 					ReviewServlet.process(request, response, type);
