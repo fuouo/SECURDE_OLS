@@ -2,7 +2,6 @@ $(document).ready(function(){
 	
 	$('#books-tab').click(function(e) {
 	   e.preventDefault();
-	   alert("lol");
 	   $("#GoToPage #destination").val("a-manage-books.jsp");
 	   $("#GoToPage").submit();
     });
