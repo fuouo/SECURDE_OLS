@@ -35,11 +35,11 @@ public class User {
 		
 	}
 
-	public String getIDNumber() {
+	public String getIdnumber() {
 		return idnumber;
 	}
 	
-	public void setIDNumber(String idnumber) {
+	public void setIdnumber(String idnumber) {
 		this.idnumber = idnumber;
 	}
 	

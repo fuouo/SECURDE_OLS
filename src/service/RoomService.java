@@ -29,7 +29,7 @@ public class RoomService {
 		
 		ArrayList<Object> input = new ArrayList<>();
 		input.add(reserved_room.getMrID());
-		input.add(reserved_room.getUser().getIDNumber());
+		input.add(reserved_room.getUser().getIdnumber());
 		input.add(Utils.convertDateJavaToStringDB(reserved_room.getReservedDate()));
 		input.add(reserved_room.getTimeStart());
 		input.add(reserved_room.getTimeEnd());
@@ -96,12 +96,15 @@ public class RoomService {
 				room.setMrID(r.getInt(Room.COL_MRID));
 				room.setMr_name(r.getString(Room.COL_MRNAME));
 				
+				System.out.println("Room: " + room.getMr_name());
+				
 				roomList.add(room);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			try {
+				r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -123,8 +126,9 @@ public class RoomService {
 		input.add(idNumber);
 		
 		Query q = Query.getInstance();
+		ResultSet r = null;
 		try {
-			ResultSet r = q.runQuery(query, input);
+			r = q.runQuery(query, input);
 			
 			while(r.next()) {
 				rm = new ReservedRoom();
@@ -135,6 +139,7 @@ public class RoomService {
 			e.printStackTrace();
 		} finally {
 			try {
+				r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -158,7 +163,7 @@ public class RoomService {
 				+ " HAVING COUNT(*) < ?;";
 		
 		ArrayList<Object> input = new ArrayList<>();
-		input.add(user.getIDNumber());
+		input.add(user.getIdnumber());
 		input.add(Utils.convertDateJavaToStringDB(date));
 		
 		if(user.getUserType() == UserType.STUDENT) 
@@ -167,14 +172,16 @@ public class RoomService {
 			input.add(10);
 		
 		Query q = Query.getInstance();
+		ResultSet r = null;
 		
 		try {
-			ResultSet r = q.runQuery(query, input);
+			r = q.runQuery(query, input);
 			result = r.next();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			try {
+				r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -199,9 +206,10 @@ public class RoomService {
 		input.add(Utils.convertDateJavaToStringDB(date));
 		
 		Query q = Query.getInstance();
+		ResultSet r = null;
 		
 		try {
-			ResultSet r = q.runQuery(query, input);
+			r = q.runQuery(query, input);
 			
 			while(r.next()) {
 				rm = new ReservedRoom();
@@ -216,6 +224,7 @@ public class RoomService {
 			e.printStackTrace();
 		} finally {
 			try {
+				r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -237,35 +246,40 @@ public class RoomService {
 		// reservation id
 		
 		String query = "\nSELECT " 
-				+ ReservedRoom.COL_RESERVEDMRID
+				+ ReservedRoom.COL_RESERVEDMRID + ", "
 				+ ReservedRoom.COL_MRID + ", "
+				+ Room.COL_MRNAME + ", "
 				+ ReservedRoom.COL_TIMESTART + ", "
 				+ ReservedRoom.COL_TIMEEND + ", "
 				+ User.COL_IDNUMBER + ", "
 				+ User.COL_FIRSTNAME + ", "
-				+ User.COL_LASTNAME + ", "
-				+ " FROM " + ReservedRoom.TABLE_NAME + " NATURAL JOIN " + User.TABLE_USER
+				+ User.COL_LASTNAME
+				+ " FROM " + ReservedRoom.TABLE_NAME + " NATURAL JOIN " + User.TABLE_USER + " NATURAL JOIN " + Room.TABLE_NAME
 				+ " WHERE " + ReservedRoom.COL_DATERESERVED + " = DATE(?)"; 
 		
 		ArrayList<Object> input = new ArrayList<>();
 		input.add(Utils.convertDateJavaToStringDB(date));
 		
 		Query q = Query.getInstance();
+		ResultSet r = null;
 		
 		try {
-			ResultSet r = q.runQuery(query, input);
+			r = q.runQuery(query, input);
 			
 			while(r.next()) {
 				rm = new ReservedRoom();
 				rm.setReservedMRID(r.getInt(ReservedRoom.COL_RESERVEDMRID));
 				rm.setMrID(r.getInt(ReservedRoom.COL_MRID));
+				rm.setMr_name(r.getString(Room.COL_MRNAME));
 				rm.setTimeStart(r.getInt(ReservedRoom.COL_TIMESTART));
 				rm.setTimeEnd(r.getInt(ReservedRoom.COL_TIMEEND));
 				
 				user = new User();
-				user.setIDNumber(r.getString(User.COL_IDNUMBER));
+				user.setIdnumber(r.getString(User.COL_IDNUMBER));
 				user.setFirstName(r.getString(User.COL_FIRSTNAME));
 				user.setLastName(r.getString(User.COL_LASTNAME));
+				
+				rm.setUser(user);
 				
 				rmList.add(rm);
 			}
@@ -274,6 +288,7 @@ public class RoomService {
 			e.printStackTrace();
 		} finally {
 			try {
+				r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -324,11 +339,15 @@ public class RoomService {
 					
 					r = q.runQuery(query, input);
 					
+					System.out.print(room.getMr_name() + " " + time_start + " - " + time_end + " ");
+					
 					if(r.next()) {
 						// there's a reservation at this time
 						room.setRoomStatus(RoomStatus.RESERVED);
+						System.out.println(RoomStatus.RESERVED);
 					} else {
 						room.setRoomStatus(RoomStatus.AVAILABLE);
+						System.out.println(RoomStatus.AVAILABLE);
 					}
 					
 					all_rooms.add(room);
@@ -338,6 +357,11 @@ public class RoomService {
 			e.printStackTrace();
 		} finally {
 			try {
+				
+				if(r != null) {
+					r.close();
+				}
+				
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
