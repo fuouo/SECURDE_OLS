@@ -1,28 +1,34 @@
 $(document).ready(function(){
-
+	
 	$('#books-tab').click(function(e) {
 	   e.preventDefault();
-	   $("#ManageBooks").submit();
+	   alert("lol");
+	   $("#GoToPage #destination").val("a-manage-books.jsp");
+	   $("#GoToPage").submit();
     });
 	
 	$('#rm-reserve-tab').click(function(e) {
 	   e.preventDefault();
-	   $("#ManageRMReserve").submit();
+	   $("#GoToPage #destination").val("AdminDisplayRMReservationsServlet");
+	   $("#GoToPage").submit();
     });
 	
 	$('#mr-reserve-tab').click(function(e) {
 	   e.preventDefault();
-	   $("#ManageMRReserve").submit();
+	   $("#GoToPage #destination").val("AdminDisplayMRReservationsServlet");
+	   $("#GoToPage").submit();
     });
 	
 	$('#accounts-tab').click(function(e) {
 	   e.preventDefault();
-	   $("#ManageAccounts").submit();
+	   $("#GoToPage #destination").val("a-manage-accounts.jsp");
+	   $("#GoToPage").submit();
     });
 	
 	$('#log-tab').click(function(e) {
 	   e.preventDefault();
-	   $("#ExportLog").submit();
+	   $("#GoToPage #destination").val("ExportServlet");
+	   $("#GoToPage").submit();
 	});
 	
  	$("#signInSignOut").click(function(e) {

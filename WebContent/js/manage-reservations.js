@@ -21,8 +21,14 @@ $(document).ready(function(){
 	 });
 	 
 	 $(document).on("click", ".override-btn", function(){
-		 var rmID = $(this).parent().attr('id');
-		 overrideReservation(rmID);
+		 alert($(this).hasClass("mr"));
+		 var id = $(this).parent().attr('id');
+		 
+		 if($(this).hasClass("rm"))
+			 overrideRMReservation(id);
+		 
+		 else if($(this).hasClass("mr"))
+			 overrideMRReservation(id);
 	 });
 	 
 });
@@ -32,21 +38,30 @@ function getRMDetails(rmID){
 	$("#GoToRMDetails").submit();
 }
 
-function overrideReservation(rmIDlocation){
-	//alert(rmIDlocation);
-	///*
+function overrideRMReservation(rmID){
 	$.ajax({
 		url: "OverrideReservationRMServlet",
 		method: "post",
 		data: {
-			'rmID_location': rmIDlocation,
+			'rmID_location': rmID,
 		},
 		dataType: "json",
 		success: function(result) {
 			location.reload();
 		}
 	});
-	
-	//*/
-	
+}
+
+function overrideMRReservation(mrID){
+	$.ajax({
+		url: "OverrideReservationRoomServlet",
+		method: "post",
+		data: {
+			'reservedMRID': mrID,
+		},
+		dataType: "json",
+		success: function(result) {
+			location.reload();
+		}
+	});
 }

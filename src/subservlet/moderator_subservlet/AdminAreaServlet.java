@@ -37,13 +37,10 @@ public class AdminAreaServlet{
     	
     	UserType userType = UserType.ADMIN;
     	
-
-    	if(userType == UserType.ADMIN){
-    		request.getRequestDispatcher("/a-manage-accounts.jsp").forward(request, response);
-    	}
-    	else if(userType == UserType.LIBMNGR || userType == UserType.LIBSTAFF){
-    		request.getRequestDispatcher("/a-manage-books.jsp").forward(request, response);
-        }
+    	String url = request.getParameter("destination");
+    	
+    	request.getRequestDispatcher("/" + url).forward(request, response);
+    	
 	}
     
     public static void process(HttpServletRequest request, HttpServletResponse response, int type) throws ServletException, IOException{

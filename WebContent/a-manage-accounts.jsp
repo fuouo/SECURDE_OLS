@@ -24,7 +24,7 @@
 <body>
 <div class="container-fluid">
   <div class="row">
-    <jsp:include page="reusable/admin-navbar.jsp"/>   
+    <jsp:include page="reusable/navbar.jsp"/>   
     <div class="col-sm-9 col-lg-10 content admin-area">
     	<div class="header">
 	       <h1>SHS Online Library System</h1>
@@ -135,17 +135,11 @@
     </div> <!-- end of content -->
   </div> <!-- end of row -->
 </div> <!-- end of container-fluid -->
-<form id="ManageBooks" action="AdminRMServlet" method="post"></form>
-<form id="ManageRMReserve" action="AdminRMReserveServlet" method="post"></form>
-<form id="ManageMRReserve" action="AdminMRReserveServlet" method="post"></form>
-<form id="ManageAccounts" action="AdminAccountsServlet" method="post"></form>
-<form id="ExportLog" action="AdminLogServlet" method="post"></form>
 
 <!--  INSERT SCRIPT TAGS HERE -->
 <!-- must be in every page -->
 <script src="js/jquery-3.0.0.min.js"></script>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script src="js/admin-menu-links.js"></script>
 <script src="js/app.js"></script>				
 <!-- //////////////////// -->
 <script src="vitalets-bootstrap-datepicker-c7af15b/js/bootstrap-datepicker.js"></script>
