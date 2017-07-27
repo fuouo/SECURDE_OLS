@@ -20,7 +20,7 @@ public class UserService {
 				+ " VALUES (?, ?, ?, ?, ?, SHA2(?, 512), ?, ?, ?, ?, ?);";
 		
 		ArrayList<Object> input = new ArrayList<>();
-		input.add(user.getIDNumber());
+		input.add(user.getIdnumber());
 		input.add(user.getUserType());
 		input.add(user.getFirstName());
 		input.add(user.getMiddleInitial());
@@ -56,7 +56,7 @@ public class UserService {
 		String query = "\nINSERT INTO " + User.TABLE_USER + "\n"
 				+ " VALUES (?, ?, ?, ?, ?, SHA2(?, 512), ?, ?, ?, ?, ?);";
 		
-		String query_event = "\nCREATE EVENT activate_event_" + user.getIDNumber() +"\n"
+		String query_event = "\nCREATE EVENT activate_event_" + user.getIdnumber() +"\n"
 				+ " ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 1 MINUTE \n" 
 				+ " DO \n"
 				+ "\tUPDATE " + User.TABLE_USER + "\n"
@@ -64,7 +64,7 @@ public class UserService {
 				+ "\tWHERE id_number = ? AND status = ?;";
 		
 		ArrayList<Object> input = new ArrayList<>();
-		input.add(user.getIDNumber());
+		input.add(user.getIdnumber());
 		input.add(user.getUserType());
 		input.add(user.getFirstName());
 		input.add(user.getMiddleInitial());
@@ -83,7 +83,7 @@ public class UserService {
 			
 			input.clear();
 			input.add(UserStatus.DEACTIVATED + "");
-			input.add(user.getIDNumber());
+			input.add(user.getIdnumber());
 			input.add(UserStatus.PENDING + "");
 			
 			result = q.runSQLEvent(query_event, input);
@@ -125,7 +125,7 @@ public class UserService {
 			// login is successful
 			if(r.next()) {
 				user = new User();
-				user.setIDNumber(id_number);
+				user.setIdnumber(id_number);
 				user.setFirstName(r.getString(User.COL_FIRSTNAME));
 				user.setLastName(r.getString(User.COL_LASTNAME));
 			}
@@ -162,7 +162,7 @@ public class UserService {
 				user = new User();
 				
 				// id number
-				user.setIDNumber(r.getString(User.COL_IDNUMBER));
+				user.setIdnumber(r.getString(User.COL_IDNUMBER));
 				
 				// user type
 				user.setUserType(UserType.getValue(r.getString(User.COL_USERTYPE)));
@@ -239,7 +239,7 @@ public class UserService {
 		ArrayList<Object> input = new ArrayList<>();
 		input.add(user.getPassword());
 		input.add(UserStatus.ACTIVATED);
-		input.add(user.getIDNumber());
+		input.add(user.getIdnumber());
 		
 		Query q = Query.getInstance();
 		try {
@@ -279,7 +279,7 @@ public class UserService {
 			
 			while(r.next()) {
 				user = new User();
-				user.setIDNumber(r.getString(User.COL_IDNUMBER));
+				user.setIdnumber(r.getString(User.COL_IDNUMBER));
 				user.setFirstName(r.getString(User.COL_FIRSTNAME));
 				user.setMiddleInitial(r.getString(User.COL_MI));
 				user.setLastName(r.getString(User.COL_LASTNAME));

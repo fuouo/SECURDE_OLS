@@ -1,3 +1,6 @@
+# unnecessary directories / build folders
+build
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
@@ -45,6 +48,3 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
-
-# unnecessary directories / build folders
-build

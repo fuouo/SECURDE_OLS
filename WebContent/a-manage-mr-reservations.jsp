@@ -33,27 +33,26 @@
 	    
         <div class="panel panel-default">
           <div class="panel-heading">
-            <a data-toggle="collapse" href="#current-book-log">Current Meeting Room Reservations</a>
+            <a data-toggle="collapse" href="#current-book-log">Today's Meeting Room Reservations</a>
           </div>
           
           <div id="current-book-log" class="panel-collapse collapse in">
             <div class="panel-body">
             
             <c:choose>
-            	<c:when test="${rRMSize == '0'}">
+            	<c:when test="${rMRSize == '0'}">
             		<h3>No Reserved Rooms at the moment</h3>
             	</c:when>
             </c:choose>
               
               <c:forEach items="${reserved_mr}" var="mr">
               	<div id = "${mr.reservedMRID}" class="log-item bordered-dark">
-	                <a class="title">${mr.mr_name}</a>
+	                <span>${mr.mr_name}</span><br>
 	                <div class="status reserved-status">Reserved</div>
-	                Reserved on Date : <span class="id_number">${mr.reservedDate}</span><br>
-	                Reserved on Date : <span class="date_reserved">${mr.reservedDate}</span><br>
-	                Return by on Time: <span class="date_returned">${mr.timeStart}</span>
+	                Reserved by user : <span class="id_number">${mr.user.idnumber}</span><br>
+	                Reserved on Time: <span class="time_start">${mr.timeStart}</span> -  <span class="time_end">${mr.timeEnd}</span>
 					<br>
-	                <button class="btn btn-default override-btn">Override Reservation</button>
+	                <button class="btn btn-default override-btn mr">Override Reservation</button>
               	</div>
               </c:forEach>
             </div>
@@ -65,9 +64,6 @@
     </div> <!-- end of content -->
   </div> <!-- end of row -->
 </div> <!-- end of container-fluid -->
-
-
-
 
 <!--  INSERT SCRIPT TAGS HERE -->
 <!-- must be in every page -->

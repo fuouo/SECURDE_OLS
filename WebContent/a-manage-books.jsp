@@ -117,7 +117,7 @@
 <form id="ManageRMReserve" action="AdminRMReserveServlet" method="post"></form>
 <form id="ManageMRReserve" action="AdminMRReserveServlet" method="post"></form>
 <form id="ManageAccounts" action="AdminAccountsServlet" method="post"></form>
-<form id="ExportLog" action="AdminLogServlet" method="post"></form>
+<form id="ExportLog" action="ExportServlet" method="post"></form>
 <form id="AdminSearchRM" action=AdminRMSearchResultsPageServlet method="post"></form>
 
 <!--  INSERT SCRIPT TAGS HERE -->

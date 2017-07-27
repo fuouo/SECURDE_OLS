@@ -55,7 +55,15 @@ public class AddRMServlet {
     	rm.setDateArrived(new Date());
 
     
-    	ReadingMaterialService.addRM(rm);
+    	boolean result = ReadingMaterialService.addRM(rm);
+    	
+    	System.out.println("ADDING BOOK : " + result);
+    	
+    	if(result) {
+    		// redirect to success page
+    	} else {
+    		// redirect to fail page
+    	}
 	}
     
     public static void process(HttpServletRequest request, HttpServletResponse response, int type) throws ServletException, IOException{

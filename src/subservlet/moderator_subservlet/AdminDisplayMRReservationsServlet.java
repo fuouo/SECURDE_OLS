@@ -34,9 +34,13 @@ public class AdminDisplayMRReservationsServlet {
 		// TODO Auto-generated method stub
     	System.out.println("DISPLAY MR RESERVATIONS POST");
     	
-    	ArrayList<ReservedRoom> mrList = RoomService.getReservedRoomsAtThisDateUSER(new Date());
+    	ArrayList<ReservedRoom> mrList = RoomService.getReservedRoomsAtThisDateADMIN(new Date());
     	request.getSession().setAttribute(ReservedRoom.TABLE_NAME, mrList);
     	request.getSession().setAttribute("rMRSize", mrList.size());
+    	
+    	for(int i=0; i<mrList.size(); i++){
+    		System.out.println(mrList.get(i).getMr_name());
+    	}
 
     	
     	request.getRequestDispatcher("/a-manage-mr-reservations.jsp").forward(request, response);

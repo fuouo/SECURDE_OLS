@@ -40,13 +40,10 @@ public class AdminDisplayRMReservationsServlet {
     	request.getSession().setAttribute(ReadingMaterial.TABLE_RESERVEDRM, rmList);
     	request.getSession().setAttribute("rRMSize", rmList.size());
     	
-    	ArrayList<String> idNumberList = new ArrayList<>();
     	for(int i=0; i<rmList.size(); i++){
-    		idNumberList.add(rmList.get(i).getUserReserved().getIDNumber());
-    		System.out.println(rmList.get(i).getUserReserved().getIDNumber());
+    		System.out.println("Reserver: " + rmList.get(i).getUserReserved().getIdnumber());
     	}
     	
-    	request.getSession().setAttribute(ReadingMaterial.COL_IDNUMBER, idNumberList);
     	
     	request.getRequestDispatcher("/a-manage-rm-reservations.jsp").forward(request, response);
     	

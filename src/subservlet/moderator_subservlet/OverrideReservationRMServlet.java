@@ -39,7 +39,7 @@ public class OverrideReservationRMServlet{
     	System.out.println("OverrideReservationServlet POST");
     	
     	String rmID = request.getParameter(ReadingMaterial.COL_RMID);
-    	ReadingMaterial rm = ReadingMaterialService.getRMByID(rmID, UserType.LIBMNGR);
+    	ReadingMaterial rm = ReadingMaterialService.getRMByID(rmID);
     	boolean result = ReadingMaterialService.cancelResRM(rm.getReservedRMID());
     	System.out.println("Canceled Reservation for " + rm.getTitle() + " : " + result);
     	PrintWriter pw = response.getWriter();

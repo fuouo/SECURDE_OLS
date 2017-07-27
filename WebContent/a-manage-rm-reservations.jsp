@@ -44,17 +44,16 @@
             		<h3>No Reserved Books at the moment</h3>
             	</c:when>
             </c:choose>
-              <c:set var = "r" scope = "session" value = "0"/>
               <c:forEach items="${reserved_rm}" var="rm">
               	<div id = "${rm.RMID_Location}" class="log-item bordered-dark">
 	                <a class="title">${rm.title}</a>
 	                <div class="status reserved-status">Reserved</div>
-	                Reserved by : <span class="id_number">${id_number[r]}</span><br>
-	                <c:set var="r" scope="session" value="${r + 1}"/>
+	                <c:set var = "reserver" scope = "session" value = "${rm.userReserved.idnumber}"/>
+	                Reserved by : <span class="id_number">${reserver}</span><br>
 	                Reserved on : <span class="date_reserved">${rm.dateReserved}</span><br>
 	                Returned on : <span class="date_returned">${rm.dateReturned}</span>
 					<br>
-	                <button class="btn btn-default override-btn">Override Reservation</button>
+	                <button class="btn btn-default override-btn rm">Override Reservation</button>
               	</div>
               </c:forEach>
             </div>
