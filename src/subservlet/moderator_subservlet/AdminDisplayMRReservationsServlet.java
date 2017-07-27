@@ -10,17 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.ReadingMaterial;
 import model.ReservedRoom;
-import service.ReadingMaterialService;
 import service.RoomService;
 import servlet.MasterServlet;
 
 
-public class AdminDisplayRMReservationsServlet {
+public class AdminDisplayMRReservationsServlet {
 
 	private static final long serialVersionUID = 1L;
-	public static final String URL = "/AdminDisplayRMReservationsServlet";
+	public static final String URL = "/AdminDisplayMRReservationsServlet";
 	
-    public AdminDisplayRMReservationsServlet() {
+    public AdminDisplayMRReservationsServlet() {
         super();
         // TODO Auto-generated constructor stub
         
@@ -28,27 +27,20 @@ public class AdminDisplayRMReservationsServlet {
 	
 	private static void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-    	System.out.println("DISPLAY RM RESERVATIONS GET");
+    	System.out.println("DISPLAY MR RESERVATIONS GET");
 	}
 
     private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-    	// TODO Auto-generated method stub
-    	System.out.println("DISPLAY RM RESERVATIONS POST");
+    	System.out.println("DISPLAY MR RESERVATIONS POST");
     	
-    	ArrayList<ReadingMaterial> rmList = ReadingMaterialService.getAllCurrentReservedRM();
-    	request.getSession().setAttribute(ReadingMaterial.TABLE_RESERVEDRM, rmList);
-    	request.getSession().setAttribute("rRMSize", rmList.size());
+    	ArrayList<ReservedRoom> mrList = RoomService.getReservedRoomsAtThisDateUSER(new Date());
+    	request.getSession().setAttribute(ReservedRoom.TABLE_NAME, mrList);
+    	request.getSession().setAttribute("rMRSize", mrList.size());
+
     	
-    	ArrayList<String> idNumberList = new ArrayList<>();
-    	for(int i=0; i<rmList.size(); i++){
-    		idNumberList.add(rmList.get(i).getUserReserved().getIDNumber());
-    		System.out.println(rmList.get(i).getUserReserved().getIDNumber());
-    	}
+    	request.getRequestDispatcher("/a-manage-mr-reservations.jsp").forward(request, response);
     	
-    	request.getSession().setAttribute(ReadingMaterial.COL_IDNUMBER, idNumberList);
-    	
-    	request.getRequestDispatcher("/a-manage-rm-reservations.jsp").forward(request, response);
     	
 	}
     

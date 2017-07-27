@@ -33,7 +33,7 @@
 	    
         <div class="panel panel-default">
           <div class="panel-heading">
-            <a data-toggle="collapse" href="#current-book-log">Current Reading Material Reservations</a>
+            <a data-toggle="collapse" href="#current-book-log">Current Meeting Room Reservations</a>
           </div>
           
           <div id="current-book-log" class="panel-collapse collapse in">
@@ -41,18 +41,17 @@
             
             <c:choose>
             	<c:when test="${rRMSize == '0'}">
-            		<h3>No Reserved Books at the moment</h3>
+            		<h3>No Reserved Rooms at the moment</h3>
             	</c:when>
             </c:choose>
-              <c:set var = "r" scope = "session" value = "0"/>
-              <c:forEach items="${reserved_rm}" var="rm">
-              	<div id = "${rm.RMID_Location}" class="log-item bordered-dark">
-	                <a class="title">${rm.title}</a>
+              
+              <c:forEach items="${reserved_mr}" var="mr">
+              	<div id = "${mr.reservedMRID}" class="log-item bordered-dark">
+	                <a class="title">${mr.mr_name}</a>
 	                <div class="status reserved-status">Reserved</div>
-	                Reserved by : <span class="id_number">${id_number[r]}</span><br>
-	                <c:set var="r" scope="session" value="${r + 1}"/>
-	                Reserved on : <span class="date_reserved">${rm.dateReserved}</span><br>
-	                Returned on : <span class="date_returned">${rm.dateReturned}</span>
+	                Reserved on Date : <span class="id_number">${mr.reservedDate}</span><br>
+	                Reserved on Date : <span class="date_reserved">${mr.reservedDate}</span><br>
+	                Return by on Time: <span class="date_returned">${mr.timeStart}</span>
 					<br>
 	                <button class="btn btn-default override-btn">Override Reservation</button>
               	</div>
@@ -66,16 +65,9 @@
     </div> <!-- end of content -->
   </div> <!-- end of row -->
 </div> <!-- end of container-fluid -->
-<form id="GoToRMDetails" method="post" action="RMDetailsServlet">
-	<input type="hidden" id="rmID_location" name="rmID_location" value=""/>
-</form>	
 
 
-<form id="ManageBooks" action="AdminRMServlet" method="post"></form>
-<form id="ManageRMReserve" action="AdminRMReserveServlet" method="post"></form>
-<form id="ManageMRReserve" action="AdminMRReserveServlet" method="post"></form>
-<form id="ManageAccounts" action="AdminAccountsServlet" method="post"></form>
-<form id="ExportLog" action="AdminLogServlet" method="post"></form>
+
 
 <!--  INSERT SCRIPT TAGS HERE -->
 <!-- must be in every page -->
