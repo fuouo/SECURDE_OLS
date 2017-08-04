@@ -5,6 +5,7 @@ import java.util.Date;
 public class User {
 	
 	public static final String TABLE_USER = "user";
+	public static final String TABLE_LOCKOUT = "lockout";
 	
 	public static final String COL_IDNUMBER = "id_number";
 	public static final String COL_USERTYPE = "user_type";
@@ -18,6 +19,9 @@ public class User {
 	public static final String COL_SQANSWER = "sq_answer";
 	public static final String COL_STATUS = "status";
 	
+	public static final String COL_LOCKOUTID = "lockoutID";
+	public static final String COL_NUMATTEMPTS = "num_attempts";
+	
 	protected String idnumber;
 	protected String firstName;
 	protected String middleInitial;
@@ -26,6 +30,9 @@ public class User {
 	protected String email;
 	protected Date birthdate;
 	protected SecretQuestion secretQuestion;
+	
+	protected int lockoutID;
+	protected int numAttempts;
 
 	protected String secretAnswer;
 	protected UserType userType;
@@ -121,5 +128,21 @@ public class User {
 
 	public void setStatus(UserStatus status) {
 		this.status = status;
+	}
+
+	public int getLockoutID() {
+		return lockoutID;
+	}
+
+	public void setLockoutID(int lockoutID) {
+		this.lockoutID = lockoutID;
+	}
+
+	public int getNumAttempts() {
+		return numAttempts;
+	}
+
+	public void setNumAttempts(int numAttempts) {
+		this.numAttempts = numAttempts;
 	}
 }
