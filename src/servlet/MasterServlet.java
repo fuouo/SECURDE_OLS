@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import subservlet.AccountPageServlet;
 import subservlet.CategoryRMServlet;
 import subservlet.HomePageServlet;
+import subservlet.LoadSecretQuestionServlet;
 import subservlet.MeetingRoomPageServlet;
 import subservlet.RMDetailsServlet;
 import subservlet.RMSearchResultsPageServlet;
@@ -69,7 +70,8 @@ import subservlet.moderator_subservlet.ViewReservedRMServlet;
 							EditRMServlet.URL,
 							OverrideReservationRMServlet.URL,
 							OverrideReservationRoomServlet.URL,
-							ExportServlet.URL
+							ExportServlet.URL,
+							LoadSecretQuestionServlet.URL
 							})
 
 public class MasterServlet extends HttpServlet {
@@ -185,6 +187,9 @@ public class MasterServlet extends HttpServlet {
 					break;
 				case ExportServlet.URL:
 					ExportServlet.process(request, response, type);
+					break;
+				case LoadSecretQuestionServlet.URL:
+					LoadSecretQuestionServlet.process(request, response, type);
 					break;
 			}
 			

@@ -26,9 +26,19 @@
 
 <div class="container-fluid">
   <div class="row">
-    <!-- NAV BAR -->
-    <jsp:include page="reusable/navbar.jsp"/>    
-    <!-- END OF NAV BAR -->    
+  	<c:choose>
+      <c:when test="${canEdit == 'true'}">
+      	<!-- NAV BAR -->
+	    <jsp:include page="reusable/admin-navbar.jsp"/>    
+	    <!-- END OF NAV BAR -->  
+      </c:when>
+      <c:otherwise>
+      	<!-- NAV BAR -->
+	    <jsp:include page="reusable/navbar.jsp"/>    
+	    <!-- END OF NAV BAR -->  
+      </c:otherwise>
+     </c:choose>
+      
     <div class="col-sm-9 col-lg-10 content">
       <!-- your page content -->
       <div class="header">
@@ -37,6 +47,7 @@
       </div>
       
       <div id="overlay-screen" style="display: none;"></div>
+      
       <!-- SEARCH BAR -->
       <jsp:include page="reusable/search-bar-toggable.jsp"/>    
       <!-- END OF SEARCH BAR -->  
@@ -137,10 +148,14 @@
               <div class="col-md-3"><span class="location">${reading_material.RMID_Location}</span></div>
               <div class="col-md-3"><span class="available-status">${reading_material.status}</span></div>
               <c:choose>
+              	<c:when test="${canEdit =='true'}">
+              		<div class="col-md-3"></div>
+              		<div class="col-md-3"></div>
+              	</c:when>
 			    <c:when test="${reading_material.status == 'BORROWED'}">
 			      <div onclick="clickedType('${loc}')" class="col-md-3"><button onclick="clickedType(${reading_material.RMID_Location })" class="reserve-inline btn btn-default">Reserve</button></div>
 			      <div class="col-md-3">
-			      	<div class="col-md-3"><span class="availability-date"></span>${reading_material.dateReturned}</div>
+			      	<div class="col-md-3"><span class="availability-date"></span>${reading_material.date_returned}</div>
 			      </div>
 			    </c:when>
 			    <c:when test="${reading_material.status == 'AVAILABLE'}">
@@ -149,7 +164,7 @@
 			    </c:when>
 			    <c:otherwise>
 			        <div class="col-md-3"><button class="reserve-inline btn btn-default disabled">Reserve</button></div>
-			        <div class="col-md-3"></div>
+			        <div class="col-md-3"><span class="availability-date"></span>${reading_material.date_returned}</div>
 			    </c:otherwise>
 			  </c:choose>
             </div> 
@@ -216,7 +231,14 @@
 <!-- must be in every page -->
 <script src="js/jquery-3.0.0.min.js"></script>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script src="js/menu-links.js"></script>
+<c:choose>
+	<c:when test="${canEdit == 'true'}">
+		<script src="js/menu-links.js"></script>
+	</c:when>
+	<c:otherwise>
+		<script src="js/admin-menu-links.js"></script>
+	</c:otherwise>
+</c:choose>
 <script src="js/app.js"></script>			
 <!-- //////////////////// -->
 <script> 

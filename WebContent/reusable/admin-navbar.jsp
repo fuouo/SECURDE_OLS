@@ -61,15 +61,6 @@
 	<input type="hidden" value="" name="destination" id="destination"/>
 </form>
 
-<!-- 
- 
-<form id="ManageBooks" action="AdminAreaServlet" method="post"></form>
-<form id="ManageRMReserve" action="AdminDisplayRMReservationsServlet" method="post"></form>
-<form id="ManageMRReserve" action="AdminDisplayMRReservationsServlet" method="post"></form>
-<form id="ManageAccounts" action="AdminDisplayAccountsServlet" method="post"></form>
-<form id="ExportLog" action="ExportServlet" method="post"></form>
- 
-  -->
 </body>
 <script src="js/jquery-3.0.0.min.js"></script>
 <script src="js/admin-menu-links.js"></script>

@@ -117,7 +117,7 @@
 <script src="vitalets-bootstrap-datepicker-c7af15b/js/bootstrap-datepicker.js"></script>
 <script src="js/app.js"></script>			
 <!-- //////////////////// -->
-<script src="js/register.js"></script>
+<script src="js/js-sha512.js"></script>
 <script src="js/manage-books.js"></script>
 
 

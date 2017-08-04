@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -25,64 +25,59 @@
 <body>
 <div class="container-fluid">
   <div class="row">
-    <!-- NAV BAR -->
     <jsp:include page="reusable/navbar.jsp"/>    
-    <!-- END OF NAV BAR -->
-    <div class="col-sm-9 col-lg-10 content">
+    <div class="col-sm-9 col-lg-10 content admin-area">
       <!-- your page content -->
       <div class="header">
        <h1>SHS Online Library System</h1>
-       <h2>Reserve Books and Meeting Rooms anytime, anywhere!</h2>
+       <h3></h3>
       </div>
 
-      <div id="overlay-screen" style="display: none;"></div>
-      <!-- SEARCH BAR -->
-      <jsp:include page="reusable/search-bar-toggable.jsp"/>    
-      <!-- END OF SEARCH BAR -->  
-      
-      <div align="center" id="content-forgotten">
-      	<h2>Forgot your Password?</h2>
-      	<div class="row">
-          <div class="col-md-6 col-md-offset-3">
-            <form class="form-horizontal">
-              <div class="form-group">
-                <label for="login-idnum" class="col-sm-2 control-label">Username</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control form-components-rd erase-margin" id="login-idnum" placeholder="ID Number">
-                </div>
-              </div>
-              <div class="form-group" align="left">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <div type="submit" id="verify-username" class="btn btn-default submit-btn form-components-rd auto-width erase-margin">Submit</div>
-                </div>
-              </div>
-
-              <div id="secret-question" style="display:none;">
-                <div class="form-group">
-                  <label for="login-idnum" class="col-sm-2 control-label">Secret Question</label>
-                  <div class="col-sm-10">
-                    <div class="well">Where did you spend your 10th birthday?</div>
-                    <div class="alert alert-danger" style="display:none;" role="alert">Wrong Answer!</div>
-                    <input type="text" class="form-control form-components-rd erase-margin" id="login-idnum" placeholder="Your Answer">
-                  </div>
-                </div>
-                <div class="form-group" align="left">
-                  <div class="col-sm-offset-2 col-sm-10">
-                    <div type="submit" id="verify-secret-answer" class="btn btn-default submit-btn form-components-rd auto-width erase-margin">Submit</div>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
+      <div class="lesser-padding-content" >
+        <h3 align="center">Forgot your Password?</h3>
+        <div class="content">
+	        <div class="col-md-2"></div>
+	        <div class="col-md-8">
+	        	<div id="content-enter-username">
+		          <div class="form-group">
+		            <p align="center">Please enter your ID number so we can email you <br>
+		            the confirmation code to the ID number's associated email address.</p>
+		            
+		            <div class="alert alert-danger" id="invalid-id" style="display: none;" role="alert">ID Number does not exist!</div>
+		            
+				    <label for="idnumber">ID Number</label>
+				    <input type="number" class="form-control form-components-rd" id="id_number" name="id_number" placeholder="ID Number">
+				    
+				    <button type="submit" id="submit-username" class="btn btn-default submit-btn form-components-rd auto-width erase-margin">Submit</button>
+				  </div>
+		        </div>
+		        
+		        <div id="content-enter-secret-answer">
+		          <div class="form-group">
+		            <h3 align="center">Secret Question</h3>
+		            <p align="left">
+		            	Q: <span id="secret-question">[secret-question]</span>
+		            </p>
+		            
+		            <div class="alert alert-danger" id="wrong-answer" style="display: none;" role="alert">Wrong Answer!</div>
+		            
+				    <label for="idnumber">Secret Answer</label>
+				    <input type="text" class="form-control form-components-rd" id="idnumber" placeholder="ID Number">
+				    
+				    <button type="submit" id="submit-answer" class="btn btn-default submit-btn form-components-rd auto-width erase-margin">Submit</button>
+				  </div>
+		        </div>
+	        </div>
+	        <div class="col-md-2"></div>
         </div>
-	  </div>
-
-
+      </div>
 
 <!-- don't go beyond this point -->
     </div> <!-- end of content -->
   </div> <!-- end of row -->
 </div> <!-- end of container-fluid -->
+
+
 <form id="meetingRoomForm" action="MeetingRoomPageServlet" method="post"></form>
 <form id="signInForm" action="SignInSignUpPageServlet" method="post"></form>
 <form id="homeForm" action="HomePageServlet" method="post"></form>
@@ -96,12 +91,55 @@
 <script src="js/app.js"></script>			
 <!-- //////////////////// -->
 <script>
-$("#verify-secret-answer").click(function(){
-  $('.alert-danger').show("fast", function(){});
-  setTimeout(function(){
-      $('.alert-danger').hide("fast", function(){});  
-    }, 1000);
+
+$(document).ready(function(){
+	
+	$("#submit-username").click(function(){
+		console.log($("#content-enter-username #id_number").val());
+		checkUsernameValidity($("#content-enter-username #id_number").val());
+		$("#submit-username").show();
+		$("#submit-answer").show();
+	});
+	
 });
+
+function showWrongAnswer(){
+	$('#wrong-answer').show("fast", function(){});
+	  setTimeout(function(){
+	      $('#wrong-answer').fadeOut("fast", function(){});  
+	    }, 1000);
+}
+
+function showInvalidIDNumber(){
+	$('#invalid-id').show("fast", function(){});
+	  setTimeout(function(){
+	      $('#invalid-id').hide("fast", function(){});  
+	    }, 1000);
+}
+
+function checkUsernameValidity(idnumber){
+	console.log(idnumber);
+	$.ajax({
+		url: "LoadSecretQuestionServlet",
+		method: "post",
+		data: {
+			'id_number': idnumber,
+		},
+		success: function(question) {
+			$("#content-enter-username").hide();
+			$("#secret-question").text(question);
+		},
+	});
+}
+
+
+
+$("#submit-answer").click(function(){
+	
+	
+	
+});
+
 </script>
 </body>
 </html>

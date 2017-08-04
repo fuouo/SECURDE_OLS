@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.User;
+import model.UserStatus;
 import model.UserType;
 import service.UserService;
 import servlet.MasterServlet;
@@ -36,10 +37,17 @@ public class AdminAreaServlet{
     	System.out.println("ADMIN AREA POST");
     	
     	UserType userType = UserType.ADMIN;
+    	User user = new User();
+    	user.setStatus(UserStatus.PENDING);
     	
-    	String url = request.getParameter("destination");
+    	if(user.getStatus() == UserStatus.PENDING){
+    		request.getRequestDispatcher("/a-change-password.jsp").forward(request, response);
+    	}
+    	else {
+    		String url = request.getParameter("destination");
     	
-    	request.getRequestDispatcher("/" + url).forward(request, response);
+    		request.getRequestDispatcher("/" + url).forward(request, response);
+    	}
     	
 	}
     
