@@ -784,11 +784,14 @@ public class ReadingMaterialService {
 
 			while(r.next()) {
 				rm = new ReadingMaterial();				
-				String author = ESAPI.encoder().decodeForHTML(r.getString(ReadingMaterial.COL_AUTHOR));
+				String author = ESAPI.encoder().encodeForHTML(r.getString(ReadingMaterial.COL_AUTHOR));
+				
+				System.out.println("AUTHOR : " + author);
 				
 				rm.setRMID_Location(r.getString(ReadingMaterial.COL_RMID));
 				rm.setTitle(r.getString(ReadingMaterial.COL_TITLE));
 				rm.setAuthor(author);
+				System.out.println("ESAPI : AUTHOR : " + author);
 				rm.setPublisher(r.getString(ReadingMaterial.COL_PUBLISHER));
 				rm.setYear(r.getInt(ReadingMaterial.COL_YEAR));
 				rm.setStatus(RMStatus.getStockValue(r.getString(ReadingMaterial.COL_LIBSTATUS)));
