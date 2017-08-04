@@ -131,6 +131,7 @@ public class UserService {
 		
 		try {
 			r = q.runQuery(query_idnumber, input);
+			UserStatus status = UserStatus.getValue(r.getString(User.COL_STATUS));
 			
 			// id number exists
 			if(r.next()) {
@@ -157,8 +158,12 @@ public class UserService {
 					q.runInsertUpdateDelete(query_delete, input);
 					
 				} else {
-					// login attempt may be brute force
-					isBruteForce = true;
+					
+					// brute force attack if account is activated
+					if(status == UserStatus.ACTIVATED) {
+						// login attempt may be brute force
+						isBruteForce = true;
+					}
 				}
 				
 			}
