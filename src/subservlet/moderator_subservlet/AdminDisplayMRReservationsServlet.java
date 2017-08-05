@@ -43,7 +43,7 @@ public class AdminDisplayMRReservationsServlet {
     	}
 
     	
-    	request.getRequestDispatcher("/a-manage-mr-reservations.jsp").forward(request, response);
+    	request.getRequestDispatcher("/WEB-INF/secured/a-manage-mr-reservations.jsp").forward(request, response);
     	
     	
 	}

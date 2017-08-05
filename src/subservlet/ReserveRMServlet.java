@@ -70,7 +70,7 @@ public class ReserveRMServlet{
 			
 		}
 		else
-			request.getRequestDispatcher("sign_in_sign_up.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/secured/sign_in_sign_up.jsp").forward(request, response);
 		
 		
 	}

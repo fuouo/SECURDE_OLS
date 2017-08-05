@@ -30,7 +30,7 @@ public class SignInSignUpPageServlet{
     private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
     	System.out.println("SIGN IN SIGN UP POST");
-    	request.getRequestDispatcher("sign_in_sign_up.jsp").forward(request, response);
+    	request.getRequestDispatcher("/WEB-INF/secured/sign_in_sign_up.jsp").forward(request, response);
 	}
     
     public static void process(HttpServletRequest request, HttpServletResponse response, int type) throws ServletException, IOException{

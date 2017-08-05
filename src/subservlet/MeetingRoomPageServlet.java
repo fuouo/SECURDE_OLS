@@ -94,7 +94,7 @@ public class MeetingRoomPageServlet {
 			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
 					"Sign In");
 		*/
-		request.getRequestDispatcher("meeting-rooms.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/secured/meeting-rooms.jsp").forward(request, response);
 	}
 
 	public static void process(HttpServletRequest request, HttpServletResponse response, int type) throws ServletException, IOException{

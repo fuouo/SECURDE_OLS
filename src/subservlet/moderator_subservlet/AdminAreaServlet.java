@@ -41,12 +41,12 @@ public class AdminAreaServlet{
     	user.setStatus(UserStatus.PENDING);
     	
     	if(user.getStatus() == UserStatus.PENDING){
-    		request.getRequestDispatcher("/a-change-password.jsp").forward(request, response);
+    		request.getRequestDispatcher("/WEB-INF/secured/a-change-password.jsp").forward(request, response);
     	}
     	else {
     		String url = request.getParameter("destination");
     	
-    		request.getRequestDispatcher("/" + url).forward(request, response);
+    		request.getRequestDispatcher("/WEB-INF/secured/" + url).forward(request, response);
     	}
     	
 	}
