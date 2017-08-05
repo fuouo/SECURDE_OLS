@@ -201,10 +201,7 @@ public class UserService {
 				+ " FROM " + User.TABLE_LOCKOUT 
 				+ " WHERE " + User.COL_IDNUMBER + " = ?;";
 		
-		String query_event = "\nCREATE EVENT activate_event_" + idnumber +"\n"
-				+ " ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 1 MINUTE \n" 
-				+ " DO \n"
-				+ "\tUPDATE " + User.TABLE_USER + "\n"
+		String query_update_status = "\nUPDATE " + User.TABLE_USER + "\n"
 				+ "\tSET status = ?\n"
 				+ "\tWHERE id_number = ? AND status = ?;";
 		
@@ -228,7 +225,7 @@ public class UserService {
 			r = q.runQuery(query_select, input);
 			
 			if(r.next()) {
-				// if equal to 5, then trigger event
+				// if equal to 5, update status of user to LOCKOUT
 				
 				int num_attempts = r.getInt(r.getString(User.COL_NUMATTEMPTS));
 				
@@ -238,7 +235,7 @@ public class UserService {
 					input.add(idnumber);
 					input.add(UserStatus.ACTIVATED + "");
 					
-					q.runSQLEvent(query_event, input);
+					q.runSQLEvent(query_update_status, input);
 					
 					// then delete instance in lockout table
 					input.clear();
