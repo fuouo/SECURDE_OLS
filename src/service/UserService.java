@@ -128,29 +128,33 @@ public class UserService {
 		
 		Query q = Query.getInstance();
 		ResultSet r = null;
+		ResultSet r2 = null;
 		
 		try {
 			r = q.runQuery(query_idnumber, input);
-			UserStatus status = UserStatus.getValue(r.getString(User.COL_STATUS));
 			
 			// id number exists
 			if(r.next()) {
-				r.close();
-
+				UserStatus status = UserStatus.getValue(r.getString(User.COL_STATUS));
+				System.out.println("id number exists!!!");
+				
 				// check password
+				input.clear();
 				input.add(id_number);
 				input.add(password);
 				
-				r = q.runQuery(query_select, input);
+				r2 = q.runQuery(query_select, input);
 				
 				// login is successful
-				if(r.next()) {
+				if(r2.next()) {
+					
+					System.out.println("user exists!!!");
 					
 					// create user
 					user = new User();
 					user.setIdnumber(id_number);
-					user.setFirstName(r.getString(User.COL_FIRSTNAME));
-					user.setLastName(r.getString(User.COL_LASTNAME));
+					user.setFirstName(r2.getString(User.COL_FIRSTNAME));
+					user.setLastName(r2.getString(User.COL_LASTNAME));
 					
 					// if account has been brute-forced before, then delete instance in lockout
 					input.clear();
@@ -174,6 +178,8 @@ public class UserService {
 			try {
 				if(r != null)
 					r.close();
+				if(r2 != null)
+					r2.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();

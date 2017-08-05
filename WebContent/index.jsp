@@ -25,7 +25,7 @@
 <div class="container-fluid">
   <div class="row">
   	<!-- NAV BAR -->
-    <jsp:include page="reusable/navbar.jsp"/>    
+    <jsp:include page="WEB-INF/reusable/navbar.jsp"/>    
     <!-- END OF NAV BAR -->
     <div class="col-sm-9 col-lg-10 content">
 	  <!-- HEADER -->
@@ -36,7 +36,7 @@
       <!-- END OF HEADER -->
       
 	  <!-- SEARCH BAR -->
-      <jsp:include page="reusable/search-bar.jsp"/>    
+      <jsp:include page="WEB-INF/reusable/search-bar.jsp"/>    
        <!-- END OF SEARCH BAR -->
 
        <!--  CAROUSEL -->

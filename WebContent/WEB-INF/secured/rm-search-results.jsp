@@ -24,7 +24,7 @@
 <div class="container-fluid">
   <div class="row">
   	<!--  MENU -->
-    <jsp:include page="reusable/navbar.jsp"/>
+    <jsp:include page="../reusable/navbar.jsp"/>
     <!--  END MENU -->
     <div class="col-sm-9 col-lg-10 content">
       <!-- your page content -->
@@ -61,7 +61,7 @@
       </div>
 
       <!-- SEARCH BAR -->
-      <jsp:include page="reusable/search-bar-toggable.jsp"/>    
+      <jsp:include page="../reusable/search-bar-toggable.jsp"/>    
       <!-- END OF SEARCH BAR -->  
 
       <div class="rm-results">

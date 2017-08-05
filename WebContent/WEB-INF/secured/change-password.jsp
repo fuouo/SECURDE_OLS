@@ -26,7 +26,7 @@
 <body>
 <div class="container-fluid">
   <div class="row">
-    <jsp:include page="reusable/navbar.jsp"/>    
+    <jsp:include page="../reusable/navbar.jsp"/>    
     <div class="col-sm-9 col-lg-10 content admin-area">
       <!-- your page content -->
       <div class="header">

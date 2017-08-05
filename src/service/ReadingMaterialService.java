@@ -758,8 +758,6 @@ public class ReadingMaterialService {
 
 			input.add(rmType + "");
 		}
-		
-		query = query + "\nORDER BY " + ReadingMaterial.COL_TITLE + ";";
 
 		// for status
 		String query_reserved = "\nSELECT *" + "\n"

@@ -29,12 +29,12 @@
   	<c:choose>
       <c:when test="${canEdit == 'true'}">
       	<!-- NAV BAR -->
-	    <jsp:include page="reusable/admin-navbar.jsp"/>    
+	    <jsp:include page="../reusable/admin-navbar.jsp"/>    
 	    <!-- END OF NAV BAR -->  
       </c:when>
       <c:otherwise>
       	<!-- NAV BAR -->
-	    <jsp:include page="reusable/navbar.jsp"/>    
+	    <jsp:include page="../reusable/navbar.jsp"/>    
 	    <!-- END OF NAV BAR -->  
       </c:otherwise>
      </c:choose>
@@ -49,7 +49,7 @@
       <div id="overlay-screen" style="display: none;"></div>
       
       <!-- SEARCH BAR -->
-      <jsp:include page="reusable/search-bar-toggable.jsp"/>    
+      <jsp:include page="../reusable/search-bar-toggable.jsp"/>    
       <!-- END OF SEARCH BAR -->  
 	
 	  <c:choose>

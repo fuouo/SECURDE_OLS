@@ -59,7 +59,7 @@ public class SignInServlet {
 			}
 		}
 		else
-			request.getRequestDispatcher("/WEB-INF/secured/sign_in_sign_up.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/secured/sign-in-sign-up.jsp").forward(request, response);
 		//else, display error message
 		
 		

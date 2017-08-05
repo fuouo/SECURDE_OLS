@@ -71,11 +71,16 @@ public class HomePageServlet{
 				user = UserService.viewProfileUser(cookies[i].getValue());
 			}
 		}
+		
+		System.out.println("User: " + user);
+		
+		
 		String userName = null;
 		//If user is logged in
 		if(user!=null)
 		{
 			userName = (String) user.getFirstName() + " " + user.getLastName();
+			System.out.println(userName);
 		}else 
 		
 		userName = (String) request.getAttribute(User.COL_FIRSTNAME)  
