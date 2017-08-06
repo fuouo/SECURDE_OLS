@@ -54,6 +54,18 @@ public class LoadSecretQuestionServlet{
 			pw.write(secretQuestion);
 		}
 		
+		/*
+		System.out.println(SecretQuestionService.getSecretQuestionOfUser((Integer.parseInt(idNumber))).getQuestion());
+		if(user != null)
+		{
+			request.setAttribute(User.COL_SQID, 
+					SecretQuestionService.getSecretQuestionOfUser((Integer.parseInt(idNumber))).getQuestion());
+			request.setAttribute(User.COL_IDNUMBER+"_ans", 
+					user.getIDNumber());
+		}
+		
+		request.getRequestDispatcher("forgot-pwd.jsp").forward(request, response);
+		 */
 		
 		
 		//request.getRequestDispatcher("forgot-pwd.jsp").forward(request, response);

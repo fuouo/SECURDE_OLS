@@ -59,20 +59,14 @@
 	        <form id="EditRMDetails" action="EditRMServlet" method="post">
 	        <div class="content" style="margin: 0 10%">
 	        
+	            <input type = "hidden" name = "newRMType" id="newRMType"/>
 	            <div class="form-group">
-	              <label for="newRMType">Type of Reading Material</i></label>
-	              <select id="newRMType" name="newRMType" class="form-control form-components-rd" style="width:70%">
-					<option value="${reading_material.RMType}" selected>${reading_material.RMType}</option>
-	               
-	                
-	                <c:forEach items="${rmtypelist}" var="i">
-	                	<c:choose>
-	                		<c:when test ="${i != reading_material.RMType}">
-				            	<option value="${i}">${i}</option>
-				            </c:when>
-	                	</c:choose>
-				    </c:forEach> 
-				     
+	              <label for="rm-type">Type of Reading Material</i></label>
+	              <select id="rm-type" class="form-control form-components-rd" style="width:70%">
+	                <option value="" selected disabled>Choose Collection</option>
+	                <option value="Book">Books</option>
+	                <option value="Thesis">Thesis</option>
+	                 <option value="Magazine">Magazine</option>    
 	              </select>
 	            </div>
 	            
@@ -188,7 +182,7 @@
 	
 	            <textarea class="form-control" name="textReview" placeholder="Tell us what you think" rows="2" style="width: 80%; margin-right: 20px;" ></textarea>
 	            <input type="hidden" name="rmID" value="${reading_material.RMID_Location}"/>
-	            <button class="btn btn-default" style="margin: 0 auto;"><i class="flaticon-message"></i></button>
+	            <button type="submit" class="btn btn-default" style="margin: 0 auto;"><i class="flaticon-message"></i></button>
 	
 	          </form>
 	        </div>
@@ -231,32 +225,16 @@
 <!-- must be in every page -->
 <script src="js/jquery-3.0.0.min.js"></script>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<c:choose>
-	<c:when test="${canEdit == 'true'}">
-		<script src="js/menu-links.js"></script>
-	</c:when>
-	<c:otherwise>
-		<script src="js/admin-menu-links.js"></script>
-	</c:otherwise>
-</c:choose>
-<script src="js/app.js"></script>			
+<script src="js/app.js"></script>		
+<script src="js/reserve-rm.js"></script>	
 <!-- //////////////////// -->
 <script> 
-function passReview(id){
-	//so para san to :o -Dyan
-	console.log("Pass Review");
-}
-$(".btn btn-default").click(function() {
-	$("#reviewForm").submit();
-});
 
 $("#edit-rm-btn").click(function(e){
   e.preventDefault();
   $("#content-edit-book").fadeIn("fast", function(){});
   $(".rm-gen-details").fadeOut("fast", function(){});
   $(".rm-reviews").fadeOut("fast", function(){});
-  
-
 })
 
 $("#submit-edit-rm").click(function(e){

@@ -786,7 +786,7 @@ public class ReadingMaterialService {
 				rm = new ReadingMaterial();				
 				String author = ESAPI.encoder().encodeForHTML(r.getString(ReadingMaterial.COL_AUTHOR));
 				
-				System.out.println("AUTHOR : " + author);
+				System.out.println("[ESAPI TEST] AUTHOR : " + author);
 				
 				rm.setRMID_Location(r.getString(ReadingMaterial.COL_RMID));
 				rm.setTitle(r.getString(ReadingMaterial.COL_TITLE));

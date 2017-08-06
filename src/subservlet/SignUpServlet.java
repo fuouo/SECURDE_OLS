@@ -1,12 +1,15 @@
 package subservlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.SecretQuestion;
+import model.User;
+import service.SecretQuestionService;
 import servlet.MasterServlet;
 
 /**
@@ -26,7 +29,20 @@ public class SignUpServlet {
 
 	private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("SIGNUP SERVLET POST");
+System.out.println("SIGNUP SERVLET POST");
+		
+		String idNum = request.getParameter(User.COL_IDNUMBER);
+		System.out.println("ID Num : " + idNum);
+		
+		System.out.println("Setting Secret Questions");
+		
+		/* Set Page Attributes
+		 * -secret questions
+		 * -id number
+		 */
+		
+		request.getSession().setAttribute("secretQuestions", getSecretQuestions());
+		request.getSession().setAttribute(User.COL_IDNUMBER, idNum);
 		
 		//redirect to Registration
 		request.getRequestDispatcher("registration.jsp").forward(request, response);
@@ -37,5 +53,17 @@ public class SignUpServlet {
 			doGet(request, response);
 		doPost(request, response);
 	}
+	
+	private static ArrayList<String> getSecretQuestions()
+	{
+		ArrayList<SecretQuestion> secretQuestions = SecretQuestionService.getAllSecretQuestions();
+		ArrayList<String> strSecretQuestions = new ArrayList<String> ();
+		for(int i = 0; i < secretQuestions.size(); i++)
+		{
+			strSecretQuestions.add(secretQuestions.get(i).getQuestion());
+		}
+		return strSecretQuestions;	
+	}
+
 
 }

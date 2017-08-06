@@ -4,6 +4,10 @@ $(document).ready(function(){
         $('#confirm-reservation').fadeOut(350, function(){});
     });
 
+    $("#submit-reserve").click(function(){
+    	$("#ReserveMR").submit();
+    });
+    
     $('#overlay-screen').click(function(){
         $('#overlay-screen').fadeOut("fast", function(){});
         $('#confirm-reservation').fadeOut(350, function(){});

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.ReservedRoom;
 import model.Room;
+import model.User;
+import service.CookieService;
 import service.RoomService;
 import servlet.MasterServlet;
 import utils.Utils;
@@ -39,6 +41,29 @@ public class MeetingRoomPageServlet {
 		// TODO Auto-generated method stub
 		System.out.println("MEETING ROOM PAGE POST");
 		//User user = null;
+		
+		User user = CookieService.isUser(request);
+    	
+    	//TODO: THIS IS FOR DEBUGGING. PLEASE ERASE THIS!!
+    	//User user = null;s
+    	//user = new User();
+    	//user.setIdnumber("11400366");
+    	//user.setUserType(UserType.LIBMNGR);
+    	
+    	//If user is logged in		
+		if(user!=null)
+		{
+			System.out.println("User is NOT null");
+			String userName = (String) user.getFirstName() + " " + user.getLastName();
+			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
+					userName);
+		}
+		else {
+			System.out.println("User is null");
+			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
+					"Sign In");
+		}
+    	
 		
 		ArrayList<ReservedRoom> roomList = RoomService.getReservedRoomsAtThisDateUSER(new Date());
 		

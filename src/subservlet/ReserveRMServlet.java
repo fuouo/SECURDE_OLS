@@ -4,14 +4,13 @@ import java.io.IOException;
 import java.util.Calendar;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.ReadingMaterial;
 import model.User;
+import service.CookieService;
 import service.ReadingMaterialService;
-import service.UserService;
 import servlet.MasterServlet;
 
 /**
@@ -39,19 +38,23 @@ public class ReserveRMServlet{
     	
     	String location = request.getParameter("locationID");
     	System.out.println("LOCATION " + location);
-    	User user = null;
+    	User user = CookieService.isUser(request);
     	
-    	//Check if a user is logged in
-		Cookie[] cookies = request.getCookies();
-
-		System.out.println("[Cookies]: " + cookies.length);
-		//Search specific cookie
-		for(int i = 0; i < cookies.length; i ++) {
-			System.out.println(cookies[i].getName());
-			if(cookies[i].getName().equals(User.COL_IDNUMBER)) {
-				user = UserService.viewProfileUser(cookies[i].getValue());
-			}
-		}	
+		//If user is logged in		
+		if(user!=null)
+		{
+			System.out.println("User is NOT null");
+			String userName = (String) user.getFirstName() + " " + user.getLastName();
+			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
+					userName);
+		}
+		else {
+			System.out.println("User is null");
+			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
+					"Sign In");
+		}
+		
+		
 		
 		//If user is logged in
 		if(user != null)
@@ -70,7 +73,7 @@ public class ReserveRMServlet{
 			
 		}
 		else
-			request.getRequestDispatcher("sign_in_sign_up.jsp").forward(request, response);
+			request.getRequestDispatcher("SignInSignUpPageServlet").forward(request, response);
 		
 		
 	}

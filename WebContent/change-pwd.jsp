@@ -19,7 +19,7 @@
     	<!-- SELF -->
     <link rel="stylesheet" type="text/css" href="css/navbar-redesigned.css"/>
     <link rel="stylesheet" type="text/css" href="img/icons_by_freepik/font/flaticon.css"> 
-    <link rel="stylesheet" type="text/css" href="css/content.css">
+    <link rel="stylesheet" type="text/css" href="css/content.css"> 
 </head>
 
 <body>
@@ -41,32 +41,21 @@
       <!-- END OF SEARCH BAR -->  
       
       <div align="center" id="content-forgotten">
-      <h2>Forgot your Password?</h2>
+      <h2>Change Password</h2>
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
-          <form class="form-horizontal" id="username" action="LoadSecretQuestionServlet" method = "POST">
-              <div class="form-group">
-                <label for="login-idnum" class="col-sm-2 control-label">Username</label>
-                <div class="col-sm-10">
-                  <input type="text" name="id_number" class="form-control form-components-rd erase-margin" id="login-idnum" placeholder="ID Number" value="${id_number}">
-                </div>
-              </div>
-              <div class="form-group" align="left">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <div type="submit" id="verify-username" class="btn btn-default submit-btn form-components-rd auto-width erase-margin">Submit</div>
-                </div>
-              </div>
-			</form>
+          
 		<%-- 		<c:set var="id_number1">${id_number}</c:set> --%>
 			<form class="form-horizontal" id="secret-question" style="display:none" action="AnswerSecretQuestionServlet" method = "POST">
               <div>
              	 <input type="hidden" name="id_number_ans" id="idnumber2" value="${id_number_ans}">
                 <div class="form-group">
-                  <label for="login-idnum" class="col-sm-2 control-label">Secret Question</label>
+                  <label for="login-idnum" class="col-sm-2 control-label">New Password</label>
                   <div class="col-sm-10">
                     <div id= "question" class="well">${sqID}</div>
-                    <div class="alert alert-danger" style="display: none;" role="alert">Wrong Answer!</div>
-                    <input type="text" class="form-control form-components-rd erase-margin" id="login-idnum" placeholder="Your Answer" name="sq_answer">
+                    <div class="alert alert-danger" style="display: none;" role="alert">Password does not match!</div>
+                    <input type="password" class="form-control form-components-rd" name="passwordHash" id="password" placeholder="New Password" style="width:70%" required>
+                    <input type="password" class="form-control form-components-rd" name="confirm_passwordHash" id="confirm_password" placeholder="New Password" style="width:70%" required>
                   </div>
                 </div>
                 <div class="form-group" align="left">
@@ -87,6 +76,10 @@
     </div> <!-- end of content -->
   </div> <!-- end of row -->
 </div> <!-- end of container-fluid -->
+<form id="meetingRoomForm" action="MeetingRoomPageServlet" method="post"></form>
+<form id="signInForm" action="SignInSignUpPageServlet" method="post"></form>
+<form id="homeForm" action="HomePageServlet" method="post"></form>
+<form id="yourReservationsForm" action="CalendarOrgRepServlet" method="post"></form>
 
 <!--  INSERT SCRIPT TAGS HERE -->
 <!-- must be in every page -->
