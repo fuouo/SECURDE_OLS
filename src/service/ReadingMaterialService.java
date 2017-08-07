@@ -166,6 +166,8 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -272,7 +274,8 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
-				r.close();
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -389,7 +392,8 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
-				r.close();
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -423,7 +427,8 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
-				r.close();
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -507,7 +512,8 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
-				r.close();
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -539,7 +545,8 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
-				r.close();
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -571,7 +578,8 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
-				r.close();
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -640,7 +648,8 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
-				r.close();
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -694,7 +703,8 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
-				r.close();
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -820,7 +830,8 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
-				r.close();
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -912,7 +923,8 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
-				r.close();
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -996,7 +1008,8 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
-				r.close();
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -1049,7 +1062,8 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
-				r.close();
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -1101,7 +1115,8 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
-				r.close();
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -1147,7 +1162,8 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
-				r.close();
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -1200,7 +1216,8 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
-				r.close();
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -1276,7 +1293,8 @@ public class ReadingMaterialService {
 			e.printStackTrace();
 		} finally {
 			try {
-				r.close();
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
