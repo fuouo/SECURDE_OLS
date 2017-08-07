@@ -45,7 +45,7 @@ System.out.println("SIGNUP SERVLET POST");
 		request.getSession().setAttribute(User.COL_IDNUMBER, idNum);
 		
 		//redirect to Registration
-		request.getRequestDispatcher("registration.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/secured/registration.jsp").forward(request, response);
 	}
 	
 	public static void process(HttpServletRequest request, HttpServletResponse response, int type) throws ServletException, IOException{

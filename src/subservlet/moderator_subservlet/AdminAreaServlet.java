@@ -42,7 +42,7 @@ public class AdminAreaServlet{
     	user.setUserType(userType);
     	
     	if(user.getStatus() == UserStatus.PENDING){
-    		request.getRequestDispatcher("/a-change-password.jsp").forward(request, response);
+    		request.getRequestDispatcher("/WEB-INF/secured/a-change-password.jsp").forward(request, response);
     	}
     	else {
     		String url = request.getParameter("destination");
@@ -56,7 +56,7 @@ public class AdminAreaServlet{
     			
     		}
     	
-    		request.getRequestDispatcher("/" + url).forward(request, response);
+    		request.getRequestDispatcher("/WEB-INF/secured/" + url).forward(request, response);
     	}
     	
 	}

@@ -24,7 +24,7 @@
 <div class="container-fluid">
   <div class="row">
   	<!--  MENU -->
-    <jsp:include page="reusable/navbar.jsp"/>
+    <jsp:include page="../reusable/navbar.jsp"/>
     <!--  END MENU -->
     <div class="col-sm-9 col-lg-10 content">
       <!-- your page content -->

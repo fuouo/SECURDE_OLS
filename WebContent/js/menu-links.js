@@ -19,18 +19,20 @@ $(document).ready(function() {
 		$("#homeForm").submit();
 	});
 	 	
- 	$("#signInSignOut").click(function(e) {
- 	   e.preventDefault();
- 		console.log($("#account-name").text());
- 		$("#signInForm").submit();
- 	});
+// 	$("#signInSignOut").click(function(e) {
+// 	   e.preventDefault();
+// 		console.log($("#account-name").text());
+// 		$("#signInForm").submit();
+// 	});
+	
+	console.log("MOTHER FUCKING SHIT");
  	
  	$("#signInSignOut").click(function(e) {
  	   e.preventDefault();
   		console.log($("#account-name").text());
   		if($("#account-name").text() == "Sign In"){
-  			console.log("GO TO SIGN IN");
-  			window.location.href = "sign-in-sign-up.jsp";
+  			console.log("FUCKING SHIT");
+  			$("#signInForm").submit();
   		}
   	});
  

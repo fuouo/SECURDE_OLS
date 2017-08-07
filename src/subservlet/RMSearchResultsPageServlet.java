@@ -71,7 +71,7 @@ public class RMSearchResultsPageServlet{
     	request.getSession().setAttribute("numOfRM", readingMaterials.size());
     	request.getSession().setAttribute(ReadingMaterial.TABLE_RM, readingMaterials);
     	
-    	request.getRequestDispatcher("rm-search-results.jsp").forward(request, response);
+    	request.getRequestDispatcher("/WEB-INF/secured/rm-search-results.jsp").forward(request, response);
 	}
     
     public static void process(HttpServletRequest request, HttpServletResponse response, int type) throws ServletException, IOException{

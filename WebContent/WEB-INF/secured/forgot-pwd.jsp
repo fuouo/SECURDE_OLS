@@ -29,6 +29,7 @@
     <jsp:include page="reusable/navbar.jsp"/>    
     <!-- END OF NAV BAR -->
     <div class="col-sm-9 col-lg-10 content">
+
       <!-- your page content -->
       <div class="header">
        <h1>SHS Online Library System</h1>

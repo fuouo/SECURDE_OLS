@@ -33,7 +33,7 @@ public class SignInSignUpPageServlet{
     	System.out.println("SIGN IN SIGN UP POST");
     	String refererURI = new URI(request.getHeader("referer")).getPath();
     	request.setAttribute("referrer", refererURI);
-    	request.getRequestDispatcher("sign-in-sign-up.jsp").forward(request, response);
+    	request.getRequestDispatcher("/WEB-INF/secured/sign-in-sign-up.jsp").forward(request, response);
 	}
     
     public static void process(HttpServletRequest request, HttpServletResponse response, int type) throws ServletException, IOException{

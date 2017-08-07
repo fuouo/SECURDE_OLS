@@ -28,7 +28,7 @@
 <div class="container-fluid">
   <div class="row">
     <!-- NAV BAR -->
-    <jsp:include page="reusable/navbar.jsp"/>    
+    <jsp:include page="../reusable/navbar.jsp"/>    
     <!-- END OF NAV BAR -->
     <div class="col-sm-9 col-lg-10 content">
       <div class="header">
@@ -38,7 +38,7 @@
 
       <div id="overlay-screen" style="display: none;"></div>
       <!-- SEARCH BAR -->
-      <jsp:include page="reusable/search-bar-toggable.jsp"/>    
+      <jsp:include page="../reusable/search-bar-toggable.jsp"/>    
       <!-- END OF SEARCH BAR -->  
       	
       <form id = "register-details" style="margin-right: 300px;" action="RegisterUserServlet" method="POST">

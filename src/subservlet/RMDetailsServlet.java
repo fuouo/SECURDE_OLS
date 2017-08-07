@@ -106,7 +106,7 @@ public class RMDetailsServlet{
 		}
 		
 		
-		request.getRequestDispatcher("rm-details.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/secured/rm-details.jsp").forward(request, response);
 	}
     
     public static void process(HttpServletRequest request, HttpServletResponse response, int type) throws ServletException, IOException{
