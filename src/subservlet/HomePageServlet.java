@@ -1,6 +1,7 @@
 package subservlet;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +9,12 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.tomcat.util.codec.binary.Base64;
+import org.owasp.esapi.ESAPI;
+import org.owasp.esapi.crypto.CipherText;
+import org.owasp.esapi.crypto.PlainText;
+import org.owasp.esapi.errors.EncryptionException;
 
 import model.User;
 import service.UserService;
@@ -33,7 +40,21 @@ public class HomePageServlet{
 		for(int i = 0; i < cookies.length; i ++) {
 			System.out.println(cookies[i].getName());
 			if(cookies[i].getName().equals(User.COL_IDNUMBER)) {
-				user = UserService.viewProfileUser(cookies[i].getValue());
+				
+				// decrypt cookie
+				byte[] encryptedTextAsBytes = cookies[i].getValue().getBytes(StandardCharsets.UTF_8);
+				CipherText cipherText = null;
+				try {
+					cipherText = CipherText.fromPortableSerializedBytes(Base64.decodeBase64(encryptedTextAsBytes));
+					PlainText plainText = ESAPI.encryptor().decrypt(cipherText);
+					String idNumber = plainText.toString();
+					
+					user = UserService.viewProfileUser(idNumber);
+					
+				} catch (EncryptionException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 		String userName = null;

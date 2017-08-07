@@ -7,6 +7,11 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.owasp.esapi.ESAPI;
+import org.owasp.esapi.crypto.CipherText;
+import org.owasp.esapi.crypto.PlainText;
+import org.owasp.esapi.errors.EncryptionException;
+
 import model.User;
 import model.UserType;
 import service.UserService;
@@ -41,9 +46,32 @@ public class SignInServlet {
 		if(user!=null){
 			System.out.println("USER NOT NULL ");
 			// Create cookie
-			Cookie idNumURLcookie = new Cookie(User.COL_IDNUMBER, user.getIdnumber());
-			// Add cookie to list of cookies
-			response.addCookie(idNumURLcookie);		
+			
+			// encrypt cookie
+			PlainText plainText = new PlainText(user.getIdnumber());
+			CipherText encrypted = null;
+			try {
+				encrypted = ESAPI.encryptor().encrypt(plainText);
+				
+				System.out.println(encrypted);
+				System.out.println(encrypted.toString());
+				
+				Cookie idNumURLcookie = new Cookie(User.COL_IDNUMBER, encrypted.toString());
+				idNumURLcookie.setHttpOnly(true);
+				
+				// Add cookie to list of cookies
+				response.addCookie(idNumURLcookie);		
+			} catch (EncryptionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+//			Cookie idNumURLcookie = new Cookie(User.COL_IDNUMBER, user.getIdnumber());
+//			idNumURLcookie.setHttpOnly(true);
+//			
+//			// Add cookie to list of cookies
+//			response.addCookie(idNumURLcookie);	
 			
 			//Pass first name and last name of user
 			request.setAttribute(User.COL_FIRSTNAME, user.getFirstName());
