@@ -276,9 +276,10 @@ public class UserService {
 		input.add(id_number);
 		
 		Query q = Query.getInstance();
+		ResultSet r = null;
 		
 		try {
-			ResultSet r = q.runQuery(query, input);
+			r = q.runQuery(query, input);
 			
 			if(r.next()) {				
 				user = new User();
@@ -306,6 +307,8 @@ public class UserService {
 			e.printStackTrace();
 		} finally {
 			try {
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -327,9 +330,10 @@ public class UserService {
 		input.add(id_number);
 		
 		Query q = Query.getInstance();
+		ResultSet r = null;
 		
 		try {
-			ResultSet r = q.runQuery(query, input);
+			r = q.runQuery(query, input);
 			
 			if(r.next()) {
 				userType = UserType.getValue(r.getString(User.COL_USERTYPE));
@@ -339,6 +343,8 @@ public class UserService {
 			e.printStackTrace();
 		} finally {
 			try {
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -414,6 +420,8 @@ public class UserService {
 			e.printStackTrace();
 		} finally {
 			try {
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();

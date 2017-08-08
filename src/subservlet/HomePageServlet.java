@@ -1,16 +1,11 @@
 package subservlet;
 
 import java.io.IOException;
-import java.util.Properties;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.sun.org.apache.xerces.internal.util.URI;
 
 import model.User;
 import service.CookieService;
@@ -30,6 +25,7 @@ public class HomePageServlet{
     	
     	User user = CookieService.isUser(request);
     	
+
 		//If user is logged in		
 		if(user!=null)
 		{
