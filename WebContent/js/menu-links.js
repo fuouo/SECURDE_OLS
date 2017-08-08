@@ -18,6 +18,12 @@ $(document).ready(function() {
 		console.log("LOGO CLICKED");
 		$("#homeForm").submit();
 	});
+	
+	$('#logout').click(function(e) {
+		   e.preventDefault();
+		console.log("LOGGING OUT");
+		$("#logoutForm").submit();
+	});
 	 	
 // 	$("#signInSignOut").click(function(e) {
 // 	   e.preventDefault();

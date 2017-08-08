@@ -22,6 +22,7 @@ import subservlet.ReserveRMServlet;
 import subservlet.ReviewServlet;
 import subservlet.SignInServlet;
 import subservlet.SignInSignUpPageServlet;
+import subservlet.SignOutServlet;
 import subservlet.SignUpServlet;
 import subservlet.moderator_subservlet.AddRMServlet;
 import subservlet.moderator_subservlet.AdminAccountsServlet;
@@ -51,6 +52,7 @@ import subservlet.moderator_subservlet.ViewReservedRMServlet;
 							SignInServlet.URL,
 							SignInSignUpPageServlet.URL,
 							SignUpServlet.URL,
+							SignOutServlet.URL,
 							ReserveRMServlet.URL,
 							ReserveMRServlet.URL,
 							RMSearchResultsPageServlet.URL,
@@ -126,6 +128,9 @@ public class MasterServlet extends HttpServlet {
 					break;
 				case SignUpServlet.URL:
 					SignUpServlet.process(request, response, type);
+					break;
+				case SignOutServlet.URL:
+					SignOutServlet.process(request, response, type);
 					break;
 				case SignInSignUpPageServlet.URL:
 					SignInSignUpPageServlet.process(request, response, type);

@@ -2,16 +2,17 @@ package service;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import model.User;
 
 public class CookieService {
-	
+
 	public static User isUser(HttpServletRequest request)
 	{
 		User user = null;
-    	
-    	//Check if a user is logged in
+
+		//Check if a user is logged in
 		Cookie[] cookies = request.getCookies();
 
 		//System.out.println("[Cookies]: " + cookies.length);
@@ -25,8 +26,31 @@ public class CookieService {
 				}
 			}
 		}
-		
+
 		return user;	
+	}
+
+	public static void deleteAllCookies(HttpServletRequest request, HttpServletResponse response) {
+		// get all cookies
+		Cookie[] cookies = request.getCookies();
+		
+		System.out.println("Cookies: " + cookies.length);
+
+		if(cookies!=null)
+		{
+			// delete all cookies
+			for(int i = 0; i < cookies.length; i ++) {
+				cookies[i].setMaxAge(0);
+				cookies[i].setValue(null);
+				cookies[i].setMaxAge(0);
+				response.addCookie(cookies[i]);
+			}
+		}
+		
+		// invalidate session
+		request.getSession().invalidate();
+		
+		System.out.println("Cookies: " + cookies.length);
 	}
 
 }
