@@ -44,7 +44,7 @@ public class HomePageServlet{
     
 	private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub	
-    	System.out.println("HOMEPAGE GET");
+    	System.out.println("HOMEPAGE POST");
     	
     	User user = CookieService.isUser(request);
     	

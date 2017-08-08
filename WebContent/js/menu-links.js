@@ -24,12 +24,6 @@ $(document).ready(function() {
 		console.log("LOGGING OUT");
 		$("#logoutForm").submit();
 	});
-	 	
-// 	$("#signInSignOut").click(function(e) {
-// 	   e.preventDefault();
-// 		console.log($("#account-name").text());
-// 		$("#signInForm").submit();
-// 	});
  	
  	$("#signInSignOut").click(function(e) {
  	   e.preventDefault();
