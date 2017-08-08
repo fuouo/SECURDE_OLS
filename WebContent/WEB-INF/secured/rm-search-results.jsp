@@ -73,7 +73,7 @@
 	        <img src="img/book_placeholder.jpg" class="rm-img" width="100%" style="margin: auto 0;"></div>
 	        <div class="col-md-10 rm-information">
 	        <c:set var="rmID">${i.RMID_Location}</c:set>
-	          <a onclick="review('${rmID}')" class="title"><b>${i.title}</b></a>
+	          <a onclick="view_details('${rmID}')" class="title"><b>${i.title}</b></a>
 	          <span class="author">${i.author}</span>
 	          <span class="pub-info">${i.publisher}</span>
 	          <br>
@@ -122,8 +122,8 @@
 <form id="reserveForm" action="ReserveRMServlet" method="post">
 		 <input type = "hidden" name="locationID" id="locationID" value="hehehe">
 </form>
-<form id="reviewForm" action="RMDetailsServlet" method="post">
-		 <input type = "hidden" name="reviewID" id="reviewID" value="hehehe">
+<form id="viewDetailsForm" action="RMDetailsServlet" method="post">
+		 <input type = "hidden" name="rmID_location" id="rmID_location" value="hehehe">
 </form>
 
 <!--  INSERT SCRIPT TAGS HERE -->
@@ -134,6 +134,7 @@
 <script src="js/app.js"></script>			
 <!-- //////////////////// -->
 <script src="js/reserve-rm.js"></script>
+<script src="js/rmdetails.js"></script>
 
 </body>
 </html>

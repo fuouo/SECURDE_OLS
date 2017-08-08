@@ -7,15 +7,11 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.owasp.esapi.ESAPI;
-import org.owasp.esapi.crypto.CipherText;
-import org.owasp.esapi.crypto.PlainText;
-import org.owasp.esapi.errors.EncryptionException;
-
 import model.User;
 import model.UserType;
 import service.UserService;
 import servlet.MasterServlet;
+import utils.Utils;
 
 /**
  * Servlet implementation class LoginServlet
@@ -44,34 +40,19 @@ public class SignInServlet {
 		User user = UserService.loginUser(idNumber, password);
 		//If user exists, proceed to home page
 		if(user!=null){
-			System.out.println("USER NOT NULL ");
+			System.out.println("USER NOT NULL ");			
+			// encrypt idnumber
+			String stringToHash = user.getIdnumber();
+			String idnumber_hashed = Utils.get_SHA_256_SecureString(stringToHash, "");
+
 			// Create cookie
-			
-			// encrypt cookie
-			PlainText plainText = new PlainText(user.getIdnumber());
-			CipherText encrypted = null;
-			try {
-				encrypted = ESAPI.encryptor().encrypt(plainText);
-				
-				System.out.println(encrypted);
-				System.out.println(encrypted.toString());
-				
-				Cookie idNumURLcookie = new Cookie(User.COL_IDNUMBER, encrypted.toString());
-				idNumURLcookie.setHttpOnly(true);
-				
-				// Add cookie to list of cookies
-				response.addCookie(idNumURLcookie);		
-			} catch (EncryptionException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			Cookie idNumURLcookie = new Cookie(User.COL_IDNUMBER, idnumber_hashed);
+			idNumURLcookie.setHttpOnly(true);
+			idNumURLcookie.setSecure(true);
 			
 			
-//			Cookie idNumURLcookie = new Cookie(User.COL_IDNUMBER, user.getIdnumber());
-//			idNumURLcookie.setHttpOnly(true);
-//			
-//			// Add cookie to list of cookies
-//			response.addCookie(idNumURLcookie);	
+			// Add cookie to list of cookies
+			response.addCookie(idNumURLcookie);	
 			
 			//Pass first name and last name of user
 			request.setAttribute(User.COL_FIRSTNAME, user.getFirstName());
@@ -99,5 +80,7 @@ public class SignInServlet {
 			doGet(request, response);
 		doPost(request, response);
 	}
+	
+	
 
 }

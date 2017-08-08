@@ -270,7 +270,8 @@ public class UserService {
 		User user = null;
 		
 		String query = "\nSELECT * FROM " + User.TABLE_USER
-				+ " WHERE " + User.COL_IDNUMBER + " = ?";
+//				+ " WHERE " + User.COL_IDNUMBER + " = ?";
+				+ " WHERE SHA2(" + User.COL_IDNUMBER + ", 256) = ?";
 		
 		ArrayList<Object> input = new ArrayList<>();
 		input.add(id_number);
