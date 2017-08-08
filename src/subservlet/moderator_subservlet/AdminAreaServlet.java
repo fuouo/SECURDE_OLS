@@ -39,12 +39,22 @@ public class AdminAreaServlet{
     	UserType userType = UserType.ADMIN;
     	User user = new User();
     	user.setStatus(UserStatus.PENDING);
+    	user.setUserType(userType);
     	
     	if(user.getStatus() == UserStatus.PENDING){
     		request.getRequestDispatcher("/WEB-INF/secured/a-change-password.jsp").forward(request, response);
     	}
     	else {
     		String url = request.getParameter("destination");
+    		if(url == null){
+    			
+    			if(user.getUserType() == UserType.LIBMNGR || user.getUserType() == UserType.LIBSTAFF){
+    				url = "a-manage-books.jsp";
+    			}
+    			else if(user.getUserType() == UserType.ADMIN)
+    				url = "AdminDisplayAccountsServlet";
+    			
+    		}
     	
     		request.getRequestDispatcher("/WEB-INF/secured/" + url).forward(request, response);
     	}

@@ -69,7 +69,7 @@ public class RegisterUserServlet {
     	//Add user to db
     	UserService.registerUser(user);
     	//redirect to sign in page / sign in servlet
-    	request.getRequestDispatcher("/WEB-INF/secured/sign_in_sign_up.jsp").forward(request, response);
+    	request.getRequestDispatcher("SignInSignUpPageServlet").forward(request, response);
     	
     	
 	}

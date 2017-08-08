@@ -1,12 +1,10 @@
 package subservlet;
 
 import java.io.IOException;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,7 +13,6 @@ import model.User;
 import service.ReviewService;
 import service.UserService;
 import servlet.MasterServlet;
-import utils.Utils;
 
 /**
  * Servlet implementation class AccountPageServlet
@@ -57,7 +54,7 @@ public class ReviewServlet{
 		Review rev = new Review();
 		rev.setReview(review);
 		rev.setUser(user);
-		rev.setDate_reviewed(Utils.convertStringToDate("07-06-2017"));
+		rev.setDate_reviewed(new Date());
 		rev.setRMID(request.getParameter("rmID"));
 		ReviewService.addReview(rev);
 		

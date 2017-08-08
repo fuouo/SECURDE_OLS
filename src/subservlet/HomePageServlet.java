@@ -1,22 +1,14 @@
 package subservlet;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.tomcat.util.codec.binary.Base64;
-import org.owasp.esapi.ESAPI;
-import org.owasp.esapi.crypto.CipherText;
-import org.owasp.esapi.crypto.PlainText;
-import org.owasp.esapi.errors.EncryptionException;
-
 import model.User;
+import service.CookieService;
 import service.UserService;
 import servlet.MasterServlet;
 
@@ -30,57 +22,36 @@ public class HomePageServlet{
     private static void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub	
     	System.out.println("HOMEPAGE GET");
-    	User user = null;
     	
-    	//Check if a user is logged in
-		Cookie[] cookies = request.getCookies();
+    	User user = CookieService.isUser(request);
+    	
 
-		System.out.println("[Cookies]: " + cookies.length);
-		//Search specific cookie
-		for(int i = 0; i < cookies.length; i ++) {
-			System.out.println(cookies[i].getName());
-			if(cookies[i].getName().equals(User.COL_IDNUMBER)) {
-				
-				// decrypt cookie
-				byte[] encryptedTextAsBytes = cookies[i].getValue().getBytes(StandardCharsets.UTF_8);
-				CipherText cipherText = null;
-				try {
-					cipherText = CipherText.fromPortableSerializedBytes(Base64.decodeBase64(encryptedTextAsBytes));
-					PlainText plainText = ESAPI.encryptor().decrypt(cipherText);
-					String idNumber = plainText.toString();
-					
-					user = UserService.viewProfileUser(idNumber);
-					
-				} catch (EncryptionException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
-		String userName = null;
 		//If user is logged in		
 		if(user!=null)
 		{
-			userName = (String) user.getFirstName() + " " + user.getLastName();
-		}else if(request.getAttribute(User.COL_FIRSTNAME)  != null)
-		{
-			userName = (String) request.getAttribute(User.COL_FIRSTNAME)  
-					+ " " + request.getAttribute(User.COL_LASTNAME);
+			System.out.println("User is NOT null");
+			String userName = (String) user.getFirstName() + " " + user.getLastName();
 			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
-											userName);
+					userName);
 		}
-		else 
+		else {
+			System.out.println("User is null");
 			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
 					"Sign In");
-		
+			}
+			
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}
-
+    
 	private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("HOMEPAGE POST");
-		User user = null;
+		//Check if a user is logged in
+		String refererURI = (String) request.getAttribute("referrer");
+		System.out.println("FROM : " + refererURI);
+		User user = CookieService.isUser(request);
     	
+		//If user is logged in	
     	//Check if a user is logged in
 		Cookie[] cookies = request.getCookies();
 
@@ -102,29 +73,21 @@ public class HomePageServlet{
 		{
 			userName = (String) user.getFirstName() + " " + user.getLastName();
 			System.out.println(userName);
-		}else 
-		
-		userName = (String) request.getAttribute(User.COL_FIRSTNAME)  
-				+ " " + request.getAttribute(User.COL_LASTNAME);
-		
-		if(user!=null)
-		{
-			userName = (String) user.getFirstName() + " " + user.getLastName();
-		}else if(request.getAttribute(User.COL_FIRSTNAME)  != null)
-		{
 			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
-											userName);
-		}
-		else 
+					userName);
+		}else {
+			System.out.println("User is null");
 			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
 					"Sign In");
+		}
 		
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/secured/sign_in_sign_up.jsp").forward(request, response);
 	}
 	
 	public static void process(HttpServletRequest request, HttpServletResponse response, int type) throws ServletException, IOException{
 		if(type == MasterServlet.TYPE_GET)
 			doGet(request, response);
+		else
 		doPost(request, response);
 	}
 

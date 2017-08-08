@@ -43,21 +43,26 @@
         <h3>Reserving <span id="room-number"></span></h3>
 
         <div style="padding: 0 20%;" align="left">
+         
           <b>Reserved on</b>: <span id="reserve-date"></span> by <span id="reserve-time"></span>
           <b>Duration</b>: 30 Mins<br>
         </div>
 
         <br>
 
-        <div class="row">
-          <div class="col-md-1"></div>
-          <div class="col-md-2"></div>
-          <div class="col-md-2"><button id="submit-reserve" class="btn btn-default">Confirm</button></div>
-          <div class="col-md-1"></div>
-          <div class="col-md-2"><button id="cancel-reserve" class="btn btn-default">Cancel</button></div>
-          <div class="col-md-2"></div>
-          <div class="col-md-1"></div>
-        </div>
+		<form method="post" action="ReserveMRServlet">
+		  <input type="hidden" id="mrID" name="mrID" value=""/>
+          <input type="hidden" id="time_start" name="time_start" value=""/>
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"><button id="submit-reserve" type="submit" class="btn btn-default">Confirm</button></div>
+            <div class="col-md-1"></div>
+            <div class="col-md-2"><button id="cancel-reserve" class="btn btn-default">Cancel</button></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-1"></div>
+          </div>
+        </form>
       </div>
 
       <!-- SEARCH BAR -->
@@ -82,17 +87,28 @@
           		<th style="border-left: 1px dashed #c9c7c7;">${time} </th>
           	</c:forEach>
           </tr>
+          
           <c:set var = "rMR" scope = "session" value = "0"/>
           <c:forEach items="${meeting_room}" var="mr"> <!--  ROOMS: g201, g202, etc -->
-          	<tr id="${mr.mr_name}">
+          	<tr id="${mr.mrID}">
           	<td class="colHeader">${mr.mr_name}</td>
           	<c:forEach items="${timeStart}" var ="time">
           		<c:choose>
           			<c:when test="${reserved_mr[rMR].mrID == mr.mrID and reserved_mr[rMR].timeStart == time}">
+	          			<script>
+	          				console.log(${reserved_mr[rMR].mrID} + " " + ${mr.mrID});
+	          				console.log(${reserved_mr[rMR].timeStart} + " " + ${time});
+	          			</script>
           				<td id="${time}" class="otherCells closedCell"></td>
           				<c:set var = "rMR" scope = "session" value = "${rMR + 1}"/>
           			</c:when>
           			<c:otherwise>
+	          			<script>
+	          				console.log(${reserved_mr[rMR].mrID});
+	          				console.log(${mr.mrID});
+	          				console.log(${reserved_mr[rMR].timeStart});
+	          				console.log(${time});
+	          			</script>
           				<td id="${time}" class="otherCells openCell"></td>
           			</c:otherwise>
           		</c:choose>
