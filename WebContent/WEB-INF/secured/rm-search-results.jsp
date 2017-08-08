@@ -60,10 +60,6 @@
         </div>
       </div>
 
-      <!-- SEARCH BAR -->
-      <jsp:include page="../reusable/search-bar-toggable.jsp"/>    
-      <!-- END OF SEARCH BAR -->  
-
       <div class="rm-results">
       <b id="results-found" style="margin: -1px;" >${numOfRM} results found</b>
       <c:forEach items="${reading_material}" var = "i" >
