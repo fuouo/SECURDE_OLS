@@ -26,7 +26,7 @@
 <div class="container-fluid">
   <div class="row">
     <!-- NAV BAR -->
-    <jsp:include page="reusable/navbar.jsp"/>    
+    <jsp:include page="../reusable/navbar.jsp"/>    
     <!-- END OF NAV BAR -->   
     <div class="col-sm-9 col-lg-10 content">
       <!-- your page content -->
@@ -38,7 +38,7 @@
       <div id="overlay-screen" style="display: none;"></div>
       
       <!-- SEARCH BAR -->
-      <jsp:include page="reusable/search-bar-toggable.jsp"/>    
+      <jsp:include page="../reusable/search-bar-toggable.jsp"/>    
       <!-- END OF SEARCH BAR -->  
 
       
@@ -76,13 +76,14 @@
                   <input type="password" name="passwordHash" class="form-control form-components-rd erase-margin" id="login-password" placeholder="Password">
                 </div>
               </div>
-
+			  <a href="forgot-pwd.jsp">Forgot Password</a>
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                 <input type= "hidden" name = "SignIn"/> 
                   <button type="submit" id="submit-login" class="btn btn-default submit-btn form-components-rd auto-width erase-margin">Sign in</button>
                 </div>
               </div>
+              <input type="hidden" value="${referrer}" name="referrer"/>
             </form>
             <br>
         </div>

@@ -104,7 +104,8 @@ public class RoomService {
 			e.printStackTrace();
 		} finally {
 			try {
-				r.close();
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -139,7 +140,8 @@ public class RoomService {
 			e.printStackTrace();
 		} finally {
 			try {
-				r.close();
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -181,7 +183,8 @@ public class RoomService {
 			e.printStackTrace();
 		} finally {
 			try {
-				r.close();
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -191,6 +194,44 @@ public class RoomService {
 		return result;
 	}
 	
+	// check if this room is reserved for this time and date
+	public static boolean checkIfRoomIsReserved(ReservedRoom room) {
+		boolean isReserved = false;
+		
+		String query = "\nSELECT " + ReservedRoom.COL_RESERVEDMRID
+				+ " FROM " + ReservedRoom.TABLE_NAME + "\n"
+				+ " WHERE " + ReservedRoom.COL_MRID + " = ? "
+				+ " AND " + ReservedRoom.COL_DATERESERVED + " = ? "
+				+ " AND " + ReservedRoom.COL_TIMESTART + " = ? "
+				+ " AND " + ReservedRoom.COL_TIMEEND + " = ?;";
+		
+		ArrayList<Object> input = new ArrayList<>();
+		input.add(room.getMrID());
+		input.add(Utils.convertDateJavaToStringDB(room.getReservedDate()));
+		input.add(room.getTimeStart());
+		input.add(room.getTimeEnd());
+		
+		Query q = Query.getInstance();
+		ResultSet r = null;
+		
+		try {
+			r = q.runQuery(query, input);
+			isReserved = r.next();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(r != null)
+					r.close();
+				q.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return isReserved;
+	}
+		
 	// get reserved rooms at this time and day (USER)
 	public static ArrayList<ReservedRoom> getReservedRoomsAtThisDateUSER(Date date) {
 		ArrayList<ReservedRoom> rmList = new ArrayList<>();
@@ -200,7 +241,10 @@ public class RoomService {
 				+ ReservedRoom.COL_TIMESTART + ", "
 				+ ReservedRoom.COL_TIMEEND + "\n"
 				+ " FROM " + ReservedRoom.TABLE_NAME
-				+" WHERE " + ReservedRoom.COL_DATERESERVED + " = DATE(?)"; 
+				+ " WHERE " + ReservedRoom.COL_DATERESERVED + " = DATE(?)"
+				+ " ORDER BY " 
+				+ 	ReservedRoom.COL_MRID + ", " 
+				+  	ReservedRoom.COL_TIMESTART + " ASC"; 
 		
 		ArrayList<Object> input = new ArrayList<>();
 		input.add(Utils.convertDateJavaToStringDB(date));
@@ -224,7 +268,8 @@ public class RoomService {
 			e.printStackTrace();
 		} finally {
 			try {
-				r.close();
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -288,7 +333,8 @@ public class RoomService {
 			e.printStackTrace();
 		} finally {
 			try {
-				r.close();
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -357,11 +403,8 @@ public class RoomService {
 			e.printStackTrace();
 		} finally {
 			try {
-				
-				if(r != null) {
+				if(r != null)
 					r.close();
-				}
-				
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();

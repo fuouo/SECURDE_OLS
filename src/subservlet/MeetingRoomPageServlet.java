@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.ReservedRoom;
 import model.Room;
+import model.User;
+import service.CookieService;
 import service.RoomService;
 import servlet.MasterServlet;
 import utils.Utils;
@@ -40,6 +42,29 @@ public class MeetingRoomPageServlet {
 		System.out.println("MEETING ROOM PAGE POST");
 		//User user = null;
 		
+		User user = CookieService.isUser(request);
+    	
+    	//TODO: THIS IS FOR DEBUGGING. PLEASE ERASE THIS!!
+    	//User user = null;s
+    	//user = new User();
+    	//user.setIdnumber("11400366");
+    	//user.setUserType(UserType.LIBMNGR);
+    	
+    	//If user is logged in		
+		if(user!=null)
+		{
+			System.out.println("User is NOT null");
+			String userName = (String) user.getFirstName() + " " + user.getLastName();
+			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
+					userName);
+		}
+		else {
+			System.out.println("User is null");
+			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
+					"Sign In");
+		}
+    	
+		
 		ArrayList<ReservedRoom> roomList = RoomService.getReservedRoomsAtThisDateUSER(new Date());
 		
 		int[] timeSlots = Utils.getTimeSlots();
@@ -69,32 +94,7 @@ public class MeetingRoomPageServlet {
 		request.setAttribute("timeStart", timeID);
 		request.setAttribute("timeSlots", timeString);
 		
-		
-		/*
-    	
-    	//Check if a user is logged in
-		Cookie[] cookies = request.getCookies();
-
-		System.out.println("[Cookies]: " + cookies.length);
-		//Search specific cookie
-		for(int i = 0; i < cookies.length; i ++) {
-			System.out.println(cookies[i].getName());
-			if(cookies[i].getName().equals(User.COL_IDNUMBER)) {
-				user = UserService.viewProfileUser(cookies[i].getValue());
-			}
-		}
-		
-		//If user is logged in
-		if(user != null)
-		{
-			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
-											user.getFirstName() + " " + user.getLastName());
-		}
-		else
-			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
-					"Sign In");
-		*/
-		request.getRequestDispatcher("meeting-rooms.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/secured/meeting-rooms.jsp").forward(request, response);
 	}
 
 	public static void process(HttpServletRequest request, HttpServletResponse response, int type) throws ServletException, IOException{

@@ -28,7 +28,7 @@
 <div class="container-fluid">
   <div class="row">
     <!-- NAV BAR -->
-    <jsp:include page="reusable/navbar.jsp"/>    
+    <jsp:include page="../reusable/navbar.jsp"/>    
     <!-- END OF NAV BAR -->
     <div class="col-sm-9 col-lg-10 content">
       <div class="header">
@@ -38,7 +38,7 @@
 
       <div id="overlay-screen" style="display: none;"></div>
       <!-- SEARCH BAR -->
-      <jsp:include page="reusable/search-bar-toggable.jsp"/>    
+      <jsp:include page="../reusable/search-bar-toggable.jsp"/>    
       <!-- END OF SEARCH BAR -->  
       	
       <form id = "register-details" style="margin-right: 300px;" action="RegisterUserServlet" method="POST">
@@ -66,7 +66,7 @@
         <input type="email" class="form-control form-components-rd" name="email_address" id="email-address" placeholder="Email" style="width:70%" required>
     
         <label for="idnumber">ID Number</label>
-        <input type="number" class="form-control form-components-rd" name="id_number" id="idnumber" placeholder="Email" style="width:70%" required>
+        <input type="number" class="form-control form-components-rd" name="id_number" id="idnumber" placeholder="ID Number" style="width:70%" value="${id_number}" required>
                     
         <label for="bdaypicker">Birthday</label>
         <div id="bdaypicker" class="input-append date" id="dp3" data-date-format="yyyy-mm-dd" style="width:70%">
@@ -80,7 +80,10 @@
           <label for="secret-question" required>Secret Question</label>
           <select id = "secret-question" name="sqID" class="form-control form-components-rd"  
           			style="margin-left: 0; margin-right: 0;" required>
-            <option value="" selected disabled>Select Secret Question</option>
+          			<option value="" selected disabled>Select Secret Question</option>
+          			<c:forEach items = "${secretQuestions}" var = "sq" varStatus="status">
+        				<option value="${status.index}">${sq}</option>
+      				</c:forEach>            
           </select>
   
           <label for="secret-answer">Your Answer</label>
@@ -98,7 +101,6 @@
 <form id="meetingRoomForm" action="MeetingRoomPageServlet" method="post"></form>
 <form id="signInForm" action="SignInSignUpPageServlet" method="post"></form>
 <form id="homeForm" action="HomePageServlet" method="post"></form>
-<form id="yourReservationsForm" action="CalendarOrgRepServlet" method="post"></form>
 
 <!--  INSERT SCRIPT TAGS HERE -->
 <!-- must be in every page -->

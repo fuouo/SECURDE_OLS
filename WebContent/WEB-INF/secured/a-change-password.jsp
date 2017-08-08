@@ -16,17 +16,15 @@
     <!-- apis -->
     <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css"> 
     <link rel="stylesheet" type="text/css" href="css/navbar-fixed-side.css" />
-    <link rel="stylesheet" type="text/css" href="css/navbar-redesigned.css"/>
     <link rel="stylesheet" type="text/css" href="img/icons_by_freepik/font/flaticon.css"> 
     <link rel="stylesheet" type="text/css" href="vitalets-bootstrap-datepicker-c7af15b/css/datepicker.css"/>
     <link rel="stylesheet" type="text/css" href="css/content.css"> 
-    <link rel="stylesheet" type="text/css" href="css/alert/alert.css"> 
 </head>
 
 <body>
 <div class="container-fluid">
   <div class="row">
-    <jsp:include page="reusable/navbar.jsp"/>    
+    <jsp:include page="../reusable/navbar.jsp"/>    
     <div class="col-sm-9 col-lg-10 content admin-area">
       <!-- your page content -->
       <div class="header">
@@ -35,40 +33,41 @@
        <h3></h3>
       </div>
       
-      <div class="lesser-padding-content" >
-        <h3 align="center">Change your password</h3>
+      
+      
+      <br><br><br>
+      
+      <!-- SEARCH BAR -->
+      <jsp:include page="../reusable/search-bar.jsp"/>    
+      <!-- END OF SEARCH BAR -->
+
+      <div id="content-add-book" class="lesser-padding-content toggable" >
+        <h3 align="center">Change Password</h3>
         <div class="content">
-	        <div class="col-md-2"></div>
-	        <div class="col-md-8">
-	        	<form id="content-enter-username">
-		          <div class="form-group">
-		            
-		            <div class="alert alert-danger" id="invalid-id" style="display: none;" role="alert">Invalid Input!</div>
-		            
-				    <label for="current_password">Current Password</label>
-				    <input type="password" class="form-control form-components-rd" id="current_password" name="current_password" placeholder="Current Password">
-				    
-				    <label for="new_password">New Password</label>
-				    <input type="password" class="form-control form-components-rd" id="new_password" name="new_password" placeholder="Current Password">
-				    
-				    <label for="re_new_password">Re-Enter New Password</label>
-				    <input type="password" class="form-control form-components-rd" id="re_new_password" name="re_new_password" placeholder="Current Password">
-				    
-				    <button type="submit" id="submit-change-password" class="btn btn-default submit-btn form-components-rd auto-width erase-margin">Submit</button>
-				  </div>
-		        </form>
-		        
-		        
-	        </div>
-	        <div class="col-md-2"></div>
+        <form id="ChangePasswordServlet" method="post" action="ChangePasswordServlet">
+          
+          <div id="secret-question" style="display:none;">
+            <div class="form-group">
+              <label for="login-idnum" class="col-sm-2 control-label">Secret Question</label>
+              <div class="col-sm-10">
+                <div class="well">Where did you spend your 10th birthday?</div>
+                <div class="alert alert-danger" style="display:none;" role="alert">Wrong Answer!</div>
+                <input type="text" class="form-control form-components-rd erase-margin" id="login-idnum" placeholder="Your Answer">
+              </div>
+            </div>
+            <div class="form-group" align="left">
+              <div class="col-sm-offset-2 col-sm-10">
+                <div type="submit" id="verify-secret-answer" class="btn btn-default submit-btn form-components-rd auto-width erase-margin">Submit</div>
+              </div>
+            </div>
+          </div>
+          
+          <label for="new-password">New Password</label>
+          <input type="password" class="form-control form-components-rd" name="current-password" id="current-password" placeholder="Current Password" style="width:70%" required>
+        	
+        </form>
         </div>
       </div>
-      
-      
-      
-<!-- insert alerts beyond this point -->
-<div id="ohsnap">
-</div>
 
 <!-- don't go beyond this point -->
     </div> <!-- end of content -->
@@ -82,6 +81,8 @@
 <script src="vitalets-bootstrap-datepicker-c7af15b/js/bootstrap-datepicker.js"></script>
 <script src="js/app.js"></script>			
 <!-- //////////////////// -->
+<script src="js/register.js"></script>
+<script src="js/manage-books.js"></script>
 
 
 </body>

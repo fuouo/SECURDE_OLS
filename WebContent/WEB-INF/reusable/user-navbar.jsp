@@ -21,21 +21,16 @@
       </div>
       <div class="collapse navbar-collapse">
       <br>
-        <ul class="nav navbar-nav" style="border-top: 1px solid #fff;">
+        <div class="row" id="toggle-search">
+          <div class="col-xs-12 col-md-8 search-button">Search For...</div>
+          <div class="col-xs-6 col-md-4"><i class="flaticon-loupe"></i></div>
+        </div>
+        <ul class="nav navbar-nav">
           <li class="">
-            <a href="" id="books-tab">Manage Books</a>
-          </li>
-          <li class="">
-            <a href="" id="rm-reserve-tab">Manage Book Reservations</a>
-          </li>
-          <li class="">
-            <a href="" id="mr-reserve-tab">Manage Meeting Room Reservations</a>
-          </li>
-          <li class="">
-            <a href="" id="accounts-tab">Manage Accounts</a>
+            <a href="" id="mRoom">Meeting Rooms</a>
           </li>
           <li class="end">
-            <a href="" id="log-tab">Export Log</a>
+            <a href="" id="reservations">Your Reservations</a>
           </li>
           <li class="divider"></li>
         </ul>
@@ -45,23 +40,25 @@
         </p><br><br><br>
         <span class="divider"></span>
         
+        
         <div class="self-menu">
         	<div id="signInSignOut" style="margin: 10px 0;" class="re-navbar-link">
         		<i class="flaticon-user-2"></i><span id="account-name">Sign In</span>
         	</div>
 		    <div class="re-navbar-link">Log out</div>
 		</div>
+        
 
       </div>
     </div>
   </nav>
 </div>
 
-<form id="GoToPage" action="AdminAreaServlet" method="post">
-	<input type="hidden" value="" name="destination" id="destination"/>
-</form>
+<form id="meetingRoomForm" action="MeetingRoomPageServlet" method="post"></form>
+<form id="signInForm" action="SignInSignUpPageServlet" method="post"></form>
+<form id="homeForm" action="HomePageServlet" method="post"></form>
+<form id="yourReservationsForm" action="CalendarOrgRepServlet" method="post"></form>
 
 </body>
-<script src="js/jquery-3.0.0.min.js"></script>
-<script src="js/admin-menu-links.js"></script>
+<script src="/WebContent/js/menu-links.js"></script>
 </html>

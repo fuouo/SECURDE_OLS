@@ -26,7 +26,7 @@
 <body>
 <div class="container-fluid">
   <div class="row">
-    <jsp:include page="reusable/navbar.jsp"/>    
+    <jsp:include page="../reusable/navbar.jsp"/>    
     <div class="col-sm-9 col-lg-10 content admin-area">
       <!-- your page content -->
       <div class="header">
@@ -47,7 +47,7 @@
       <br><br><br>
       
       <!-- SEARCH BAR -->
-      <jsp:include page="reusable/search-bar.jsp"/>    
+      <jsp:include page="../reusable/search-bar.jsp"/>    
       <!-- END OF SEARCH BAR -->
 
       <div id="content-add-book" class="lesser-padding-content toggable" >
