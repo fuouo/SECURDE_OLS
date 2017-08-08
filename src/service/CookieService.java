@@ -26,6 +26,8 @@ public class CookieService {
 				}
 			}
 		}
+		
+		request.getSession().setAttribute("isLoggedIn", user!=null);
 
 		return user;	
 	}
