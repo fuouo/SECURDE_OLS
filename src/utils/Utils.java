@@ -5,6 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class Utils {
 
@@ -37,6 +38,13 @@ public class Utils {
 		int day = c.get(Calendar.DAY_OF_MONTH);
 
 		return year + "-" + ((month < 10) ? "0" + month : month) + "-" + ((day < 10) ? "0" + day : day);
+	}
+	
+	public static String dateToReadableString(Date date) {
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		String month = c.getDisplayName(Calendar.MONTH, Calendar.LONG_FORMAT, Locale.getDefault());
+		return month + " " + c.get(Calendar.DAY_OF_MONTH) + ", " + c.get(Calendar.YEAR);
 	}
 
 	public static Date convertStringToDate(String strDate) {

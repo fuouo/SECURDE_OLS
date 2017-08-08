@@ -57,7 +57,7 @@
 <form id="meetingRoomForm" action="MeetingRoomPageServlet" method="post"></form>
 <form id="signInForm" action="SignInSignUpPageServlet" method="post"></form>
 <form id="homeForm" action="HomePageServlet" method="post"></form>
-<form id="yourReservationsForm" action="CalendarOrgRepServlet" method="post"></form>
+<form id="yourReservationsForm" action="HomePageServlet" method="post"></form>
 
 </body>
 <script src="/WebContent/js/menu-links.js"></script>

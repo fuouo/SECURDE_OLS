@@ -18,6 +18,7 @@ import service.CookieService;
 import service.ReadingMaterialService;
 import service.ReviewService;
 import servlet.MasterServlet;
+import utils.Utils;
 
 /**
  * Servlet implementation class AccountPageServlet
@@ -74,6 +75,14 @@ public class RMDetailsServlet{
 		ReadingMaterial rm = ReadingMaterialService.getRMByID(rmID);
 		
 		System.out.println("Date Returned .. " + rm.getDateAvailable());
+		
+		if(user.getUserType() == UserType.STUDENT) {
+			rm.setDateAvailable(Utils.addDays(rm.getDateAvailable(), 7));
+		} else if(user.getUserType() == UserType.FACULTY) {
+			rm.setDateAvailable(Utils.addMonth(rm.getDateAvailable(), 1));
+		}
+		
+		rm.setDateAvailable(Utils.addDays(rm.getDateAvailable(), 1));
 		
 		session.setAttribute(ReadingMaterial.TABLE_RM, rm);
 		//Get the Reviews of the RM 

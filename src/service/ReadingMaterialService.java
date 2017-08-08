@@ -3,9 +3,8 @@ package service;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
-
-import org.owasp.esapi.ESAPI;
 
 import db.Query;
 import model.RMFilter;
@@ -384,6 +383,7 @@ public class ReadingMaterialService {
 
 						///// available
 						rm.setStatus(RMStatus.AVAILABLE);
+						rm.setDateAvailable(Calendar.getInstance().getTime());
 					}
 				}
 
@@ -771,8 +771,6 @@ public class ReadingMaterialService {
 			input.add(rmType + "");
 		}
 		
-		query = query + "\nORDER BY " + ReadingMaterial.COL_TITLE + ";";
-
 		// for status
 		String query_reserved = "\nSELECT *" + "\n"
 				+ " FROM " + ReadingMaterial.TABLE_RESERVEDRM + "\n"
@@ -794,14 +792,10 @@ public class ReadingMaterialService {
 
 			while(r.next()) {
 				rm = new ReadingMaterial();				
-				String author = ESAPI.encoder().encodeForHTML(r.getString(ReadingMaterial.COL_AUTHOR));
-				
-				System.out.println("[ESAPI TEST] AUTHOR : " + author);
 				
 				rm.setRMID_Location(r.getString(ReadingMaterial.COL_RMID));
 				rm.setTitle(r.getString(ReadingMaterial.COL_TITLE));
-				rm.setAuthor(author);
-				System.out.println("ESAPI : AUTHOR : " + author);
+				rm.setAuthor(r.getString(ReadingMaterial.COL_AUTHOR));
 				rm.setPublisher(r.getString(ReadingMaterial.COL_PUBLISHER));
 				rm.setYear(r.getInt(ReadingMaterial.COL_YEAR));
 				rm.setStatus(RMStatus.getStockValue(r.getString(ReadingMaterial.COL_LIBSTATUS)));
