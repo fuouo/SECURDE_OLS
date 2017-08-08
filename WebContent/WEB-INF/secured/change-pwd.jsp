@@ -26,7 +26,7 @@
 <div class="container-fluid">
   <div class="row">
     <!-- NAV BAR -->
-    <jsp:include page="reusable/navbar.jsp"/>    
+    <jsp:include page="../reusable/navbar.jsp"/>   
     <!-- END OF NAV BAR -->
     <div class="col-sm-9 col-lg-10 content">
       <!-- your page content -->
@@ -35,11 +35,6 @@
        <h2>Reserve Books and Meeting Rooms anytime, anywhere!</h2>
       </div>
 
-      <div id="overlay-screen" style="display: none;"></div>
-      <!-- SEARCH BAR -->
-      <jsp:include page="reusable/search-bar-toggable.jsp"/>    
-      <!-- END OF SEARCH BAR -->  
-      
       <div align="center" id="content-forgotten">
       <h2>Change Password</h2>
       <div class="row">
