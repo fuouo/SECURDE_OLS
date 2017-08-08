@@ -45,10 +45,12 @@ public class CookieService {
 		{
 			// delete all cookies
 			for(int i = 0; i < cookies.length; i ++) {
-				cookies[i].setMaxAge(0);
-				cookies[i].setValue(null);
-				cookies[i].setMaxAge(0);
-				response.addCookie(cookies[i]);
+				if(cookies[i].getName().equals(User.COL_IDNUMBER)) {
+					Cookie cookie = cookies[i];
+					cookie.setMaxAge(0);
+					cookie.setValue(null);
+					response.addCookie(cookie);
+				}
 			}
 		}
 		

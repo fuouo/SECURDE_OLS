@@ -26,10 +26,14 @@ public class StartServlet{
     	
     	User user = CookieService.isUser(request);
     	
-    	if(UserService.getUserType(user.getIdnumber()) == UserType.ADMIN ||
-    			UserService.getUserType(user.getIdnumber()) == UserType.LIBSTAFF || 
-    			UserService.getUserType(user.getIdnumber()) == UserType.LIBMNGR) {
-    		request.getRequestDispatcher("/AdminAreaServlet").forward(request, response);
+    	if(user!=null) {
+    		if(UserService.getUserType(user.getIdnumber()) == UserType.ADMIN ||
+        			UserService.getUserType(user.getIdnumber()) == UserType.LIBSTAFF || 
+        			UserService.getUserType(user.getIdnumber()) == UserType.LIBMNGR) {
+        		request.getRequestDispatcher("/AdminAreaServlet").forward(request, response);
+        	} else {
+        		request.getRequestDispatcher("/HomePageServlet").forward(request, response);
+        	}
     	} else {
     		request.getRequestDispatcher("/HomePageServlet").forward(request, response);
     	}

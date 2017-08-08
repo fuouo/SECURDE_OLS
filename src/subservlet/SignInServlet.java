@@ -52,7 +52,7 @@ public class SignInServlet {
 			// Create cookie
 			Cookie idNumURLcookie = new Cookie(User.COL_IDNUMBER, idnumber_hashed);
 			idNumURLcookie.setHttpOnly(true);
-			idNumURLcookie.setSecure(true);
+//			idNumURLcookie.setSecure(true);
 			
 			// Add cookie to list of cookies
 			response.addCookie(idNumURLcookie);	
