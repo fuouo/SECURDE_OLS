@@ -200,7 +200,10 @@ public class RoomService {
 				+ ReservedRoom.COL_TIMESTART + ", "
 				+ ReservedRoom.COL_TIMEEND + "\n"
 				+ " FROM " + ReservedRoom.TABLE_NAME
-				+" WHERE " + ReservedRoom.COL_DATERESERVED + " = DATE(?)"; 
+				+ " WHERE " + ReservedRoom.COL_DATERESERVED + " = DATE(?)"
+				+ " ORDER BY " 
+				+ 	ReservedRoom.COL_MRID + ", " 
+				+  	ReservedRoom.COL_TIMESTART + " ASC"; 
 		
 		ArrayList<Object> input = new ArrayList<>();
 		input.add(Utils.convertDateJavaToStringDB(date));

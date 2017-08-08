@@ -94,31 +94,6 @@ public class MeetingRoomPageServlet {
 		request.setAttribute("timeStart", timeID);
 		request.setAttribute("timeSlots", timeString);
 		
-		
-		/*
-    	
-    	//Check if a user is logged in
-		Cookie[] cookies = request.getCookies();
-
-		System.out.println("[Cookies]: " + cookies.length);
-		//Search specific cookie
-		for(int i = 0; i < cookies.length; i ++) {
-			System.out.println(cookies[i].getName());
-			if(cookies[i].getName().equals(User.COL_IDNUMBER)) {
-				user = UserService.viewProfileUser(cookies[i].getValue());
-			}
-		}
-		
-		//If user is logged in
-		if(user != null)
-		{
-			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
-											user.getFirstName() + " " + user.getLastName());
-		}
-		else
-			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
-					"Sign In");
-		*/
 		request.getRequestDispatcher("/WEB-INF/secured/meeting-rooms.jsp").forward(request, response);
 	}
 
