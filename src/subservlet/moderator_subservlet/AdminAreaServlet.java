@@ -48,14 +48,14 @@ public class AdminAreaServlet{
         		if(url == null){
         			
         			if(user.getUserType() == UserType.LIBMNGR || user.getUserType() == UserType.LIBSTAFF){
-        				url = "a-manage-books.jsp";
+        				url = "/WEB-INF/secured/" + "a-manage-books.jsp";
         			}
         			else if(user.getUserType() == UserType.ADMIN)
         				url = "AdminDisplayAccountsServlet";
         			
         		}
         	
-        		request.getRequestDispatcher("/WEB-INF/secured/" + url).forward(request, response);
+        		request.getRequestDispatcher(url).forward(request, response);
         	}
     	} else {
     		

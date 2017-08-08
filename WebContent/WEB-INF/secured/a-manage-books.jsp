@@ -98,8 +98,6 @@
       </div>
       
       <div>
-      
-      alert(1);
      </div>
       
       

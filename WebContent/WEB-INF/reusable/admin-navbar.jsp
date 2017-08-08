@@ -47,7 +47,7 @@
         
         <div class="self-menu">
         	<div id="signInSignOut" style="margin: 10px 0;" class="re-navbar-link">
-        		<i class="flaticon-user-2"></i><span id="account-name">Sign In</span>
+        		<i class="flaticon-user-2"></i><span id="account-name">${first_namelast_name }</span>
         	</div>
 		    <c:choose>
         		<c:when test="${isLoggedIn == 'true'}">
