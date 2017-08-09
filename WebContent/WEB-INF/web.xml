@@ -6,8 +6,12 @@
   </welcome-file-list>
   
   <session-config>
-    <session-timeout>30</session-timeout>
+    <session-timeout>15</session-timeout>
     <tracking-mode>COOKIE</tracking-mode>
   </session-config>
+  
+  <error-page>
+	<location>/WEB-INF/error/error-default.jsp</location>
+  </error-page>
   
 </web-app>
