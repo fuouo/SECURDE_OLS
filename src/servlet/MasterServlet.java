@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import subservlet.AccountPageServlet;
 import subservlet.CategoryRMServlet;
+import subservlet.DisplayAuthorServlet;
+import subservlet.DisplayCategoryServlet;
+import subservlet.DisplayPublisherServlet;
 import subservlet.HomePageServlet;
 import subservlet.LoadSecretQuestionServlet;
 import subservlet.MeetingRoomPageServlet;
@@ -54,6 +57,9 @@ import subservlet.moderator_subservlet.ViewReservedRMServlet;
 							ReserveRMServlet.URL,
 							ReserveMRServlet.URL,
 							RMSearchResultsPageServlet.URL,
+							DisplayAuthorServlet.URL,
+							DisplayPublisherServlet.URL,
+							DisplayCategoryServlet.URL,
 							AdminAreaServlet.URL,
 							AddRMServlet.URL,
 							AdminRMSearchResultsPageServlet.URL,
@@ -138,6 +144,15 @@ public class MasterServlet extends HttpServlet {
 					break;
 				case ReserveMRServlet.URL:
 					ReserveMRServlet.process(request, response, type);
+					break;
+				case DisplayAuthorServlet.URL:
+					DisplayAuthorServlet.process(request, response, type);
+					break;
+				case DisplayPublisherServlet.URL:
+					DisplayPublisherServlet.process(request, response, type);
+					break;
+				case DisplayCategoryServlet.URL:
+					DisplayCategoryServlet.process(request, response, type);
 					break;
 				case AdminAreaServlet.URL:
 					AdminAreaServlet.process(request, response, type);

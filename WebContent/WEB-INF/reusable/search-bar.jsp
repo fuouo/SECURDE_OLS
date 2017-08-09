@@ -35,7 +35,42 @@
   </form>
   <br>
   <div class="divider-dark"></div>
+  
+  <div align="center">Search For List of : 
+  <form method="post" action="DisplayCategoryServlet">
+	<input type="hidden" id="RMType" name="RMType" value="BOOK"/>
+	<input type="hidden" id="reading_material" name="reading_material" value=""/>
+	<input type="hidden" id ="RMFilter" name="RMFilter" value=""/>
+	<button type="submit">Books</button>
+  </form>
+  
+  <form method="post" action="DisplayCategoryServlet">
+	<input type="hidden" id="RMType" name="RMType" value="MAGAZINE"/>
+	<input type="hidden" id="reading_material" name="reading_material" value=""/>
+	<input type="hidden" id ="RMFilter" name="RMFilter" value=""/>
+	<button type="submit">Magazines</button>
+  </form>
+  
+  <form method="post" action="DisplayCategoryServlet">
+	<input type="hidden" id="RMType" name="RMType" value="THESIS"/>
+	<input type="hidden" id="reading_material" name="reading_material" value=""/>
+	<input type="hidden" id ="RMFilter" name="RMFilter" value=""/>
+	<button type="submit">Thesis</button>
+  </form>
+  
+  <form method="post" action="DisplayAuthorServlet">
+	<button type="submit">Authors</button>
+  </form>
+  
+  <form method="post" action="DisplayPublisherServlet">
+	<button type="submit">Publishers</button>
+  </form>
+  
+  
+  </div>
+  
  </div>
+ 
  <!-- END OF SEARCH BAR -->
 </body>
 </html>
