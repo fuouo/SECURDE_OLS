@@ -303,7 +303,11 @@ public class UserService {
 				user.setBirthdate(r.getDate(User.COL_BDAY));
 				
 				// status of account
-				user.setStatus(UserStatus.getValue(r.getString(User.COL_STATUS)));				
+				user.setStatus(UserStatus.getValue(r.getString(User.COL_STATUS)));
+				
+
+				// Secret Question answer
+				user.setSecretAnswer((r.getString(User.COL_SQANSWER)));	
 			}
 			
 		} catch (SQLException e) {

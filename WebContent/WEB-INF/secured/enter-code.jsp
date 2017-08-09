@@ -44,22 +44,16 @@
       <h2>Change Password</h2>
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
-			<form class="form-horizontal" id="chnge-password" action="PasswordChangeServlet" method = "POST">
+			<form class="form-horizontal" id="code-forchange" action="PasswordChangeCodeServlet" method ="GET">
               <div>
-             	 <input type="hidden" name="id_number_ans" id="idnumber2" value="${id_number_ans}">
-                
-                  <div class="col-sm-10">
-                                     
-                    <div class="alert alert-danger" style="display: none;" role="alert">Password does not match!</div>
-             	 	<label>ID Number: </label></br>
-                    	<label for="password">New Password</label>
-                    	<input type="password" class="form-control form-components-rd" name="passwordHash" id="password" placeholder="New Password" style="width:70%" required>
-                    	<label for="confirm_password" >Confirm New Password</label>
-                    	<input type="password" class="form-control form-components-rd" name="confirm_passwordHash" id="confirm_password" placeholder="Confrim New Password" style="width:70%" required>
+              	<input type="hidden" name="userCode" value="${userCode}" />
+             	   <div class="col-sm-10">
+                    	<label for="code-change">Enter Code Here</label>
+                    	<input type="text" class="form-control form-components-rd" name="user-code" id="code-change" placeholder="Code" style="width:70%" required>
                   </div>
                 <div class="form-group" align="left">
                   <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" id="verify-new-password" class="btn btn-default submit-btn form-components-rd auto-width erase-margin">Submit</button>
+                    <div type="submit" id="verify-secret-answer" class="btn btn-default submit-btn form-components-rd auto-width erase-margin">Submit</div>
                   </div>
                 </div>
               </div>
@@ -89,32 +83,31 @@
 <!-- //////////////////// -->
 <script>
 $(document).ready(function() {
-/* 	if($("#question").text() != "")
+	if($("#question").text() != "")
 	{
 		console.log($("#idnumber2").val() +" hehehhe" );
 		$("#idnumber2").text($("#idnumber2").val())
 		console.log($("#idnumber2").text() +" hehehhe1" );
 		$("#username").fadeOut("fast", function(){});
 	    $("#secret-question").fadeIn("fast", function(){});
-	} */
+	}
 });
 
-/* 
- $("#verify-secret-answer").click(function(){
+$("#verify-secret-answer").click(function(){
 	
   $('.alert-danger').show("fast", function(){});
   setTimeout(function(){
       $('.alert-danger').hide("fast", function(){});  
     }, 1000);
 });
- */
-/*  $("#verify-username").click(function(){
+
+ $("#verify-username").click(function(){
 	console.log("Load Secret Question");
 	$("#username").submit();
 	$("#username").fadeOut("fast", function(){});
     $("#secret-question").fadeIn("fast", function(){});
     
-});  */
+}); 
 </script>
 </body>
 </html>

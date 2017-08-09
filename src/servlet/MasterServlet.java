@@ -9,10 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import subservlet.AccountPageServlet;
+import subservlet.AnswerSecretQuestionServlet;
 import subservlet.CategoryRMServlet;
+import subservlet.EmailServlet;
 import subservlet.HomePageServlet;
 import subservlet.LoadSecretQuestionServlet;
 import subservlet.MeetingRoomPageServlet;
+import subservlet.NewPasswordServlet;
+import subservlet.PasswordChangeCodeServlet;
+import subservlet.PasswordChangeServlet;
 import subservlet.RMDetailsServlet;
 import subservlet.RMSearchResultsPageServlet;
 import subservlet.RegisterUserServlet;
@@ -77,6 +82,11 @@ import subservlet.moderator_subservlet.ViewReservedRMServlet;
 							OverrideReservationRoomServlet.URL,
 							ExportServlet.URL,
 							LoadSecretQuestionServlet.URL,
+							AnswerSecretQuestionServlet.URL,
+							EmailServlet.URL,
+							PasswordChangeServlet.URL,
+							NewPasswordServlet.URL,
+							PasswordChangeCodeServlet.URL,
 							StartServlet.URL
 							})
 
@@ -170,6 +180,9 @@ public class MasterServlet extends HttpServlet {
 				case AdminDisplayMRReservationsServlet.URL:
 					AdminDisplayMRReservationsServlet.process(request, response, type);
 					break;
+				case AnswerSecretQuestionServlet.URL:
+					AnswerSecretQuestionServlet.process(request, response, type);
+					break;
 				case ReviewServlet.URL:
 					ReviewServlet.process(request, response, type);
 					break;
@@ -200,8 +213,20 @@ public class MasterServlet extends HttpServlet {
 				case ExportServlet.URL:
 					ExportServlet.process(request, response, type);
 					break;
+				case EmailServlet.URL:
+					EmailServlet.process(request, response, type);
+					break;
+				case NewPasswordServlet.URL:
+					NewPasswordServlet.process(request, response, type);
+					break;
 				case LoadSecretQuestionServlet.URL:
 					LoadSecretQuestionServlet.process(request, response, type);
+					break;
+				case PasswordChangeCodeServlet.URL:
+					PasswordChangeCodeServlet.process(request, response, type);
+					break;
+				case PasswordChangeServlet.URL:
+					PasswordChangeServlet.process(request, response, type);
 					break;
 				case StartServlet.URL:
 					StartServlet.process(request, response, type);

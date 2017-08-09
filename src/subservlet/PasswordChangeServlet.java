@@ -33,15 +33,11 @@ import service.SecretQuestionService;
 import service.UserService;
 import servlet.MasterServlet;
 
-/**
- * Servlet implementation class LoadSecretQuestionServlet
- */
-
-public class NewPasswordServlet{
+public class PasswordChangeServlet{
 	private static final long serialVersionUID = 1L;
-	public static final String URL = "/NewPasswordServlet";
+	public static final String URL = "/PasswordChangeServlet";
        
-    public NewPasswordServlet() {
+    public PasswordChangeServlet() {
         super();
         // TODO Auto-generated constructor stub
         
@@ -49,13 +45,31 @@ public class NewPasswordServlet{
 
     private static void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-    	System.out.println("NEW PASSWORD GET");
-    	request.getRequestDispatcher("change-pwd.jsp").forward(request, response);
+    	System.out.println("PASSWORD CHANGE GET");
+    	String password1 = request.getParameter(User.COL_PASSWORD);
+    	String password2 = request.getParameter("confirm_" + User.COL_PASSWORD);
+    	
+    	System.out.println("Matching " + password1 + "with" + password2);
+    	
+    	if(password1.equals(password2))
+    	{
+    		//get ID Number
+    		System.out.println("Password Match");
+    	}
+    	else
+    		System.out.println("Password did not match");
+    	
+    		request.getRequestDispatcher("HomePageServlet").forward(request, response);
 	}
 
     private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	System.out.println("NEW PASSWORD POST");
-       	     request.getRequestDispatcher("change-pwd.jsp").forward(request, response);
+    	System.out.println("PASSWORD CHANGE POST");
+    	String password1 = request.getParameter(User.COL_PASSWORD);
+    	String password2 = request.getParameter("confirm_" + User.COL_PASSWORD);
+    	
+    	System.out.println("Matching " + password1 + "with" + password2);
+    	
+    	
 	}
     
     public static void process(HttpServletRequest request, HttpServletResponse response, int type) throws ServletException, IOException{
