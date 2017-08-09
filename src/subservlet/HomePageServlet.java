@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.User;
+import model.UserType;
 import service.CookieService;
 import service.UserService;
 import servlet.MasterServlet;
@@ -69,19 +70,26 @@ public class HomePageServlet{
 		
 		String userName = null;
 		//If user is logged in
-		if(user!=null)
+		if(user==null)
 		{
+			System.out.println("User is not Nul!!");
 			userName = (String) user.getFirstName() + " " + user.getLastName();
 			System.out.println(userName);
 			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
 					userName);
+			if(user.getUserType() == UserType.STUDENT || user.getUserType() == UserType.FACULTY)
+				request.getRequestDispatcher("/index.jsp").forward(request, response);
+			if(user.getUserType() == UserType.ADMIN || user.getUserType() == UserType.LIBMNGR || user.getUserType() == UserType.LIBSTAFF)
+				request.getRequestDispatcher("AdminAreaServlet").forward(request, response);
+			
+			
 		}else {
 			System.out.println("User is null");
 			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
 					"Sign In");
 		}
 		
-		request.getRequestDispatcher("/WEB-INF/secured/sign_in_sign_up.jsp").forward(request, response);
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 	
 	public static void process(HttpServletRequest request, HttpServletResponse response, int type) throws ServletException, IOException{
