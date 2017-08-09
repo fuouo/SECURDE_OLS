@@ -20,6 +20,7 @@ import subservlet.RegistrationPageServlet;
 import subservlet.ReserveMRServlet;
 import subservlet.ReserveRMServlet;
 import subservlet.ReviewServlet;
+import subservlet.SessionTimeoutOnCloseBrowserServlet;
 import subservlet.SignInServlet;
 import subservlet.SignInSignUpPageServlet;
 import subservlet.SignOutServlet;
@@ -77,7 +78,8 @@ import subservlet.moderator_subservlet.ViewReservedRMServlet;
 							OverrideReservationRoomServlet.URL,
 							ExportServlet.URL,
 							LoadSecretQuestionServlet.URL,
-							StartServlet.URL
+							StartServlet.URL,
+							SessionTimeoutOnCloseBrowserServlet.URL
 							})
 
 public class MasterServlet extends HttpServlet {
@@ -205,6 +207,9 @@ public class MasterServlet extends HttpServlet {
 					break;
 				case StartServlet.URL:
 					StartServlet.process(request, response, type);
+					break;
+				case SessionTimeoutOnCloseBrowserServlet.URL:
+					SessionTimeoutOnCloseBrowserServlet.process(request, response, type);
 					break;
 			}
 			

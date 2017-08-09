@@ -35,29 +35,4 @@ public class CookieService {
 		return user;	
 	}
 
-	public static void deleteAllCookies(HttpServletRequest request, HttpServletResponse response) {
-		// get all cookies
-		Cookie[] cookies = request.getCookies();
-		
-		System.out.println("Cookies: " + cookies.length);
-
-		if(cookies!=null)
-		{
-			// delete all cookies
-			for(int i = 0; i < cookies.length; i ++) {
-				if(cookies[i].getName().equals(User.COL_IDNUMBER)) {
-					Cookie cookie = cookies[i];
-					cookie.setMaxAge(0);
-					cookie.setValue(null);
-					response.addCookie(cookie);
-				}
-			}
-		}
-		
-		// invalidate session
-		request.getSession().invalidate();
-		
-		System.out.println("Cookies: " + cookies.length);
-	}
-
 }
