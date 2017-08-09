@@ -135,6 +135,7 @@
 <!-- //////////////////// -->
 <script src="js/register.js"></script>
 <script src="js/password-meter.js"></script>
+<script src="js/input-validation.js"></script>
 </body>
 
 </html>
