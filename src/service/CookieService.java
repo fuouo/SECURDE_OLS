@@ -14,13 +14,13 @@ public class CookieService {
 
 		//Check if a user is logged in
 		Cookie[] cookies = request.getCookies();
-		
-		System.out.println("Cookie length: " + cookies.length);
 
 		//System.out.println("[Cookies]: " + cookies.length);
 		//Search specific cookie
 		if(cookies!=null)
 		{
+			
+			System.out.println("Cookie length: " + cookies.length);
 			for(int i = 0; i < cookies.length; i ++) {
 				System.out.println(cookies[i].getName());
 				if(cookies[i].getName().equals(User.COL_IDNUMBER)) {

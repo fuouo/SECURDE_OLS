@@ -59,8 +59,17 @@
           </div>
         </div>
 
+	<!--
         <label for="password">Password</label>
         <input type="password" class="form-control form-components-rd" name="passwordHash" id="password" placeholder="Password" style="width:70%" required>
+            -->
+         <div class="row" align="center">
+         	<label for="password" class="form-label col-sm-2">Password</label>
+         	<div class="col-sm-4">
+		         <input type="password" placeholder="Password ..." class="form-control form-components-rd" id="password" name="passwordHash" style="width:70%" required/>
+		    </div>
+		    <div class="col-sm-4" id="example-progress-bar-container" style="height:5%"></div>
+         </div>
           
         <label for="email-address">Email Address</label>
         <input type="email" class="form-control form-components-rd" name="email_address" id="email-address" placeholder="Email" style="width:70%" required>
