@@ -24,8 +24,6 @@ $(document).ready(function() {
 // 		console.log($("#account-name").text());
 // 		$("#signInForm").submit();
 // 	});
-	
-	console.log("MOTHER FUCKING SHIT");
  	
  	$("#signInSignOut").click(function(e) {
  	   e.preventDefault();
