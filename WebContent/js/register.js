@@ -11,9 +11,6 @@ $(document).ready(function(){
     initEditDetailsButton();
     console.log("lol");
     getSecretQuestions();
-    $('#password').strengthMeter('progressBar', {
-        container: $('#example-progress-bar-container')
-    });
 });
 
 

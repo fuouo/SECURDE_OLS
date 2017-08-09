@@ -62,7 +62,7 @@
 	<!--
         <label for="password">Password</label>
         <input type="password" class="form-control form-components-rd" name="passwordHash" id="password" placeholder="Password" style="width:70%" required>
-            -->
+            
          <div class="row" align="center">
          	<label for="password" class="form-label col-sm-2">Password</label>
          	<div class="col-sm-4">
@@ -70,6 +70,21 @@
 		    </div>
 		    <div class="col-sm-4" id="example-progress-bar-container" style="height:5%"></div>
          </div>
+         -->
+         
+         <div class="row" align="center">
+	         <label for="password" class="form-label col-sm-2">Password</label>
+	         	<input placeholder="Password ..." class="form-control form-components-rd" type="password" id="password" name="passwordHash" style="width:50%" required/>
+          		<span id="passstrength"></span>
+          </div>
+          
+          <label for="password-rules">Password Rules:</label>
+          	<ul>
+          		<li>Must have at least 8 characters long</li>
+          		<li>Must have at least one capital letter</li>
+          		<li>Must have at least one number</li>
+          		<li>Must have at least one special character</li>
+          	</ul>
           
         <label for="email-address">Email Address</label>
         <input type="email" class="form-control form-components-rd" name="email_address" id="email-address" placeholder="Email" style="width:70%" required>
@@ -119,6 +134,7 @@
 <script src="js/app.js"></script>			
 <!-- //////////////////// -->
 <script src="js/register.js"></script>
+<script src="js/password-meter.js"></script>
 </body>
 
 </html>
