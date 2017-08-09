@@ -361,6 +361,35 @@ public class UserService {
 		return userType;
 	}
 	
+	// change password of any user
+		public static boolean changePassword(User user) {
+			boolean result = false;
+
+			String query = "\nUPDATE " + User.TABLE_USER
+					+ " SET "
+					+ User.COL_PASSWORD + " = SHA2(?, 512)\n"
+					+ " WHERE " + User.COL_IDNUMBER + " = ?";
+
+			ArrayList<Object> input = new ArrayList<>();
+			input.add(user.getPassword());
+			input.add(user.getIdnumber());
+
+			Query q = Query.getInstance();
+			try {
+				result = q.runInsertUpdateDelete(query, input);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					q.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+
+			return result;
+		}
+
 	// change password of libstaff/libmngr to activate account
 	public static boolean changePasswordToActivateAccount(User user) {
 		boolean result = false;

@@ -32,6 +32,7 @@ import service.ReviewService;
 import service.SecretQuestionService;
 import service.UserService;
 import servlet.MasterServlet;
+import utils.Utils;
 
 public class PasswordChangeServlet{
 	private static final long serialVersionUID = 1L;
@@ -51,15 +52,8 @@ public class PasswordChangeServlet{
     	
     	System.out.println("Matching " + password1 + "with" + password2);
     	
-    	if(password1.equals(password2))
-    	{
-    		//get ID Number
-    		System.out.println("Password Match");
-    	}
-    	else
-    		System.out.println("Password did not match");
     	
-    		request.getRequestDispatcher("HomePageServlet").forward(request, response);
+    		
 	}
 
     private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -69,7 +63,23 @@ public class PasswordChangeServlet{
     	
     	System.out.println("Matching " + password1 + "with" + password2);
     	
-    	
+    	if(password1.equals(password2))
+    	{
+    		String idNumber = request.getParameter(User.COL_IDNUMBER);
+    		System.out.println("Password Match");
+    		System.out.println(idNumber + "Id Number");
+    		try {
+    			String idnumber_hashed = Utils.get_SHA_256_SecureString(idNumber, "");
+				User user = UserService.viewProfileUser(idnumber_hashed);
+				user.setPassword(password2);
+				UserService.changePassword(user);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+    	}
+    	else
+    		System.out.println("Password did not match");
+    	request.getRequestDispatcher("HomePageServlet").forward(request, response);
 	}
     
     public static void process(HttpServletRequest request, HttpServletResponse response, int type) throws ServletException, IOException{

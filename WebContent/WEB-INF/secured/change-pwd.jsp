@@ -46,7 +46,7 @@
         <div class="col-md-6 col-md-offset-3">
 			<form class="form-horizontal" id="chnge-password" action="PasswordChangeServlet" method = "POST">
               <div>
-             	 <input type="hidden" name="id_number_ans" id="idnumber2" value="${id_number_ans}">
+             	 <input type="hidden" name="id_number" id="idnumber" value="${id_number}">
                 
                   <div class="col-sm-10">
                                      
@@ -89,14 +89,9 @@
 <!-- //////////////////// -->
 <script>
 $(document).ready(function() {
-/* 	if($("#question").text() != "")
-	{
-		console.log($("#idnumber2").val() +" hehehhe" );
-		$("#idnumber2").text($("#idnumber2").val())
-		console.log($("#idnumber2").text() +" hehehhe1" );
-		$("#username").fadeOut("fast", function(){});
-	    $("#secret-question").fadeIn("fast", function(){});
-	} */
+	console.log($("#idnumber").val() +" hehehhe" );
+	$("#idnumber").text($("#idnumber").val())
+	console.log($("#idnumber").text() +" hehehhe1" );
 });
 
 /* 

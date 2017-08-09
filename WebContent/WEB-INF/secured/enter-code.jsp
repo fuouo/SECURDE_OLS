@@ -44,8 +44,9 @@
       <h2>Change Password</h2>
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
-			<form class="form-horizontal" id="code-forchange" action="PasswordChangeCodeServlet" method ="GET">
+			<form class="form-horizontal" id="code-forchange" action="PasswordChangeCodeServlet" method ="POST">
               <div>
+              	<input type="hidden" name="id_number" id="idnumber" value="${id_number}">
               	<input type="hidden" name="userCode" value="${userCode}" />
              	   <div class="col-sm-10">
                     	<label for="code-change">Enter Code Here</label>
@@ -83,14 +84,10 @@
 <!-- //////////////////// -->
 <script>
 $(document).ready(function() {
-	if($("#question").text() != "")
-	{
-		console.log($("#idnumber2").val() +" hehehhe" );
-		$("#idnumber2").text($("#idnumber2").val())
-		console.log($("#idnumber2").text() +" hehehhe1" );
-		$("#username").fadeOut("fast", function(){});
-	    $("#secret-question").fadeIn("fast", function(){});
-	}
+	
+		console.log($("#idnumber").val() +" hehehhe" );
+		$("#idnumber").text($("#idnumber").val())
+		console.log($("#idnumber").text() +" hehehhe1" );
 });
 
 $("#verify-secret-answer").click(function(){

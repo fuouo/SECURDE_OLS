@@ -117,6 +117,7 @@ public class EmailServlet{
        	           // throw new RuntimeException(e);
        	        }finally {
        	            //request.setAttribute("Message", resultMessage);
+       	        	request.setAttribute(User.COL_IDNUMBER, idNumber);
        	        	request.getRequestDispatcher("/WEB-INF/secured/enter-code.jsp").forward(request, response);
        	        }
        	     

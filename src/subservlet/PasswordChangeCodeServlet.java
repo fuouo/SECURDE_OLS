@@ -56,6 +56,7 @@ public class PasswordChangeCodeServlet{
 
     private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	System.out.println("CODE PASSWORD POST");
+    	String idNumber = request.getParameter("id_number");
     	String code = request.getParameter("userCode");
     	System.out.println("code : " + code);
     	String inputCode = request.getParameter("user-code");
@@ -63,6 +64,7 @@ public class PasswordChangeCodeServlet{
     	
     	if(code.equals(inputCode)){
     		System.out.println("CODE MATCH");
+    		request.setAttribute(User.COL_IDNUMBER, idNumber);
     		request.getRequestDispatcher("/WEB-INF/secured/change-pwd.jsp").forward(request, response);
     	}
     	else{
