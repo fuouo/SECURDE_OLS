@@ -45,7 +45,7 @@ public class MeetingRoomPageServlet {
 		User user = CookieService.isUser(request);
     	
     	//TODO: THIS IS FOR DEBUGGING. PLEASE ERASE THIS!!
-    	//User user = null;s
+    	//User user = null;
     	//user = new User();
     	//user.setIdnumber("11400366");
     	//user.setUserType(UserType.LIBMNGR);

@@ -75,7 +75,11 @@ public class ReserveMRServlet{
 			
 			rr.setUser(user);
 			
-			boolean result =  !RoomService.reserveRoom(rr);
+			boolean result = RoomService.checkIfRoomIsReserved(rr);
+			if(result)
+				request.getRequestDispatcher("MeetingRoomPageServlet").forward(request, response);
+			
+			result =  !RoomService.reserveRoom(rr); 
 			
 			System.out.println("Reserved Room ... " + result);
 			
