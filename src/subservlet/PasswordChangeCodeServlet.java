@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
+
 import com.sun.org.apache.xerces.internal.util.URI;
 
 import model.ReadingMaterial;
@@ -58,6 +60,14 @@ public class PasswordChangeCodeServlet{
     	System.out.println("CODE PASSWORD POST");
     	String idNumber = request.getParameter("id_number");
     	String code = request.getParameter("userCode");
+    	
+    	//decrypt code
+    	String seed = "passwordCode";
+    	StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
+		encryptor.setPassword(seed);
+		code = encryptor.decrypt(code);
+		System.out.println("Decrypted" + code);
+    	
     	System.out.println("code : " + code);
     	String inputCode = request.getParameter("user-code");
     	System.out.println("input: " + inputCode);

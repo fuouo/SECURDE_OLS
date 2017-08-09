@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
+
 import com.sun.org.apache.xerces.internal.util.URI;
 
 import model.ReadingMaterial;
@@ -107,7 +109,16 @@ public class EmailServlet{
        	            System.out.println("[Email Receipient]  " + user.getEmail());
        	            System.out.println("[Email Message]  " + codeMessage);
        	            message.setText(codeMessage);
-       	            request.setAttribute("userCode", code);
+       	            
+       	            //encrypt code
+       	            String seed = "passwordCode";
+	       	        StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
+	       			encryptor.setPassword(seed);
+	       			String encrypted= encryptor.encrypt(code);
+	       			System.out.println("Encrypted" + encrypted);
+       	            
+       	            
+       	            request.setAttribute("userCode", encrypted);
        	           // Transport.send(message);
 
        	            System.out.println("[Email Service] Email Sent");
