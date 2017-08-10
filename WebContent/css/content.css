@@ -19,6 +19,16 @@ a{
     padding: 0 20px !important;
 }
 
+.category-btn{
+	display: inline-block;
+	margin: 5px;
+	padding: 10px;
+}
+
+.category-form{
+	display: inline-block;
+}
+
 .header {
      margin: 0;
      margin-bottom: 50px;

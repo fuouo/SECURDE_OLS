@@ -14,6 +14,7 @@ import model.User;
 import service.CookieService;
 import service.ReadingMaterialService;
 import servlet.MasterServlet;
+import utils.XssSanitizerUtil;
 
 /**
  * Servlet implementation class AccountPageServlet
@@ -54,7 +55,7 @@ public class RMSearchResultsPageServlet{
 			}
     	
     	
-		String searchString = (String) request.getParameter(ReadingMaterial.TABLE_RM);
+		String searchString = (String) XssSanitizerUtil.stripXSS(request.getParameter(ReadingMaterial.TABLE_RM));
     	RMFilter rmFilter = RMFilter.getValue((String) request.getParameter(RMFilter.ENUM_RMFilter));
     	RMType rmType = RMType.getValue((String) request.getParameter(RMType.ENUM_RMType));
     	System.out.println("Searching " + searchString + " with Filter " + rmFilter + " Type " + rmType);

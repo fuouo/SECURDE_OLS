@@ -15,6 +15,7 @@ import service.CookieService;
 import service.ReadingMaterialService;
 import service.RoomService;
 import servlet.MasterServlet;
+import utils.XssSanitizerUtil;
 
 /**
  * Servlet implementation class AccountPageServlet
@@ -63,10 +64,10 @@ public class ReserveMRServlet{
 			System.out.println("USER IS NOT NULLLLLLL");
 			System.out.println("MR ID NUM   " + request.getParameter(ReservedRoom.COL_MRID));
 			ReservedRoom rr = new ReservedRoom();
-			rr.setMrID(Integer.parseInt(request.getParameter(ReservedRoom.COL_MRID)));
+			rr.setMrID(Integer.parseInt(XssSanitizerUtil.stripXSS(request.getParameter(ReservedRoom.COL_MRID))));
 			rr.setReservedDate(new Date());
-			rr.setTimeStart(Integer.parseInt(request.getParameter(ReservedRoom.COL_TIMESTART)));
-			rr.setTimeEnd(Integer.parseInt(request.getParameter(ReservedRoom.COL_TIMESTART)));
+			rr.setTimeStart(Integer.parseInt(XssSanitizerUtil.stripXSS(request.getParameter(ReservedRoom.COL_TIMESTART))));
+			rr.setTimeEnd(Integer.parseInt(XssSanitizerUtil.stripXSS(request.getParameter(ReservedRoom.COL_TIMESTART))));
 			
 			rr.setUser(user);
 			

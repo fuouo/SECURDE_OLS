@@ -29,7 +29,6 @@ $(document).ready(function() {
  	   e.preventDefault();
   		console.log($("#account-name").text());
   		if($("#account-name").text() == "Sign In"){
-  			console.log("FUCKING SHIT");
   			$("#signInForm").submit();
   		}
   	});

@@ -1,24 +1,12 @@
 package subservlet;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.Collections;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import model.ReadingMaterial;
-import model.Review;
 import model.User;
-import model.UserType;
-import service.CookieService;
-import service.ReadingMaterialService;
-import service.ReviewService;
 import service.SecretQuestionService;
 import service.UserService;
 import servlet.MasterServlet;

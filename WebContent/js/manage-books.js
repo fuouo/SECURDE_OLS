@@ -112,7 +112,7 @@ function getRMSearch(){
 	
 	$.ajax({
 		url: "AdminRMSearchResultsPageServlet",
-		method: "get",
+		method: "post",
 		data: {
 			stringToSearch: searchString,
 			RMFilter: searchFilter,

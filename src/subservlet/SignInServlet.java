@@ -13,6 +13,7 @@ import model.UserType;
 import service.UserService;
 import servlet.MasterServlet;
 import utils.Utils;
+import utils.XssSanitizerUtil;
 
 /**
  * Servlet implementation class LoginServlet
@@ -35,8 +36,8 @@ public class SignInServlet {
 		String refererURI =  request.getParameter("referrer");
 		System.out.println("FROM referrer" + refererURI);
 		//retrieve attributes sign in details (idnumber, password)
-		String idNumber = (String) request.getParameter(User.COL_IDNUMBER);
-		String password = (String) request.getParameter(User.COL_PASSWORD);
+		String idNumber = (String) XssSanitizerUtil.stripXSS(request.getParameter(User.COL_IDNUMBER));
+		String password = (String) XssSanitizerUtil.stripXSS(request.getParameter(User.COL_PASSWORD));
 		System.out.println("[idNumber  --- Password] : " + idNumber + "    " + password);
 		//search user from db
 		User user = UserService.loginUser(idNumber, password);

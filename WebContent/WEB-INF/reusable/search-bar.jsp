@@ -35,35 +35,35 @@
   </form>
   <br>
   <div class="divider-dark"></div>
-  
+  <br><br>
   <div align="center">Search For List of : 
-  <form method="post" action="DisplayCategoryServlet">
+  <form method="post" action="DisplayCategoryServlet" class="category-form">
 	<input type="hidden" id="RMType" name="RMType" value="BOOK"/>
 	<input type="hidden" id="reading_material" name="reading_material" value=""/>
 	<input type="hidden" id ="RMFilter" name="RMFilter" value=""/>
-	<button type="submit">Books</button>
+	<button class="category-btn form-control form-components-rd" type="submit">Books</button>
   </form>
   
-  <form method="post" action="DisplayCategoryServlet">
+  <form method="post" action="DisplayCategoryServlet" class="category-form">
 	<input type="hidden" id="RMType" name="RMType" value="MAGAZINE"/>
 	<input type="hidden" id="reading_material" name="reading_material" value=""/>
 	<input type="hidden" id ="RMFilter" name="RMFilter" value=""/>
-	<button type="submit">Magazines</button>
+	<button class="category-btn form-control form-components-rd" type="submit">Magazines</button>
   </form>
   
-  <form method="post" action="DisplayCategoryServlet">
+  <form method="post" action="DisplayCategoryServlet" class="category-form">
 	<input type="hidden" id="RMType" name="RMType" value="THESIS"/>
 	<input type="hidden" id="reading_material" name="reading_material" value=""/>
 	<input type="hidden" id ="RMFilter" name="RMFilter" value=""/>
-	<button type="submit">Thesis</button>
+	<button class="category-btn form-control form-components-rd" type="submit">Thesis</button>
   </form>
   
-  <form method="post" action="DisplayAuthorServlet">
-	<button type="submit">Authors</button>
+  <form method="post" action="DisplayAuthorServlet" class="category-form">
+	<button class="category-btn form-control form-components-rd" type="submit">Authors</button>
   </form>
   
-  <form method="post" action="DisplayPublisherServlet">
-	<button type="submit">Publishers</button>
+  <form method="post" action="DisplayPublisherServlet" class="category-form">
+	<button class="category-btn form-control form-components-rd" type="submit">Publishers</button>
   </form>
   
   
