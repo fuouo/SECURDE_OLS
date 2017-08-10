@@ -54,6 +54,13 @@ public class AdminAreaServlet{
     		if(url == null)
     			url = (String) request.getSession().getAttribute("destination");
     		
+    		String userName;
+			System.out.println("User is not Null!!");
+			userName = (String) user.getFirstName() + " " + user.getLastName();
+			System.out.println(userName);
+			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
+					userName);
+    		
     		
     		System.out.println("URL: " + url);
     		
@@ -63,7 +70,7 @@ public class AdminAreaServlet{
     				url = "/WEB-INF/secured/a-manage-books.jsp";
     			}
     			else if(user.getUserType() == UserType.ADMIN)
-    				url = "AdminAccountsServlet";
+    				url = "/AdminAccountsServlet";
     			
     		}
     	

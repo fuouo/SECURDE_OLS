@@ -308,7 +308,10 @@ public class UserService {
 				user.setBirthdate(r.getDate(User.COL_BDAY));
 				
 				// status of account
-				user.setStatus(UserStatus.getValue(r.getString(User.COL_STATUS)));				
+				user.setStatus(UserStatus.getValue(r.getString(User.COL_STATUS)));	
+				
+				//user type
+				user.setUserType(UserType.getValue(r.getString(User.COL_USERTYPE)));
 			}
 			
 		} catch (SQLException e) {

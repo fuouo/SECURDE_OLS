@@ -34,7 +34,6 @@
        <h2>Manage Books. Add Books. Delete Books. Edit Books.</h2>
        <h3></h3>
       </div>
-      
 
       <div class="btn-group btn-group-justified" role="group" aria-label="...">
         <div class="btn-group"  role="group">
@@ -121,7 +120,6 @@
 <script src="vitalets-bootstrap-datepicker-c7af15b/js/bootstrap-datepicker.js"></script>
 <script src="js/app.js"></script>			
 <!-- //////////////////// -->
-<script src="js/js-sha512.js"></script>
 <script src="js/manage-books.js"></script>
 
 

@@ -1,6 +1,4 @@
 $(document).ready(function(){
-
-	getRMSearch();
 	
 	$("#submit-search").click(function(e){
 		e.preventDefault();
@@ -109,11 +107,8 @@ function getRMSearch(){
 	$(".rm-results .rm-gen-details").remove();
 	$(".rm-results br").remove();
 	var searchString = $("#search-bar").val();
-	searchString = "dyan";
 	var searchFilter = $("#search-filter").val();
-	searchFilter = "TITLE";
 	var searchCollection = $("#search-collection").val();
-	searchCollection = "ALL";
 	
 	$.ajax({
 		url: "AdminRMSearchResultsPageServlet",
