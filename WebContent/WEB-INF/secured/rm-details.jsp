@@ -132,7 +132,7 @@
             <div class="col-md-3">
             <c:choose>
               <c:when test="${reading_material.status == 'BORROWED' or reading_material.status == 'AVAILABLE'}">
-            	<u>Returned By:</u>
+            	<u>Returned By: </u>
               </c:when>
             </c:choose>
             </div></b>
@@ -149,16 +149,17 @@
 			    <c:when test="${reading_material.status == 'BORROWED'}">
 			      <div onclick="clickedType('${loc}')" class="col-md-3"><button onclick="clickedType(${reading_material.RMID_Location })" class="reserve-inline btn btn-default">Reserve</button></div>
 			      <div class="col-md-3">
-			      	<div class="col-md-3"><span class="availability-date"></span>${reading_material.date_returned}</div>
+			      	<div class="col-md-3"><span class="availability-date"></span>${reading_material.strDateAvailable }</div>
 			      </div>
 			    </c:when>
 			    <c:when test="${reading_material.status == 'AVAILABLE'}">
 			      <div onclick="clickedType('${loc}')" class="col-md-3"><button onclick="clickedType(${reading_material.RMID_Location })" class="reserve-inline btn btn-default">Reserve</button></div>
+			      <div class="col-md-3"><span class="availability-date"></span>${reading_material.strDateAvailable }</div>
 			      <div class="col-md-3"></div>
 			    </c:when>
 			    <c:otherwise>
 			        <div class="col-md-3"><button class="reserve-inline btn btn-default disabled">Reserve</button></div>
-			        <div class="col-md-3"><span class="availability-date"></span>${reading_material.date_returned}</div>
+			        <div class="col-md-3"><span class="availability-date"></span>${reading_material.strDateAvailable }</div>
 			    </c:otherwise>
 			  </c:choose>
             </div> 

@@ -23,10 +23,13 @@ import subservlet.RegistrationPageServlet;
 import subservlet.ReserveMRServlet;
 import subservlet.ReserveRMServlet;
 import subservlet.ReviewServlet;
+import subservlet.SessionTimeoutOnCloseBrowserServlet;
 import subservlet.SignInServlet;
 import subservlet.SignInSignUpPageServlet;
+import subservlet.SignOutServlet;
 import subservlet.SignUpServlet;
 import subservlet.SuccessPageServlet;
+import subservlet.StartServlet;
 import subservlet.moderator_subservlet.AddRMServlet;
 import subservlet.moderator_subservlet.AdminAccountsServlet;
 import subservlet.moderator_subservlet.AdminAreaServlet;
@@ -55,6 +58,7 @@ import subservlet.moderator_subservlet.ViewReservedRMServlet;
 							SignInServlet.URL,
 							SignInSignUpPageServlet.URL,
 							SignUpServlet.URL,
+							SignOutServlet.URL,
 							ReserveRMServlet.URL,
 							ReserveMRServlet.URL,
 							RMSearchResultsPageServlet.URL,
@@ -82,6 +86,8 @@ import subservlet.moderator_subservlet.ViewReservedRMServlet;
 							ExportServlet.URL,
 							LoadSecretQuestionServlet.URL,
 							SuccessPageServlet.URL,
+							StartServlet.URL,
+							SessionTimeoutOnCloseBrowserServlet.URL
 							})
 
 public class MasterServlet extends HttpServlet {
@@ -134,6 +140,9 @@ public class MasterServlet extends HttpServlet {
 					break;
 				case SignUpServlet.URL:
 					SignUpServlet.process(request, response, type);
+					break;
+				case SignOutServlet.URL:
+					SignOutServlet.process(request, response, type);
 					break;
 				case SignInSignUpPageServlet.URL:
 					SignInSignUpPageServlet.process(request, response, type);
@@ -215,6 +224,11 @@ public class MasterServlet extends HttpServlet {
 					break;
 				case SuccessPageServlet.URL:
 					SuccessPageServlet.process(request, response, type);
+				case StartServlet.URL:
+					StartServlet.process(request, response, type);
+					break;
+				case SessionTimeoutOnCloseBrowserServlet.URL:
+					SessionTimeoutOnCloseBrowserServlet.process(request, response, type);
 					break;
 			}
 			

@@ -42,9 +42,14 @@
         
         <div class="self-menu">
         	<div id="signInSignOut" style="margin: 10px 0;" class="re-navbar-link">
-        		<i class="flaticon-user-2"></i><span id="account-name">Sign In</span>
+        		<i class="flaticon-user-2"></i><span id="account-name">${first_namelast_name }</span>
         	</div>
-		    <div class="re-navbar-link">Log out</div>
+        	
+        	<c:choose>
+        		<c:when test="${isLoggedIn == 'true'}">
+		      		<div class="re-navbar-link" id = "logout">Log out</div>
+		      	</c:when>
+		    </c:choose>
 		</div>
         
 
@@ -55,7 +60,8 @@
 <form id="meetingRoomForm" action="MeetingRoomPageServlet" method="post"></form>
 <form id="signInForm" action="SignInSignUpPageServlet" method="post"></form>
 <form id="homeForm" action="HomePageServlet" method="post"></form>
-
+<form id="yourReservationsForm" action="HomePageServlet" method="post"></form>
+<form id="logoutForm" action="SignOutServlet" method="post"></form>
 </body>
-<script src="/WebContent/js/menu-links.js"></script>
+<script src="js/menu-links.js"></script>
 </html>

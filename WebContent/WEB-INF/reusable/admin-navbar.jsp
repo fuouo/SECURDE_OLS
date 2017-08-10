@@ -47,9 +47,13 @@
         
         <div class="self-menu">
         	<div id="signInSignOut" style="margin: 10px 0;" class="re-navbar-link">
-        		<i class="flaticon-user-2"></i><span id="account-name">Sign In</span>
+        		<i class="flaticon-user-2"></i><span id="account-name">${first_namelast_name }</span>
         	</div>
-		    <div class="re-navbar-link">Log out</div>
+		    <c:choose>
+        		<c:when test="${isLoggedIn == 'true'}">
+		      		<div class="re-navbar-link" id = "logout">Log out</div>
+		      	</c:when>
+		    </c:choose>
 		</div>
 
       </div>
@@ -60,6 +64,7 @@
 <form id="GoToPage" action="AdminAreaServlet" method="post">
 	<input type="hidden" value="" name="destination" id="destination"/>
 </form>
+<form id="logoutForm" action="SignOutServlet" method="post"></form>
 
 </body>
 <script src="js/jquery-3.0.0.min.js"></script>

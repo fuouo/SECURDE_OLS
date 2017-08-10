@@ -3,9 +3,8 @@ package service;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
-
-import org.owasp.esapi.ESAPI;
 
 import db.Query;
 import model.RMFilter;
@@ -385,6 +384,7 @@ public class ReadingMaterialService {
 
 						///// available
 						rm.setStatus(RMStatus.AVAILABLE);
+						rm.setDateAvailable(Calendar.getInstance().getTime());
 					}
 				}
 
@@ -773,8 +773,6 @@ public class ReadingMaterialService {
 			input.add(rmType + "");
 		}
 		
-		query = query + "\nORDER BY " + ReadingMaterial.COL_TITLE + ";";
-
 		// for status
 		String query_reserved = "\nSELECT *" + "\n"
 				+ " FROM " + ReadingMaterial.TABLE_RESERVEDRM + "\n"
@@ -796,7 +794,6 @@ public class ReadingMaterialService {
 
 			while(r.next()) {
 				rm = new ReadingMaterial();				
-
 				rm.setRMID_Location(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_RMID)));
 				rm.setRMType(RMType.getValue(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_RMTYPE))));
 				rm.setTitle(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_TITLE)));

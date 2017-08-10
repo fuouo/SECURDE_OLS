@@ -26,7 +26,6 @@ public class HomePageServlet{
     	System.out.println("HOMEPAGE GET");
     	
     	User user = CookieService.isUser(request);
-
     	//TODO: DEBUG PLS. please erase in final
     	//user = new User();
     	//user.setStatus(UserStatus.ACTIVATED);
@@ -64,61 +63,25 @@ public class HomePageServlet{
 	}
     
 	private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("HOMEPAGE POST");
-		//Check if a user is logged in
-		String refererURI = (String) request.getAttribute("referrer");
-		System.out.println("FROM : " + refererURI);
-		User user = CookieService.isUser(request);
+		// TODO Auto-generated method stub	
+    	System.out.println("HOMEPAGE POST");
+    
+    	User user = CookieService.isUser(request);
     	
-		//If user is logged in	
-    	//Check if a user is logged in
-		Cookie[] cookies = request.getCookies();
-
-		System.out.println("[Cookies]: " + cookies.length);
-		//Search specific cookie
-		for(int i = 0; i < cookies.length; i ++) {
-			System.out.println(cookies[i].getName());
-			if(cookies[i].getName().equals(User.COL_IDNUMBER)) {
-				user = UserService.viewProfileUser(cookies[i].getValue());
-			}
-		}
-		
-		//TODO: DEBUG PLS. please erase in final
-    	//user = new User();
-    	//user.setStatus(UserStatus.ACTIVATED);
-    	//user.setUserType(UserType.ADMIN);
-    	//user.setFirstName("Dyan");
-    	//user.setLastName("Nieva");
-		
-		System.out.println("User: " + user);
-		
-		String userName = null;
-		//If user is logged in
+		//If user is logged in		
 		if(user!=null)
 		{
-			System.out.println("User is not Null!!");
-			userName = (String) user.getFirstName() + " " + user.getLastName();
-			System.out.println(userName);
+			System.out.println("User is NOT null");
+			String userName = (String) user.getFirstName() + " " + user.getLastName();
 			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
 					userName);
-			
-			/* REDIRECT TO PROPER PAGES IF ADMIN */
-			if(user.getUserType() == UserType.ADMIN || 
-					user.getUserType() == UserType.LIBMNGR || 
-						user.getUserType() == UserType.LIBSTAFF){
-				request.getSession().setAttribute("destination", "default");
-				request.getRequestDispatcher("AdminAreaServlet").forward(request, response);
-			}
-			//////
-			
-			
-		}else {
+		}
+		else {
 			System.out.println("User is null");
 			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
 					"Sign In");
-		}
-		
+			}
+			
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 	

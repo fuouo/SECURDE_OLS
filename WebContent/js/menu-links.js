@@ -18,14 +18,12 @@ $(document).ready(function() {
 		console.log("LOGO CLICKED");
 		$("#homeForm").submit();
 	});
-	 	
-// 	$("#signInSignOut").click(function(e) {
-// 	   e.preventDefault();
-// 		console.log($("#account-name").text());
-// 		$("#signInForm").submit();
-// 	});
 	
-	console.log("MOTHER FUCKING SHIT");
+	$('#logout').click(function(e) {
+		   e.preventDefault();
+		console.log("LOGGING OUT");
+		$("#logoutForm").submit();
+	});
  	
  	$("#signInSignOut").click(function(e) {
  	   e.preventDefault();
