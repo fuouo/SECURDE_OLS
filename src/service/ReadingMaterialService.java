@@ -16,6 +16,7 @@ import model.Review;
 import model.User;
 import model.UserType;
 import utils.Utils;
+import utils.XssSanitizerUtil;
 
 public class ReadingMaterialService {
 
@@ -330,14 +331,14 @@ public class ReadingMaterialService {
 			r = q.runQuery(query_details, input);
 			while(r.next()) {
 				rm = new ReadingMaterial();
-				rm.setRMID_Location(rmID_location);
-				rm.setRMType(RMType.getValue(r.getString(ReadingMaterial.COL_RMTYPE)));
-				rm.setTitle(r.getString(ReadingMaterial.COL_TITLE));
-				rm.setAuthor(r.getString(ReadingMaterial.COL_AUTHOR));
-				rm.setPublisher(r.getString(ReadingMaterial.COL_PUBLISHER));
+				rm.setRMID_Location(XssSanitizerUtil.stripXSS(rmID_location));
+				rm.setRMType(RMType.getValue(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_RMTYPE))));
+				rm.setTitle(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_TITLE)));
+				rm.setAuthor(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_AUTHOR)));
+				rm.setPublisher(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_PUBLISHER)));
 				rm.setYear(r.getInt(ReadingMaterial.COL_YEAR));
-				rm.setTags(r.getString(ReadingMaterial.COL_TAG));
-				rm.setStatus(RMStatus.getStockValue(r.getString(ReadingMaterial.COL_LIBSTATUS)));
+				rm.setTags(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_TAG)));
+				rm.setStatus(RMStatus.getStockValue(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_LIBSTATUS))));
 			}
 
 			r.close();
@@ -346,12 +347,12 @@ public class ReadingMaterialService {
 			r = q.runQuery(query_reviews, input);
 			while(r.next()) {
 				review = new Review();
-				review.setReview(r.getString(Review.COL_REVIEW));
+				review.setReview(XssSanitizerUtil.stripXSS(r.getString(Review.COL_REVIEW)));
 				review.setDate_reviewed(r.getDate(Review.COL_DATEREVIEWED));
 
 				user = new User();
-				user.setFirstName(r.getString(User.COL_FIRSTNAME));
-				user.setLastName(r.getString(User.COL_LASTNAME));
+				user.setFirstName(XssSanitizerUtil.stripXSS(r.getString(User.COL_FIRSTNAME)));
+				user.setLastName(XssSanitizerUtil.stripXSS(r.getString(User.COL_LASTNAME)));
 
 				review.setUser(user);
 
@@ -422,7 +423,7 @@ public class ReadingMaterialService {
 			r = q.runQuery(query, input);
 
 			if(r.next()) {
-				title = r.getString(1);
+				title = XssSanitizerUtil.stripXSS(r.getString(1));
 			}
 
 		} catch (SQLException e) {
@@ -474,14 +475,15 @@ public class ReadingMaterialService {
 
 			while(r.next()) {
 				rm = new ReadingMaterial();
-				rm.setRMID_Location(r.getString(ReadingMaterial.COL_RMID));
-				rm.setTitle(r.getString(ReadingMaterial.COL_TITLE));
-				rm.setAuthor(r.getString(ReadingMaterial.COL_AUTHOR));
-				rm.setPublisher(r.getString(ReadingMaterial.COL_PUBLISHER));
+				
+				rm.setRMID_Location(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_RMID)));
+				rm.setTitle(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_TITLE)));
+				rm.setAuthor(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_AUTHOR)));
+				rm.setPublisher(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_PUBLISHER)));
 				rm.setYear(r.getInt(ReadingMaterial.COL_YEAR));
-				rm.setStatus(RMStatus.getStockValue(r.getString(ReadingMaterial.COL_LIBSTATUS)));
-				rm.setTags(r.getString(ReadingMaterial.COL_TAG));
-
+				rm.setTags(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_TAG)));
+				rm.setStatus(RMStatus.getStockValue(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_LIBSTATUS))));
+			
 				rmList.add(rm);
 			}
 
@@ -540,7 +542,7 @@ public class ReadingMaterialService {
 			r = q.runQuery(query);
 
 			while(r.next()) {
-				authors.add(r.getString(ReadingMaterial.COL_AUTHOR));
+				authors.add(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_AUTHOR)));
 			}
 
 		} catch (SQLException e) {
@@ -573,7 +575,7 @@ public class ReadingMaterialService {
 			r = q.runQuery(query);
 
 			while(r.next()) {
-				publishers.add(r.getString(ReadingMaterial.COL_PUBLISHER));
+				publishers.add(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_PUBLISHER)));
 			}
 
 		} catch (SQLException e) {
@@ -636,9 +638,9 @@ public class ReadingMaterialService {
 				rm.setDateAvailable(rm.getDateReturned());
 
 				user = new User();
-				user.setIdnumber(r.getString(User.COL_IDNUMBER));
-				user.setFirstName(r.getString(User.COL_FIRSTNAME));
-				user.setLastName(r.getString(User.COL_LASTNAME));
+				user.setIdnumber(XssSanitizerUtil.stripXSS(r.getString(User.COL_IDNUMBER)));
+				user.setFirstName(XssSanitizerUtil.stripXSS(r.getString(User.COL_FIRSTNAME)));
+				user.setLastName(XssSanitizerUtil.stripXSS(r.getString(User.COL_LASTNAME)));
 
 				rm.setUserReserved(user);
 
@@ -693,9 +695,9 @@ public class ReadingMaterialService {
 				rm.setDateReturned(r.getDate(ReadingMaterial.COL_DATERESERVED));
 
 				user = new User();
-				user.setIdnumber(r.getString(User.COL_IDNUMBER));
-				user.setFirstName(r.getString(User.COL_FIRSTNAME));
-				user.setLastName(r.getString(User.COL_LASTNAME));
+				user.setIdnumber(XssSanitizerUtil.stripXSS(r.getString(User.COL_IDNUMBER)));
+				user.setFirstName(XssSanitizerUtil.stripXSS(r.getString(User.COL_FIRSTNAME)));
+				user.setLastName(XssSanitizerUtil.stripXSS(r.getString(User.COL_LASTNAME)));
 
 				rm.setUserReserved(user);
 
@@ -794,18 +796,15 @@ public class ReadingMaterialService {
 
 			while(r.next()) {
 				rm = new ReadingMaterial();				
-				String author = ESAPI.encoder().encodeForHTML(r.getString(ReadingMaterial.COL_AUTHOR));
-				
-				System.out.println("[ESAPI TEST] AUTHOR : " + author);
-				
-				rm.setRMID_Location(r.getString(ReadingMaterial.COL_RMID));
-				rm.setTitle(r.getString(ReadingMaterial.COL_TITLE));
-				rm.setAuthor(author);
-				System.out.println("ESAPI : AUTHOR : " + author);
-				rm.setPublisher(r.getString(ReadingMaterial.COL_PUBLISHER));
+
+				rm.setRMID_Location(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_RMID)));
+				rm.setRMType(RMType.getValue(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_RMTYPE))));
+				rm.setTitle(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_TITLE)));
+				rm.setAuthor(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_AUTHOR)));
+				rm.setPublisher(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_PUBLISHER)));
 				rm.setYear(r.getInt(ReadingMaterial.COL_YEAR));
-				rm.setStatus(RMStatus.getStockValue(r.getString(ReadingMaterial.COL_LIBSTATUS)));
-				rm.setTags(r.getString(ReadingMaterial.COL_TAG));
+				rm.setTags(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_TAG)));
+				rm.setStatus(RMStatus.getStockValue(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_LIBSTATUS))));
 
 				rmList.add(rm);
 			}
@@ -1057,12 +1056,11 @@ public class ReadingMaterialService {
 
 			while(r.next()) {
 				rm = new ReadingMaterial();
-				rm.setRMID_Location(r.getString(ReadingMaterial.COL_RMID));
-				rm.setTitle(r.getString(ReadingMaterial.COL_TITLE));
+				rm.setRMID_Location(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_RMID)));
+				rm.setTitle(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_TITLE)));
 				rm.setDateBorrowed(r.getDate(ReadingMaterial.COL_DATEBORROWED));
 				rm.setDateReturned(r.getDate(ReadingMaterial.COL_DATERETURNED));
-				rm.setStatus(RMStatus.getStockValue(r.getString(ReadingMaterial.COL_LIBSTATUS)));
-				rm.setTags(r.getString(ReadingMaterial.COL_TAG));
+				rm.setStatus(RMStatus.getStockValue(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_LIBSTATUS))));
 
 				rmList.add(rm);
 			}
@@ -1110,12 +1108,14 @@ public class ReadingMaterialService {
 
 			while(r.next()) {
 				rm = new ReadingMaterial();
-				rm.setRMID_Location(r.getString(ReadingMaterial.COL_RMID));
-				rm.setTitle(r.getString(ReadingMaterial.COL_TITLE));
+				
+				rm.setRMID_Location(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_RMID)));
+				rm.setTitle(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_TITLE)));
 				rm.setDateBorrowed(r.getDate(ReadingMaterial.COL_DATEBORROWED));
 				rm.setDateReturned(r.getDate(ReadingMaterial.COL_DATERETURNED));
-				rm.setStatus(RMStatus.getStockValue(ReadingMaterial.COL_LIBSTATUS));
-				rm.setTags(r.getString(ReadingMaterial.COL_TAG));
+				rm.setTags(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_TAG)));
+				rm.setStatus(RMStatus.getStockValue(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_LIBSTATUS))));
+				
 
 				rmList.add(rm);
 			}
@@ -1159,8 +1159,8 @@ public class ReadingMaterialService {
 
 			while(r.next()) {
 				rm = new ReadingMaterial();
-				rm.setRMID_Location(r.getString(ReadingMaterial.COL_RMID));
-				rm.setTitle(r.getString(ReadingMaterial.COL_TITLE));
+				rm.setRMID_Location(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_RMID)));
+				rm.setTitle(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_TITLE)));
 				rm.setDateBorrowed(r.getDate(ReadingMaterial.COL_DATEBORROWED));
 				rm.setDateReturned(r.getDate(ReadingMaterial.COL_DATERETURNED));
 
@@ -1208,14 +1208,15 @@ public class ReadingMaterialService {
 
 			while(r.next()) {
 				rm = new ReadingMaterial();
+				
 				rm.setReservedRMID(r.getInt(ReadingMaterial.COL_RESERVEDRMID));
-				rm.setRMID_Location(r.getString(ReadingMaterial.COL_RMID));
-				rm.setTitle(r.getString(ReadingMaterial.COL_TITLE));
+				rm.setRMID_Location(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_RMID)));
+				rm.setTitle(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_TITLE)));
 				rm.setDateReserved(r.getDate(ReadingMaterial.COL_DATERESERVED));
 				rm.setDateReturned(r.getDate(ReadingMaterial.COL_DATERETURNED));
-
+				
 				user = new User();
-				user.setIdnumber(r.getString(ReadingMaterial.COL_IDNUMBER));
+				user.setIdnumber(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_IDNUMBER)));
 				rm.setUserReserved(user);
 
 				rmList.add(rm);

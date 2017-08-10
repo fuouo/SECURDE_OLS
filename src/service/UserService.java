@@ -4,11 +4,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import db.Query;
 import model.User;
 import model.UserStatus;
 import model.UserType;
+
+import org.owasp.esapi.ESAPI;
+import org.owasp.esapi.Encoder;
+
 import utils.Utils;
+import utils.XssSanitizerUtil;
+import db.Query;
 
 public class UserService {
 	
@@ -152,9 +157,9 @@ public class UserService {
 					
 					// create user
 					user = new User();
-					user.setIdnumber(id_number);
-					user.setFirstName(r2.getString(User.COL_FIRSTNAME));
-					user.setLastName(r2.getString(User.COL_LASTNAME));
+					user.setIdnumber(XssSanitizerUtil.stripXSS(id_number));
+					user.setFirstName(XssSanitizerUtil.stripXSS(r2.getString(User.COL_FIRSTNAME)));
+					user.setLastName(XssSanitizerUtil.stripXSS(r2.getString(User.COL_LASTNAME)));
 					
 					// if account has been brute-forced before, then delete instance in lockout
 					input.clear();
@@ -285,18 +290,18 @@ public class UserService {
 				user = new User();
 				
 				// id number
-				user.setIdnumber(r.getString(User.COL_IDNUMBER));
+				user.setIdnumber(XssSanitizerUtil.stripXSS(r.getString(User.COL_IDNUMBER)));
 				
 				// user type
-				user.setUserType(UserType.getValue(r.getString(User.COL_USERTYPE)));
+				user.setUserType(UserType.getValue(XssSanitizerUtil.stripXSS(r.getString(User.COL_USERTYPE))));
 				
 				// name
-				user.setFirstName(r.getString(User.COL_FIRSTNAME));
-				user.setMiddleInitial(r.getString(User.COL_MI));
-				user.setLastName(r.getString(User.COL_LASTNAME));
+				user.setFirstName(XssSanitizerUtil.stripXSS(r.getString(User.COL_FIRSTNAME)));
+				user.setMiddleInitial(XssSanitizerUtil.stripXSS(r.getString(User.COL_MI)));
+				user.setLastName(XssSanitizerUtil.stripXSS(r.getString(User.COL_LASTNAME)));
 				
 				// email
-				user.setEmail(r.getString(User.COL_EMAIL));
+				user.setEmail(XssSanitizerUtil.stripXSS(r.getString(User.COL_EMAIL)));
 				
 				// birthday
 				user.setBirthdate(r.getDate(User.COL_BDAY));
@@ -389,14 +394,14 @@ public class UserService {
 	public static ArrayList<User> getLockedAccounts() {
 		ArrayList<User> lockedAccounts = new ArrayList<>();
 		User user = null;
-		
+		Encoder encoder = ESAPI.encoder();
 		
 		String query = "\nSELECT * FROM " + User.TABLE_USER
 				+ " WHERE " + User.COL_STATUS + " = ?";
 		
 		
 		ArrayList<Object> input = new ArrayList<>();
-		input.add(UserStatus.DEACTIVATED + "");
+		input.add(UserStatus.LOCKOUT + "");
 		
 		Query q = Query.getInstance();
 		ResultSet r = null;
@@ -406,13 +411,16 @@ public class UserService {
 			//r = q.runQuery(query);
 			
 			while(r.next()) {
+				
+				String lastName = XssSanitizerUtil.stripXSS(r.getString(User.COL_LASTNAME));
+				
 				user = new User();
-				user.setIdnumber(r.getString(User.COL_IDNUMBER));
-				user.setFirstName(r.getString(User.COL_FIRSTNAME));
-				user.setMiddleInitial(r.getString(User.COL_MI));
-				user.setLastName(r.getString(User.COL_LASTNAME));
-				user.setUserType(UserType.getValue(r.getString(User.COL_USERTYPE)));
-				user.setStatus(UserStatus.getValue(r.getString(User.COL_STATUS)));
+				user.setIdnumber(XssSanitizerUtil.stripXSS(r.getString(User.COL_IDNUMBER)));
+				user.setFirstName(XssSanitizerUtil.stripXSS(r.getString(User.COL_FIRSTNAME)));
+				user.setMiddleInitial(XssSanitizerUtil.stripXSS(r.getString(User.COL_MI)));
+				user.setLastName(XssSanitizerUtil.stripXSS(r.getString(User.COL_LASTNAME)));
+				user.setUserType(UserType.getValue(XssSanitizerUtil.stripXSS(r.getString(User.COL_USERTYPE))));
+				user.setStatus(UserStatus.getValue(XssSanitizerUtil.stripXSS(r.getString(User.COL_STATUS))));
 				lockedAccounts.add(user);
 			}
 			
