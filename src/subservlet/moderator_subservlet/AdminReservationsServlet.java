@@ -28,6 +28,7 @@ public class AdminReservationsServlet {
 	private static void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
     	System.out.println("ADMIN RESERVATIONS GET");
+    	request.getRequestDispatcher("/StartServlet").forward(request, response);
 	}
 
     private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

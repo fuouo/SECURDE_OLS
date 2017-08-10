@@ -23,12 +23,6 @@ public class HomePageServlet{
     	System.out.println("HOMEPAGE GET");
     	
     	User user = CookieService.isUser(request);
-    	//TODO: DEBUG PLS. please erase in final
-    	//user = new User();
-    	//user.setStatus(UserStatus.ACTIVATED);
-    	//user.setUserType(UserType.ADMIN);
-    	//user.setFirstName("Dyan");
-    	//user.setLastName("Nieva");
 
 		//If user is logged in		
 		if(user!=null)
@@ -77,7 +71,7 @@ public class HomePageServlet{
 			System.out.println("User is null");
 			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
 					"Sign In");
-			}
+		}
 			
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}

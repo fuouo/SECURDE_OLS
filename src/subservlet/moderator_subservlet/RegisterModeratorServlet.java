@@ -30,7 +30,8 @@ public class RegisterModeratorServlet{
 
     private static void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-    	System.out.println("SIGN IN SIGN UP PAGE GET");
+    	System.out.println("REGISTER MODERATOR SERVLET GET");
+    	request.getRequestDispatcher("/StartServlet").forward(request, response);
 	}
 
     private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -13,6 +13,7 @@ import model.RMType;
 import model.ReadingMaterial;
 import service.ReadingMaterialService;
 import servlet.MasterServlet;
+import utils.XssSanitizerUtil;
 
 
 public class AddRMServlet {
@@ -29,6 +30,7 @@ public class AddRMServlet {
 	private static void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
     	System.out.println("ADD RM GET");
+    	request.getRequestDispatcher("/StartServlet").forward(request, response);
 	}
 
     private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -44,20 +46,22 @@ public class AddRMServlet {
     	System.out.println("Tags " + request.getParameter("tags"));
     	
     	ReadingMaterial rm = new ReadingMaterial();
-    	rm.setTitle(request.getParameter("title"));
+    	rm.setTitle(XssSanitizerUtil.stripXSS(request.getParameter("title")));
     	rm.setRMType(RMType.getValue(request.getParameter("newRMType").toUpperCase()));
-    	rm.setRMID_Location(request.getParameter("location-id"));
-    	rm.setAuthor(request.getParameter("author-name"));
-    	rm.setPublisher(request.getParameter("publisher"));
+    	rm.setRMID_Location(XssSanitizerUtil.stripXSS(request.getParameter("location-id")));
+    	rm.setAuthor(XssSanitizerUtil.stripXSS(request.getParameter("author-name")));
+    	rm.setPublisher(XssSanitizerUtil.stripXSS(request.getParameter("publisher")));
     	rm.setYear(Integer.parseInt(request.getParameter("year-published")));
-    	rm.setTags(request.getParameter("tags"));
+    	rm.setTags(XssSanitizerUtil.stripXSS(request.getParameter("tags")));
     	Date today = new Date();
     	rm.setDateArrived(new Date());
-
     
     	boolean result = ReadingMaterialService.addRM(rm);
     	
     	System.out.println("ADDING BOOK : " + result);
+    	
+    	request.getSession().setAttribute("message", "Successfully Added Reading Material");
+    	request.getRequestDispatcher("SuccessPageServlet").forward(request, response);
     	
     	if(result) {
     		// redirect to success page

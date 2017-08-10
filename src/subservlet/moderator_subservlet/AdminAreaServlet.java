@@ -31,6 +31,7 @@ public class AdminAreaServlet{
     private static void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
     	System.out.println("ADMIN AREA PAGE GET");
+
 	}
 
     private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -55,30 +56,38 @@ public class AdminAreaServlet{
     		if(url == null)
     			url = (String) request.getSession().getAttribute("destination");
     		
-    		String userName;
-			System.out.println("User is not Null!!");
-			userName = (String) user.getFirstName() + " " + user.getLastName();
-			System.out.println(userName);
-			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
-					userName);
-    		
-			request.getSession().setAttribute(User.COL_USERTYPE, user.getUserType());
-    		
-    		System.out.println("URL: " + url);
-
-    		if(url.equals("default")){
-    			
-    			if(user.getUserType() == UserType.LIBMNGR || user.getUserType() == UserType.LIBSTAFF){
-    				url = "/WEB-INF/secured/a-manage-books.jsp";
-    			}
-    			else if(user.getUserType() == UserType.ADMIN)
-    				url = "/AdminAccountsServlet";
-    			
+    		if(url != null){
+	    		String userName;
+				System.out.println("User is not Null!!");
+				userName = (String) user.getFirstName() + " " + user.getLastName();
+				System.out.println(userName);
+				request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
+						userName);
+	    		
+				request.getSession().setAttribute(User.COL_USERTYPE, user.getUserType());
+	    		
+	    		System.out.println("URL: " + url);
+	    		if(url.equals("default")){
+	    			
+	    			if(user.getUserType() == UserType.LIBMNGR || user.getUserType() == UserType.LIBSTAFF){
+	    				url = "/WEB-INF/secured/a-manage-books.jsp";
+	    			}
+	    			else if(user.getUserType() == UserType.ADMIN)
+	    				url = "/AdminAccountsServlet";
+	    			else{
+	    				url = "/HomePageServlet";
+	    			}
+	    			
+	    		}
+	    		System.out.println("URL: " + url);
+	    	
+	    		request.getRequestDispatcher(url).forward(request, response);
+    		}else{
+    			//unauthorized
+    			System.out.println("Unauthorized User. Redirect to error page");
+    			request.getRequestDispatcher("/WEB-INF/error/error-unauthorized.jsp").forward(request, response);
+    			//request.getRequestDispatcher("/HomePageServlet").forward(request, response);
     		}
-    		
-    		System.out.println("URL: " + url);
-    	
-    		request.getRequestDispatcher(url).forward(request, response);
     	}
     	
 	}

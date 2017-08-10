@@ -29,6 +29,7 @@ public class EditRMServlet{
     private static void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
     	System.out.println("EDIT GET");
+    	request.getRequestDispatcher("/StartServlet").forward(request, response);
 	}
 
     private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -52,12 +53,14 @@ public class EditRMServlet{
     	rm.setYear(Integer.parseInt(request.getParameter(ReadingMaterial.COL_YEAR)));
     	rm.setTags(request.getParameter(ReadingMaterial.COL_TAG));
     	
-    	boolean result = ReadingMaterialService.editRM(rm);
+    	boolean result = !ReadingMaterialService.editRM(rm);
     	
     	System.out.println("EDITTING BOOK : " + result);
     	
     	if(result) {
     		// redirect to success page
+    		request.getSession().setAttribute("message", "Successfully Edited Reading Material Information");
+        	request.getRequestDispatcher("SuccessPageServlet").forward(request, response);
     	} else {
     		// redirect to fail page
     	}

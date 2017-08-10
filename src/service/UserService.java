@@ -487,7 +487,6 @@ public class UserService {
 
 			while(r.next()) {
 
-				String lastName = XssSanitizerUtil.stripXSS(r.getString(User.COL_LASTNAME));
 
 				user = new User();
 				user.setIdnumber(XssSanitizerUtil.stripXSS(r.getString(User.COL_IDNUMBER)));
