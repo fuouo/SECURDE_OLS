@@ -131,11 +131,11 @@
 <script src="js/jquery-3.0.0.min.js"></script>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="js/menu-links.js"></script>
-<script src="js/app.js"></script>			
+<script src="js/app.js" type="text/javascript" charset="utf-8"></script>			
 <!-- //////////////////// -->
-<script src="js/register.js"></script>
-<script src="js/password-meter.js"></script>
-<script src="js/input-validation.js"></script>
+<script src="js/register.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/password-meter.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/input-validation.js" type="text/javascript" charset="utf-8"></script>
 </body>
 
 </html>

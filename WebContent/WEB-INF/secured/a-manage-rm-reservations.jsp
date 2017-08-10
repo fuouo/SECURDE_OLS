@@ -20,6 +20,7 @@
     <link rel="stylesheet" type="text/css" href="img/icons_by_freepik/font/flaticon.css"> 
     <link rel="stylesheet" type="text/css" href="vitalets-bootstrap-datepicker-c7af15b/css/datepicker.css"/>
     <link rel="stylesheet" type="text/css" href="css/content.css"> 
+    <link rel="stylesheet" type="text/css" href="css/alert/alert.css"> 
 
 <body>
 <div class="container-fluid">
@@ -59,6 +60,7 @@
             </div>
           </div>
         </div>
+        <div id="ohsnap"></div>
           
 
  <!-- don't go beyond this point -->
@@ -75,7 +77,8 @@
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="js/app.js"></script>				
 <!-- //////////////////// -->
-<script src="js/manage-reservations.js"></script>
+<script src="js/manage-reservations.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/ohsnap/ohsnap.min.js" type="text/javascript" charset="utf-8"></script>
 
 
 

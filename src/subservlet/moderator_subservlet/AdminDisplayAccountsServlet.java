@@ -26,8 +26,13 @@ public class AdminDisplayAccountsServlet {
     private static void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
     	System.out.println("ADMIN DISPLAY ACCOUNTS GET");
-    	request.getRequestDispatcher("/StartServlet").forward(request, response);
-   
+    	request.getRequestDispatcher("/HomePageServlet").forward(request, response);
+	}
+
+    private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+    	System.out.println("ADMIN ACCOUNTS POST");
+    	
     	PrintWriter pw = response.getWriter();
     	ArrayList<User> users = UserService.getLockedAccounts();
     	
@@ -40,14 +45,7 @@ public class AdminDisplayAccountsServlet {
 		String results = gson.toJson(users);
 		System.out.println(results);
 		pw.write(results);
-    	
-	}
 
-    private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-    	System.out.println("ADMIN ACCOUNTS POST");
-    	
-    	
    	}
    
     public static void process(HttpServletRequest request, HttpServletResponse response, int type) throws ServletException, IOException{

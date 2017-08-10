@@ -58,7 +58,7 @@
             </div>
           </div>
         </div>
-          
+        <div id="ohsnap"></div>
 
  <!-- don't go beyond this point -->
     </div> <!-- end of content -->
@@ -69,9 +69,10 @@
 <!-- must be in every page -->
 <script src="js/jquery-3.0.0.min.js"></script>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script src="js/app.js"></script>				
+<script src="js/app.js" type="text/javascript" charset="utf-8"></script>				
 <!-- //////////////////// -->
-<script src="js/manage-reservations.js"></script>
+<script src="js/ohsnap.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/manage-reservations.js" type="text/javascript" charset="utf-8"></script>
 
 
 

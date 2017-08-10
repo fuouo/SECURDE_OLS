@@ -71,7 +71,7 @@
                 </div>
                 <div class="form-group" align="left">
                   <div class="col-sm-offset-2 col-sm-10">
-                    <div type="submit" id="verify-secret-answer" class="btn btn-default submit-btn form-components-rd auto-width erase-margin">Submit</div>
+                    <button type="submit" id="verify-secret-answer" class="btn btn-default submit-btn form-components-rd auto-width erase-margin">Submit</button>
                   </div>
                 </div>
               </div>
@@ -87,48 +87,13 @@
     </div> <!-- end of content -->
   </div> <!-- end of row -->
 </div> <!-- end of container-fluid -->
-<form id="meetingRoomForm" action="MeetingRoomPageServlet" method="post"></form>
-<form id="signInForm" action="SignInSignUpPageServlet" method="post"></form>
-<form id="homeForm" action="HomePageServlet" method="post"></form>
-<form id="yourReservationsForm" action="CalendarOrgRepServlet" method="post"></form>
 
 <!--  INSERT SCRIPT TAGS HERE -->
 <!-- must be in every page -->
 <script src="js/jquery-3.0.0.min.js"></script>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script src="js/menu-links.js"></script>
-<script src="js/app.js"></script>			
+<script src="js/app.js" type="text/javascript" charset="utf-8"></script>			
 <!-- //////////////////// -->
-<script>
-$(document).ready(function() {
-	
-	console.log("Question" + $("#question").text());
-	
-	if($("#question").text() != "")
-	{
-		console.log($("#idnumber2").val() +" hehehhe" );
-		$("#idnumber2").text($("#idnumber2").val())
-		console.log($("#idnumber2").text() +" hehehhe1" );
-		$("#username").fadeOut("fast", function(){});
-	    $("#secret-question").fadeIn("fast", function(){});
-	}
-});
-
-$("#verify-secret-answer").click(function(){
-	
-  $('.alert-danger').show("fast", function(){});
-  setTimeout(function(){
-      $('.alert-danger').hide("fast", function(){});  
-    }, 1000);
-});
-
- $("#verify-username").click(function(){
-	console.log("Load Secret Question");
-	$("#username").submit();
-	$("#username").fadeOut("fast", function(){});
-    $("#secret-question").fadeIn("fast", function(){});
-    
-}); 
-</script>
+<script src="js/forgot-pwd.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

@@ -47,6 +47,7 @@ function overrideRMReservation(rmID){
 		dataType: "json",
 		success: function(result) {
 			location.reload();
+			ohSnap('Successfully Overridden reservation...', {color: 'green'});
 		}
 	});
 }
@@ -61,6 +62,7 @@ function overrideMRReservation(mrID){
 		dataType: "json",
 		success: function(result) {
 			location.reload();
+			ohSnap('Successfully Overridden reservation...', {color: 'green'});
 		}
 	});
 }

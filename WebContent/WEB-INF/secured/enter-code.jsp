@@ -54,7 +54,7 @@
                   </div>
                 <div class="form-group" align="left">
                   <div class="col-sm-offset-2 col-sm-10">
-                    <div type="submit" id="verify-secret-answer" class="btn btn-default submit-btn form-components-rd auto-width erase-margin">Submit</div>
+                    <button type="submit" id="verify-secret-answer" class="btn btn-default submit-btn form-components-rd auto-width erase-margin">Submit</button>
                   </div>
                 </div>
               </div>
@@ -79,8 +79,8 @@
 <!-- must be in every page -->
 <script src="js/jquery-3.0.0.min.js"></script>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script src="js/menu-links.js"></script>
-<script src="js/app.js"></script>			
+<script src="js/menu-links.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/app.js" type="text/javascript" charset="utf-8"></script>			
 <!-- //////////////////// -->
 <script>
 $(document).ready(function() {

@@ -69,7 +69,8 @@ public class ReserveRMServlet{
 			rm.setDateReserved(Calendar.getInstance().getTime());			// NOW LANG EH
 			ReadingMaterialService.reserveRM(rm);
 			
-			request.getRequestDispatcher("HomePageServlet").forward(request, response);
+			request.getSession().setAttribute("message", "Successfully Reserved Book");
+	    	request.getRequestDispatcher("SuccessPageServlet").forward(request, response);
 			
 		}
 		else

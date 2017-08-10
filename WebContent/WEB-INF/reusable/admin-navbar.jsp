@@ -37,7 +37,7 @@
           	</c:when>
           </c:choose>
           <c:choose>
-          	<c:when test="${user_type=='LIBSTAFF'}">
+          	<c:when test="${user_type=='LIBSTAFF' or user_type=='LIBMNGR'}">
           		<li class="">
 		            <a href="" id="mr-reserve-tab">Manage Meeting Room Reservations</a>
 		          </li>
@@ -91,5 +91,5 @@
 
 </body>
 <script src="js/jquery-3.0.0.min.js"></script>
-<script src="js/admin-menu-links.js"></script>
+<script src="js/admin-menu-links.js" type="text/javascript" charset="utf-8"></script>
 </html>

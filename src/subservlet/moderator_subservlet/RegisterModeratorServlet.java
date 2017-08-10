@@ -69,6 +69,9 @@ public class RegisterModeratorServlet{
     	// add to db
     	boolean result = UserService.registerLibStaffLibMngr(user);
     	
+    	request.getSession().setAttribute("message", "Successfully Added Account");
+    	request.getRequestDispatcher("SuccessPageServlet").forward(request, response);
+    	
     	if(result) {
     		// redirect to success page
     		
