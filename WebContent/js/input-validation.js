@@ -1,7 +1,8 @@
 
-var regexName = /^[a-zA-Z\s]*$/;
 
-var regexID = 
+
+
+var regexName = /^[a-zA-Z\s]*$/;
 
 //$('#first-name').keyup(function(e) {
 //     if(RegExpression.test($('#first-name').val())) {

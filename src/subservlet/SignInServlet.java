@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.User;
 import model.UserType;
+import service.CookieService;
 import service.UserService;
 import servlet.MasterServlet;
 import utils.Utils;
@@ -61,7 +62,7 @@ public class SignInServlet {
 
 			// Create cookie
 			Cookie idNumURLcookie = new Cookie(User.COL_IDNUMBER, idnumber_hashed);
-			idNumURLcookie.setHttpOnly(true);
+//			idNumURLcookie.setHttpOnly(true);
 
 			// Add cookie to list of cookies
 			response.addCookie(idNumURLcookie);	
