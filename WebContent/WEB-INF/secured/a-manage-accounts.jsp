@@ -143,14 +143,9 @@
 <script src="js/app.js"></script>				
 <!-- //////////////////// -->
 <script src="vitalets-bootstrap-datepicker-c7af15b/js/bootstrap-datepicker.js"></script>
-<script src="js/register.js"></script>
 <script src="js/manage-accounts.js"></script>
 <script src="js/bootbox.min.js"></script>
 <script src="js/PasswordGenerator.js"></script>
-
-
-
-
 
 
 </body>

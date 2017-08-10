@@ -12,6 +12,11 @@ $(document).ready(function(){
 	initSearchToggle();
 });
 
+window.onbeforeunload = function () 
+{
+  document.location.href = "SessionTimeoutOnCloseBrowserServlet";
+};
+
 
 function initUserLink(){
 	/*

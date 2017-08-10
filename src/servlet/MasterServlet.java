@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import subservlet.AccountPageServlet;
 import subservlet.CategoryRMServlet;
+import subservlet.DisplayAuthorServlet;
+import subservlet.DisplayCategoryServlet;
+import subservlet.DisplayPublisherServlet;
 import subservlet.HomePageServlet;
 import subservlet.LoadSecretQuestionServlet;
 import subservlet.MeetingRoomPageServlet;
@@ -20,9 +23,13 @@ import subservlet.RegistrationPageServlet;
 import subservlet.ReserveMRServlet;
 import subservlet.ReserveRMServlet;
 import subservlet.ReviewServlet;
+import subservlet.SessionTimeoutOnCloseBrowserServlet;
 import subservlet.SignInServlet;
 import subservlet.SignInSignUpPageServlet;
+import subservlet.SignOutServlet;
 import subservlet.SignUpServlet;
+import subservlet.SuccessPageServlet;
+import subservlet.StartServlet;
 import subservlet.moderator_subservlet.AddRMServlet;
 import subservlet.moderator_subservlet.AdminAccountsServlet;
 import subservlet.moderator_subservlet.AdminAreaServlet;
@@ -51,9 +58,13 @@ import subservlet.moderator_subservlet.ViewReservedRMServlet;
 							SignInServlet.URL,
 							SignInSignUpPageServlet.URL,
 							SignUpServlet.URL,
+							SignOutServlet.URL,
 							ReserveRMServlet.URL,
 							ReserveMRServlet.URL,
 							RMSearchResultsPageServlet.URL,
+							DisplayAuthorServlet.URL,
+							DisplayPublisherServlet.URL,
+							DisplayCategoryServlet.URL,
 							AdminAreaServlet.URL,
 							AddRMServlet.URL,
 							AdminRMSearchResultsPageServlet.URL,
@@ -73,7 +84,10 @@ import subservlet.moderator_subservlet.ViewReservedRMServlet;
 							OverrideReservationRMServlet.URL,
 							OverrideReservationRoomServlet.URL,
 							ExportServlet.URL,
-							LoadSecretQuestionServlet.URL
+							LoadSecretQuestionServlet.URL,
+							SuccessPageServlet.URL,
+							StartServlet.URL,
+							SessionTimeoutOnCloseBrowserServlet.URL
 							})
 
 public class MasterServlet extends HttpServlet {
@@ -128,6 +142,9 @@ public class MasterServlet extends HttpServlet {
 				case SignUpServlet.URL:
 					SignUpServlet.process(request, response, type);
 					break;
+				case SignOutServlet.URL:
+					SignOutServlet.process(request, response, type);
+					break;
 				case SignInSignUpPageServlet.URL:
 					SignInSignUpPageServlet.process(request, response, type);
 					break;
@@ -139,6 +156,15 @@ public class MasterServlet extends HttpServlet {
 					break;
 				case ReserveMRServlet.URL:
 					ReserveMRServlet.process(request, response, type);
+					break;
+				case DisplayAuthorServlet.URL:
+					DisplayAuthorServlet.process(request, response, type);
+					break;
+				case DisplayPublisherServlet.URL:
+					DisplayPublisherServlet.process(request, response, type);
+					break;
+				case DisplayCategoryServlet.URL:
+					DisplayCategoryServlet.process(request, response, type);
 					break;
 				case AdminAreaServlet.URL:
 					AdminAreaServlet.process(request, response, type);
@@ -196,6 +222,14 @@ public class MasterServlet extends HttpServlet {
 					break;
 				case LoadSecretQuestionServlet.URL:
 					LoadSecretQuestionServlet.process(request, response, type);
+					break;
+				case SuccessPageServlet.URL:
+					SuccessPageServlet.process(request, response, type);
+				case StartServlet.URL:
+					StartServlet.process(request, response, type);
+					break;
+				case SessionTimeoutOnCloseBrowserServlet.URL:
+					SessionTimeoutOnCloseBrowserServlet.process(request, response, type);
 					break;
 			}
 			

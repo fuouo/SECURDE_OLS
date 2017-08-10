@@ -1,11 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="SHS Library Books and Meeting Room Reservations">
     <title>Lib.U</title>
@@ -23,12 +21,11 @@
 </head>
 
 <body>
-
 <div class="container-fluid">
   <div class="row">
-    <!-- NAV BAR -->
-    <jsp:include page="../reusable/navbar.jsp"/>    
-    <!-- END OF NAV BAR -->
+  	<!--  MENU -->
+    <jsp:include page="../reusable/navbar.jsp"/>
+    <!--  END MENU -->
     <div class="col-sm-9 col-lg-10 content">
       <!-- your page content -->
       <div class="header">
@@ -36,23 +33,29 @@
        <h2>Reserve Books and Meeting Rooms any time, anywhere!</h2>
       </div>
 
-       <div align="center">
 
-         <div class="row">
-           <div class="alert alert-success col-md-6 col-md-offset-3"  role="alert">
-             <h3 id="message">${message}</h3>
-           </div>
-         </div>  
-
-         <div class="row">
-           <br><br>
-           <form action="HomePageServlet" method="post">
-           		<button type="submit" class="btn btn-default">Return to Home page</button>
-           </form>
-   	     </div>
-   	   </div>
-
-
+      <div class="rm-results">
+      <b id="results-found" style="margin: -1px;" >${numOfauthors} results found</b>
+      <c:forEach items="${author}" var = "i" >
+      <!-- START -->
+      <div class="row rm-gen-details">
+      	<div class="col-md-10"><div class="author-name">${i}</div></div>
+      	<div class="col-md-2">      	
+      	<button class="reserve-inline search-inline btn btn-default">Search Books</button>
+      	</div>
+      </div>
+      <br>
+      </c:forEach>
+	  <!-- END -->
+      </div>
+      
+      
+      <form id="GoToCategory" method="post" action="DisplayCategoryServlet">
+      	<input type="hidden" id="RMType" name="RMType" value="ALL"/>
+      	<input type="hidden" id="reading_material" name="reading_material" value=""/>
+      	<input type="hidden" id ="RMFilter" name="RMFilter" value="AUTHOR"/>
+      </form>
+     
 	<!-- don't go beyond this point -->
     </div> <!-- end of content -->
   </div> <!-- end of row -->
@@ -65,8 +68,7 @@
 <script src="js/menu-links.js"></script>
 <script src="js/app.js"></script>			
 <!-- //////////////////// -->
-</body>
-
+<script src="js/display-categories.js"></script>
 
 </body>
 </html>

@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.Date;
 
+import utils.Utils;
+
 public class ReadingMaterial {
 	
 	public static final String TABLE_RM = "reading_material";
@@ -42,6 +44,8 @@ public class ReadingMaterial {
 	private Date dateBorrowed;
 	private Date dateReturned;
 	private Date dateAvailable;
+	
+	private String strDateAvailable;
 	
 	private int reservedRMID;
 	
@@ -153,6 +157,7 @@ public class ReadingMaterial {
 
 	public void setDateReturned(Date dateReturned) {
 		this.dateReturned = dateReturned;
+		this.strDateAvailable = Utils.dateToReadableString(dateAvailable);
 	}
 
 	public Date getDateReserved() {
@@ -169,6 +174,15 @@ public class ReadingMaterial {
 
 	public void setDateAvailable(Date dateAvailable) {
 		this.dateAvailable = dateAvailable;
+		this.strDateAvailable = Utils.dateToReadableString(dateAvailable);
+	}
+
+	public String getStrDateAvailable() {
+		return strDateAvailable;
+	}
+
+	public void setStrDateAvailable(String strDateAvailable) {
+		this.strDateAvailable = strDateAvailable;
 	}
 
 	public int getReservedRMID() {
@@ -190,5 +204,4 @@ public class ReadingMaterial {
 	public void addReview(Review review) {
 		this.reviews.add(review);
 	}
-	
 }

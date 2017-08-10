@@ -7,9 +7,10 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.User;
+import model.User; 	
 import model.UserStatus;
 import model.UserType;
+import service.CookieService;
 import service.UserService;
 import servlet.MasterServlet;
 
@@ -36,27 +37,37 @@ public class AdminAreaServlet{
 		// TODO Auto-generated method stub
     	System.out.println("ADMIN AREA POST");
     	
-    	UserType userType = UserType.ADMIN;
-    	User user = new User();
-    	user.setStatus(UserStatus.PENDING);
-    	user.setUserType(userType);
+    	//TODO: DEBUG PLS. please erase in final
+    	//UserType userType = UserType.ADMIN;
+    	//User user = new User();
+    	//user.setStatus(UserStatus.ACTIVATED);
+    	//user.setUserType(userType);
+    	
+    	User user = CookieService.isUser(request);
+    	
     	
     	if(user.getStatus() == UserStatus.PENDING){
-    		request.getRequestDispatcher("/WEB-INF/secured/a-change-password.jsp").forward(request, response);
+    		request.getRequestDispatcher("/WEB-INF/secured/change-pwd.jsp").forward(request, response);
     	}
     	else {
     		String url = request.getParameter("destination");
-    		if(url == null){
+    		if(url == null)
+    			url = (String) request.getSession().getAttribute("destination");
+    		
+    		
+    		System.out.println("URL: " + url);
+    		
+    		if(url.equals("default")){
     			
     			if(user.getUserType() == UserType.LIBMNGR || user.getUserType() == UserType.LIBSTAFF){
-    				url = "a-manage-books.jsp";
+    				url = "/WEB-INF/secured/a-manage-books.jsp";
     			}
     			else if(user.getUserType() == UserType.ADMIN)
-    				url = "AdminDisplayAccountsServlet";
+    				url = "AdminAccountsServlet";
     			
     		}
     	
-    		request.getRequestDispatcher("/WEB-INF/secured/" + url).forward(request, response);
+    		request.getRequestDispatcher(url).forward(request, response);
     	}
     	
 	}

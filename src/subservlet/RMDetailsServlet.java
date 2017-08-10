@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.RMStatus;
 import model.RMType;
 import model.ReadingMaterial;
 import model.Review;
@@ -18,6 +19,7 @@ import service.CookieService;
 import service.ReadingMaterialService;
 import service.ReviewService;
 import servlet.MasterServlet;
+import utils.Utils;
 
 /**
  * Servlet implementation class AccountPageServlet
@@ -84,6 +86,15 @@ public class RMDetailsServlet{
 		//Check if logg
 		boolean canEdit = false;
 		if(user != null){
+			
+			if(rm.getStatus() == RMStatus.AVAILABLE) {
+				if(user.getUserType() == UserType.STUDENT) {
+					rm.setDateAvailable(Utils.addDays(rm.getDateAvailable(), 7));
+				} else if(user.getUserType() == UserType.FACULTY) {
+					rm.setDateAvailable(Utils.addMonth(rm.getDateAvailable(), 1));
+				}
+			}
+			
 			boolean hasBorrowed = ReviewService.checkIfBorrowed(user.getIdnumber(), rmID);
 			session.setAttribute("hasBorrowed", hasBorrowed);
 			

@@ -21,7 +21,6 @@ $(document).ready(function(){
 	 });
 	 
 	 $(document).on("click", ".override-btn", function(){
-		 alert($(this).hasClass("mr"));
 		 var id = $(this).parent().attr('id');
 		 
 		 if($(this).hasClass("rm"))

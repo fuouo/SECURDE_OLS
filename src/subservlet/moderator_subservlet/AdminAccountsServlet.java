@@ -33,7 +33,7 @@ public class AdminAccountsServlet {
     private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
     	System.out.println("ADMIN ACCOUNTS POST");
-    	request.getRequestDispatcher("/WEB-INF/secured/admin-accounts.jsp").forward(request, response);
+    	request.getRequestDispatcher("/WEB-INF/secured/a-manage-accounts.jsp").forward(request, response);
     	
     	
    	}

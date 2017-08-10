@@ -8,9 +8,14 @@
 </head>
 <body>
 
-<jsp:include page="user-navbar.jsp"/>
-
-
+	<c:choose>
+		<c:when test = "${user.status == 'ADMIN' || user.status == 'LIBSTAFF' || user.status == 'LIBMNGR' }">
+			<jsp:include page="admin-navbar.jsp"/>
+		</c:when>
+		<c:otherwise>
+			<jsp:include page="user-navbar.jsp"/>
+		</c:otherwise>
+	</c:choose>
 
 </body>
 </html>

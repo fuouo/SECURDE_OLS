@@ -12,6 +12,7 @@ import model.RoomStatus;
 import model.User;
 import model.UserType;
 import utils.Utils;
+import utils.XssSanitizerUtil;
 
 public class RoomService {
 	
@@ -94,7 +95,7 @@ public class RoomService {
 			while(r.next()) {
 				room = new Room();
 				room.setMrID(r.getInt(Room.COL_MRID));
-				room.setMr_name(r.getString(Room.COL_MRNAME));
+				room.setMr_name(XssSanitizerUtil.stripXSS(r.getString(Room.COL_MRNAME)));
 				
 				System.out.println("Room: " + room.getMr_name());
 				
@@ -104,7 +105,8 @@ public class RoomService {
 			e.printStackTrace();
 		} finally {
 			try {
-				r.close();
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -139,7 +141,8 @@ public class RoomService {
 			e.printStackTrace();
 		} finally {
 			try {
-				r.close();
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -181,7 +184,8 @@ public class RoomService {
 			e.printStackTrace();
 		} finally {
 			try {
-				r.close();
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -191,6 +195,44 @@ public class RoomService {
 		return result;
 	}
 	
+	// check if this room is reserved for this time and date
+	public static boolean checkIfRoomIsReserved(ReservedRoom room) {
+		boolean isReserved = false;
+		
+		String query = "\nSELECT " + ReservedRoom.COL_RESERVEDMRID
+				+ " FROM " + ReservedRoom.TABLE_NAME + "\n"
+				+ " WHERE " + ReservedRoom.COL_MRID + " = ? "
+				+ " AND " + ReservedRoom.COL_DATERESERVED + " = ? "
+				+ " AND " + ReservedRoom.COL_TIMESTART + " = ? "
+				+ " AND " + ReservedRoom.COL_TIMEEND + " = ?;";
+		
+		ArrayList<Object> input = new ArrayList<>();
+		input.add(room.getMrID());
+		input.add(Utils.convertDateJavaToStringDB(room.getReservedDate()));
+		input.add(room.getTimeStart());
+		input.add(room.getTimeEnd());
+		
+		Query q = Query.getInstance();
+		ResultSet r = null;
+		
+		try {
+			r = q.runQuery(query, input);
+			isReserved = r.next();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(r != null)
+					r.close();
+				q.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return isReserved;
+	}
+		
 	// get reserved rooms at this time and day (USER)
 	public static ArrayList<ReservedRoom> getReservedRoomsAtThisDateUSER(Date date) {
 		ArrayList<ReservedRoom> rmList = new ArrayList<>();
@@ -227,7 +269,8 @@ public class RoomService {
 			e.printStackTrace();
 		} finally {
 			try {
-				r.close();
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -273,14 +316,14 @@ public class RoomService {
 				rm = new ReservedRoom();
 				rm.setReservedMRID(r.getInt(ReservedRoom.COL_RESERVEDMRID));
 				rm.setMrID(r.getInt(ReservedRoom.COL_MRID));
-				rm.setMr_name(r.getString(Room.COL_MRNAME));
+				rm.setMr_name(XssSanitizerUtil.stripXSS(r.getString(Room.COL_MRNAME)));
 				rm.setTimeStart(r.getInt(ReservedRoom.COL_TIMESTART));
 				rm.setTimeEnd(r.getInt(ReservedRoom.COL_TIMEEND));
 				
 				user = new User();
-				user.setIdnumber(r.getString(User.COL_IDNUMBER));
-				user.setFirstName(r.getString(User.COL_FIRSTNAME));
-				user.setLastName(r.getString(User.COL_LASTNAME));
+				user.setIdnumber(XssSanitizerUtil.stripXSS(r.getString(User.COL_IDNUMBER)));
+				user.setFirstName(XssSanitizerUtil.stripXSS(r.getString(User.COL_FIRSTNAME)));
+				user.setLastName(XssSanitizerUtil.stripXSS(r.getString(User.COL_LASTNAME)));
 				
 				rm.setUser(user);
 				
@@ -291,7 +334,8 @@ public class RoomService {
 			e.printStackTrace();
 		} finally {
 			try {
-				r.close();
+				if(r != null)
+					r.close();
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -360,11 +404,8 @@ public class RoomService {
 			e.printStackTrace();
 		} finally {
 			try {
-				
-				if(r != null) {
+				if(r != null)
 					r.close();
-				}
-				
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();

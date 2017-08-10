@@ -41,11 +41,6 @@ public class ReserveMRServlet{
     	
     	User user = CookieService.isUser(request);
     	
-		//TODO: Please erase this. this is for debugging only ... Thanks :) -D
-		user = new User();
-		user.setIdnumber("11400366");
-		////// 
-    	
 		//If user is logged in		
 		if(user!=null)
 		{

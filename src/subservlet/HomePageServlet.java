@@ -1,18 +1,15 @@
 package subservlet;
 
 import java.io.IOException;
-import java.util.Properties;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.org.apache.xerces.internal.util.URI;
-
 import model.User;
+import model.UserStatus;
+import model.UserType;
 import service.CookieService;
 import service.UserService;
 import servlet.MasterServlet;
@@ -28,6 +25,47 @@ public class HomePageServlet{
 		// TODO Auto-generated method stub	
     	System.out.println("HOMEPAGE GET");
     	
+    	User user = CookieService.isUser(request);
+    	//TODO: DEBUG PLS. please erase in final
+    	//user = new User();
+    	//user.setStatus(UserStatus.ACTIVATED);
+    	//user.setUserType(UserType.ADMIN);
+    	//user.setFirstName("Dyan");
+    	//user.setLastName("Nieva");
+
+		//If user is logged in		
+		if(user!=null)
+		{
+			String userName;
+			System.out.println("User is not Null!!");
+			userName = (String) user.getFirstName() + " " + user.getLastName();
+			System.out.println(userName);
+			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
+					userName);
+			
+			/* REDIRECT TO PROPER PAGES IF ADMIN */
+			if(user.getUserType() == UserType.ADMIN || 
+					user.getUserType() == UserType.LIBMNGR || 
+						user.getUserType() == UserType.LIBSTAFF){
+				request.getSession().setAttribute("destination", "default");
+				request.getRequestDispatcher("AdminAreaServlet").forward(request, response);
+			}
+			//////
+			
+		}
+		else {
+			System.out.println("User is null");
+			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
+					"Sign In");
+		}
+			
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
+	}
+    
+	private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub	
+    	System.out.println("HOMEPAGE POST");
+    
     	User user = CookieService.isUser(request);
     	
 		//If user is logged in		
@@ -45,47 +83,6 @@ public class HomePageServlet{
 			}
 			
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
-	}
-    
-	private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("HOMEPAGE POST");
-		//Check if a user is logged in
-		String refererURI = (String) request.getAttribute("referrer");
-		System.out.println("FROM : " + refererURI);
-		User user = CookieService.isUser(request);
-    	
-		//If user is logged in	
-    	//Check if a user is logged in
-		Cookie[] cookies = request.getCookies();
-
-		System.out.println("[Cookies]: " + cookies.length);
-		//Search specific cookie
-		for(int i = 0; i < cookies.length; i ++) {
-			System.out.println(cookies[i].getName());
-			if(cookies[i].getName().equals(User.COL_IDNUMBER)) {
-				user = UserService.viewProfileUser(cookies[i].getValue());
-			}
-		}
-		
-		System.out.println("User: " + user);
-		
-		
-		String userName = null;
-		//If user is logged in
-		if(user!=null)
-		{
-			userName = (String) user.getFirstName() + " " + user.getLastName();
-			System.out.println(userName);
-			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
-					userName);
-		}else {
-			System.out.println("User is null");
-			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
-					"Sign In");
-		}
-		
-		request.getRequestDispatcher("/WEB-INF/secured/sign_in_sign_up.jsp").forward(request, response);
 	}
 	
 	public static void process(HttpServletRequest request, HttpServletResponse response, int type) throws ServletException, IOException{
