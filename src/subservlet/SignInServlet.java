@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.User;
 import model.UserStatus;
 import model.UserType;
+import service.CookieService;
 import service.UserService;
 import servlet.MasterServlet;
 import utils.Utils;
@@ -43,66 +44,51 @@ public class SignInServlet {
 		User user = UserService.loginUser(idNumber, password);
 		//If user exists, proceed to home page
 		if(user!=null){
-			System.out.println("USER NOT NULL ");			
+			System.out.println("USER NOT NULL ");	
 			
-			System.out.println(user.getStatus());
-			// if activated
-			if(user.getStatus() == UserStatus.ACTIVATED) {
+			/*
+			// 1. session handling
+			
+			// invalidate current session
+			request.getSession(false).invalidate();
 
-				// 1. session handling
-				
-				// invalidate current session
-				request.getSession(false).invalidate();
+			// create a new one
+			request.getSession(true);
+			*/
+			
+			// 2. cookie handling
 
-				// create a new one
-				request.getSession(true);
-				
-				// 2. cookie handling
+			// encrypt idnumber
+			String stringToHash = user.getIdnumber();
+			String idnumber_hashed = Utils.get_SHA_256_SecureString(stringToHash, "");
 
-				// encrypt idnumber
-				String stringToHash = user.getIdnumber();
-				String idnumber_hashed = Utils.get_SHA_256_SecureString(stringToHash, "");
+			System.out.println("Hashed: " + idnumber_hashed);
 
-				System.out.println("Hashed: " + idnumber_hashed);
+			// Create cookie
+			Cookie idNumURLcookie = new Cookie(User.COL_IDNUMBER, idnumber_hashed);
+			//idNumURLcookie.setHttpOnly(true);
 
-				// Create cookie
-				Cookie idNumURLcookie = new Cookie(User.COL_IDNUMBER, idnumber_hashed);
-				idNumURLcookie.setHttpOnly(true);
-				
-				
-				//idNumURLcookie.setMaxAge(60);
-				
-				// Add cookie to list of cookies
-				response.addCookie(idNumURLcookie);	
-				System.out.println(request.getSession().getMaxInactiveInterval());
-				
-				
-				
-				//Pass first name and last name of user
-				request.setAttribute(User.COL_FIRSTNAME, user.getFirstName());
-				request.setAttribute(User.COL_LASTNAME, user.getLastName());
+			// Add cookie to list of cookies
+			response.addCookie(idNumURLcookie);	
 
-				System.out.println(UserService.getUserType(user.getIdnumber()));
+			//Pass first name and last name of user
+			request.setAttribute(User.COL_FIRSTNAME, user.getFirstName());
+			request.setAttribute(User.COL_LASTNAME, user.getLastName());
 
-				if(UserService.getUserType(user.getIdnumber()) == UserType.STUDENT || 
-						UserService.getUserType(user.getIdnumber()) == UserType.FACULTY) {
+			System.out.println(UserService.getUserType(user.getIdnumber()));
 
-					request.setAttribute("referrer", refererURI);
-					/*if (refererURI.contains("RMSearchResultsPageServlet"))
-						request.getRequestDispatcher("/RMSearchResultsPageServlet").forward(request, response);
-					else*/
-					request.setAttribute("ErrMessage", "");
-					System.out.println("Goign to homepage ... ");
-					request.getRequestDispatcher("/HomePageServlet").forward(request, response);
-					
+			if(UserService.getUserType(user.getIdnumber()) == UserType.STUDENT || 
+					UserService.getUserType(user.getIdnumber()) == UserType.FACULTY) {
 
-				} else {
-					System.out.println("Goign to admin area ... ");
-					request.getRequestDispatcher("/AdminAreaServlet").forward(request, response);
-				}
-			} else if(user.getStatus() == UserStatus.LOCKOUT) {
-				request.getRequestDispatcher("/WEB-INF/error/error-lock-out.jsp").forward(request, response);
-				
+				request.setAttribute("referrer", refererURI);
+				/*if (refererURI.contains("RMSearchResultsPageServlet"))
+					request.getRequestDispatcher("/RMSearchResultsPageServlet").forward(request, response);
+				else*/
+				request.setAttribute("ErrMessage", "");
+				request.getRequestDispatcher("/HomePageServlet").forward(request, response);
+
+			} else {
+				request.getRequestDispatcher("/AdminAreaServlet").forward(request, response);
 			}
 		}
 		else{
