@@ -33,25 +33,22 @@
       <!-- your page content -->
       <div class="header">
        <h1>SHS Online Library System</h1>
-       <h2>Reserve Books and Meeting Rooms anytime, anywhere!</h2>
+       <h2>Reserve Books and Meeting Rooms any time, anywhere!</h2>
       </div>
-
-      <div id="overlay-screen" style="display: none;"></div>
-      <!-- SEARCH BAR -->
-      <jsp:include page="../reusable/search-bar-toggable.jsp"/>    
-      <!-- END OF SEARCH BAR -->  
 
        <div align="center">
 
          <div class="row">
            <div class="alert alert-success col-md-6 col-md-offset-3"  role="alert">
-             <h3>Insert Success Message here</h3>
+             <h3 id="message">${message}</h3>
            </div>
          </div>  
 
          <div class="row">
            <br><br>
-           <a href="index.html" class="btn btn-default">Return to Homepage</a>
+           <form action="HomePageServlet" method="post">
+           		<button type="submit" class="btn btn-default">Return to Home page</button>
+           </form>
    	     </div>
    	   </div>
 
@@ -60,10 +57,6 @@
     </div> <!-- end of content -->
   </div> <!-- end of row -->
 </div> <!-- end of container-fluid -->
-<form id="meetingRoomForm" action="MeetingRoomPageServlet" method="post"></form>
-<form id="signInForm" action="SignInSignUpPageServlet" method="post"></form>
-<form id="homeForm" action="HomePageServlet" method="post"></form>
-<form id="yourReservationsForm" action="CalendarOrgRepServlet" method="post"></form>
 
 <!--  INSERT SCRIPT TAGS HERE -->
 <!-- must be in every page -->
@@ -72,14 +65,6 @@
 <script src="js/menu-links.js"></script>
 <script src="js/app.js"></script>			
 <!-- //////////////////// -->
-<script>
-$("#verify-secret-answer").click(function(){
-	  $('.alert-danger').show("fast", function(){});
-	  setTimeout(function(){
-	      $('.alert-danger').hide("fast", function(){});  
-	    }, 1000);
-});
-</script>
 </body>
 
 
