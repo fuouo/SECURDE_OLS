@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<jsp:include page="user-navbar.jsp"/>
+<jsp:include page="admin-navbar.jsp"/>
 
 
 

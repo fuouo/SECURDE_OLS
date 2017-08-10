@@ -40,7 +40,6 @@
         </p><br><br><br>
         <span class="divider"></span>
         
-        
         <div class="self-menu">
         	<div id="signInSignOut" style="margin: 10px 0;" class="re-navbar-link">
         		<i class="flaticon-user-2"></i><span id="account-name">Sign In</span>
@@ -53,11 +52,9 @@
     </div>
   </nav>
 </div>
-
 <form id="meetingRoomForm" action="MeetingRoomPageServlet" method="post"></form>
 <form id="signInForm" action="SignInSignUpPageServlet" method="post"></form>
 <form id="homeForm" action="HomePageServlet" method="post"></form>
-<form id="yourReservationsForm" action="CalendarOrgRepServlet" method="post"></form>
 
 </body>
 <script src="/WebContent/js/menu-links.js"></script>

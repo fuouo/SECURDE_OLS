@@ -62,6 +62,6 @@
 </form>
 
 </body>
-<script src="WebContent/js/jquery-3.0.0.min.js"></script>
-<script src="WebContent/js/admin-menu-links.js"></script>
+<script src="js/jquery-3.0.0.min.js"></script>
+<script src="js/admin-menu-links.js"></script>
 </html>
