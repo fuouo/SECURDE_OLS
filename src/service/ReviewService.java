@@ -9,6 +9,7 @@ import db.Query;
 import model.ReadingMaterial;
 import model.Review;
 import utils.Utils;
+import utils.XssSanitizerUtil;
 
 public class ReviewService {
 	
@@ -64,7 +65,7 @@ public class ReviewService {
 		input.add(review.getUser().getIdnumber());
 		input.add(review.getRMID());
 		input.add(Utils.convertDateJavaToStringDB(Calendar.getInstance().getTime()));
-		input.add(review.getReview());
+		input.add(XssSanitizerUtil.stripXSS(review.getReview()));
 
 		Query q = Query.getInstance();
 

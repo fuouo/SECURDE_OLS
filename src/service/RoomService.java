@@ -12,6 +12,7 @@ import model.RoomStatus;
 import model.User;
 import model.UserType;
 import utils.Utils;
+import utils.XssSanitizerUtil;
 
 public class RoomService {
 	
@@ -94,7 +95,7 @@ public class RoomService {
 			while(r.next()) {
 				room = new Room();
 				room.setMrID(r.getInt(Room.COL_MRID));
-				room.setMr_name(r.getString(Room.COL_MRNAME));
+				room.setMr_name(XssSanitizerUtil.stripXSS(r.getString(Room.COL_MRNAME)));
 				
 				System.out.println("Room: " + room.getMr_name());
 				
@@ -315,14 +316,14 @@ public class RoomService {
 				rm = new ReservedRoom();
 				rm.setReservedMRID(r.getInt(ReservedRoom.COL_RESERVEDMRID));
 				rm.setMrID(r.getInt(ReservedRoom.COL_MRID));
-				rm.setMr_name(r.getString(Room.COL_MRNAME));
+				rm.setMr_name(XssSanitizerUtil.stripXSS(r.getString(Room.COL_MRNAME)));
 				rm.setTimeStart(r.getInt(ReservedRoom.COL_TIMESTART));
 				rm.setTimeEnd(r.getInt(ReservedRoom.COL_TIMEEND));
 				
 				user = new User();
-				user.setIdnumber(r.getString(User.COL_IDNUMBER));
-				user.setFirstName(r.getString(User.COL_FIRSTNAME));
-				user.setLastName(r.getString(User.COL_LASTNAME));
+				user.setIdnumber(XssSanitizerUtil.stripXSS(r.getString(User.COL_IDNUMBER)));
+				user.setFirstName(XssSanitizerUtil.stripXSS(r.getString(User.COL_FIRSTNAME)));
+				user.setLastName(XssSanitizerUtil.stripXSS(r.getString(User.COL_LASTNAME)));
 				
 				rm.setUser(user);
 				
