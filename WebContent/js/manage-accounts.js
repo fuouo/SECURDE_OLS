@@ -13,6 +13,23 @@ $(document).ready(function(){
 		getLockedAccounts();
 	});
 
+	$("#secret-question").click(function(e){
+		$.ajax({
+				url: "RegistrationPageServlet",
+			method: "get",
+			data: {
+			},
+			dataType: "json",
+			success: function(json) {
+				var secretQuestions = json[0];
+				
+				for(var i = 0; i < secretQuestions.length; i ++) {
+					$("#secret-question").append("<option value= "+ i + ">" + secretQuestions[i] +  "</option>");
+					}
+				}
+			});
+	});
+	
 });
 
 

@@ -2,7 +2,7 @@ $(document).ready(function(){
 	
 	$('#books-tab').click(function(e) {
 	   e.preventDefault();
-	   $("#GoToPage #destination").val("a-manage-books.jsp");
+	   $("#GoToPage #destination").val("/WEB-INF/secured/a-manage-books.jsp");
 	   $("#GoToPage").submit();
     });
 	
@@ -20,7 +20,7 @@ $(document).ready(function(){
 	
 	$('#accounts-tab').click(function(e) {
 	   e.preventDefault();
-	   $("#GoToPage #destination").val("a-manage-accounts.jsp");
+	   $("#GoToPage #destination").val("AdminAccountsServlet");
 	   $("#GoToPage").submit();
     });
 	
