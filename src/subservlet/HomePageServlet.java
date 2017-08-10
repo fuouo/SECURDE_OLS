@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.User;
+import model.UserStatus;
 import model.UserType;
 import service.CookieService;
 import service.UserService;
@@ -25,21 +26,39 @@ public class HomePageServlet{
     	System.out.println("HOMEPAGE GET");
     	
     	User user = CookieService.isUser(request);
-    	
+
+    	//TODO: DEBUG PLS. please erase in final
+    	//user = new User();
+    	//user.setStatus(UserStatus.ACTIVATED);
+    	//user.setUserType(UserType.ADMIN);
+    	//user.setFirstName("Dyan");
+    	//user.setLastName("Nieva");
 
 		//If user is logged in		
 		if(user!=null)
 		{
-			System.out.println("User is NOT null");
-			String userName = (String) user.getFirstName() + " " + user.getLastName();
+			String userName;
+			System.out.println("User is not Null!!");
+			userName = (String) user.getFirstName() + " " + user.getLastName();
+			System.out.println(userName);
 			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
 					userName);
+			
+			/* REDIRECT TO PROPER PAGES IF ADMIN */
+			if(user.getUserType() == UserType.ADMIN || 
+					user.getUserType() == UserType.LIBMNGR || 
+						user.getUserType() == UserType.LIBSTAFF){
+				request.getSession().setAttribute("destination", "default");
+				request.getRequestDispatcher("AdminAreaServlet").forward(request, response);
+			}
+			//////
+			
 		}
 		else {
 			System.out.println("User is null");
 			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
 					"Sign In");
-			}
+		}
 			
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}
@@ -65,22 +84,33 @@ public class HomePageServlet{
 			}
 		}
 		
-		System.out.println("User: " + user);
+		//TODO: DEBUG PLS. please erase in final
+    	//user = new User();
+    	//user.setStatus(UserStatus.ACTIVATED);
+    	//user.setUserType(UserType.ADMIN);
+    	//user.setFirstName("Dyan");
+    	//user.setLastName("Nieva");
 		
+		System.out.println("User: " + user);
 		
 		String userName = null;
 		//If user is logged in
-		if(user==null)
+		if(user!=null)
 		{
-			System.out.println("User is not Nul!!");
+			System.out.println("User is not Null!!");
 			userName = (String) user.getFirstName() + " " + user.getLastName();
 			System.out.println(userName);
 			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
 					userName);
-			if(user.getUserType() == UserType.STUDENT || user.getUserType() == UserType.FACULTY)
-				request.getRequestDispatcher("/index.jsp").forward(request, response);
-			if(user.getUserType() == UserType.ADMIN || user.getUserType() == UserType.LIBMNGR || user.getUserType() == UserType.LIBSTAFF)
+			
+			/* REDIRECT TO PROPER PAGES IF ADMIN */
+			if(user.getUserType() == UserType.ADMIN || 
+					user.getUserType() == UserType.LIBMNGR || 
+						user.getUserType() == UserType.LIBSTAFF){
+				request.getSession().setAttribute("destination", "default");
 				request.getRequestDispatcher("AdminAreaServlet").forward(request, response);
+			}
+			//////
 			
 			
 		}else {

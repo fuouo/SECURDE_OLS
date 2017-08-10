@@ -38,12 +38,12 @@ public class AdminAreaServlet{
     	System.out.println("ADMIN AREA POST");
     	
     	//TODO: DEBUG PLS. please erase in final
-    	UserType userType = UserType.ADMIN;
-    	User user = new User();
-    	user.setStatus(UserStatus.ACTIVATED);
-    	user.setUserType(userType);
+    	//UserType userType = UserType.ADMIN;
+    	//User user = new User();
+    	//user.setStatus(UserStatus.ACTIVATED);
+    	//user.setUserType(userType);
     	
-    	//User user = CookieService.isUser(request);
+    	User user = CookieService.isUser(request);
     	
     	
     	if(user.getStatus() == UserStatus.PENDING){
@@ -51,7 +51,13 @@ public class AdminAreaServlet{
     	}
     	else {
     		String url = request.getParameter("destination");
-    		if(url != null){
+    		if(url == null)
+    			url = (String) request.getSession().getAttribute("destination");
+    		
+    		
+    		System.out.println("URL: " + url);
+    		
+    		if(url.equals("default")){
     			
     			if(user.getUserType() == UserType.LIBMNGR || user.getUserType() == UserType.LIBSTAFF){
     				url = "/WEB-INF/secured/a-manage-books.jsp";

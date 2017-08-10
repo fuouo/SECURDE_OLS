@@ -26,6 +26,7 @@ import subservlet.ReviewServlet;
 import subservlet.SignInServlet;
 import subservlet.SignInSignUpPageServlet;
 import subservlet.SignUpServlet;
+import subservlet.SuccessPageServlet;
 import subservlet.moderator_subservlet.AddRMServlet;
 import subservlet.moderator_subservlet.AdminAccountsServlet;
 import subservlet.moderator_subservlet.AdminAreaServlet;
@@ -79,7 +80,8 @@ import subservlet.moderator_subservlet.ViewReservedRMServlet;
 							OverrideReservationRMServlet.URL,
 							OverrideReservationRoomServlet.URL,
 							ExportServlet.URL,
-							LoadSecretQuestionServlet.URL
+							LoadSecretQuestionServlet.URL,
+							SuccessPageServlet.URL,
 							})
 
 public class MasterServlet extends HttpServlet {
@@ -210,6 +212,9 @@ public class MasterServlet extends HttpServlet {
 					break;
 				case LoadSecretQuestionServlet.URL:
 					LoadSecretQuestionServlet.process(request, response, type);
+					break;
+				case SuccessPageServlet.URL:
+					SuccessPageServlet.process(request, response, type);
 					break;
 			}
 			

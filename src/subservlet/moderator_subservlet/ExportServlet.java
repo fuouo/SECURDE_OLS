@@ -38,7 +38,9 @@ public class ExportServlet{
     	System.out.println("ExportServlet POST");
     	
     	String filename = request.getParameter("filename");
-    	filename = "C:\\Users\\Ronnie Nieva\\Documents\\Dydy\\output.xlsx";
+    	String USER_DIR = System.getProperty("user.dir");
+    	System.out.println(USER_DIR);
+    	filename = "C:\\Users\\Ronnie Nieva\\Documents\\Dydy\\output.xlsx";	
     	
     	boolean result = DataExport.exportAll(filename);
     	//boolean result = DataExport.exportAll();
@@ -48,6 +50,10 @@ public class ExportServlet{
     	} else {
     		// redirect to fail page
     	}
+    	
+    	
+    	request.getSession().setAttribute("message", "Successfully Exported Reservations");
+    	request.getRequestDispatcher("SuccessPageServlet").forward(request, response);
     	
 	}
     

@@ -34,7 +34,6 @@ public class AdminReservationsServlet {
 		// TODO Auto-generated method stub
     	System.out.println("ADMIN RESERVATIONS POST");
     	
-    	//TODO: Error in 
     	ArrayList<ReadingMaterial> reservedRM = ReadingMaterialService.getAllCurrentReservedRM();
     	ArrayList<Room> reservedMR = RoomService.getALLRooms();
     	

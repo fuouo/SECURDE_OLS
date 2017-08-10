@@ -65,8 +65,7 @@ function getLockedAccounts(){
 }
 
 function unlockClickEvent(button){
-	
-	alert("Unlocking " + $(button).attr('id'));
+	//alert("Unlocking " + $(button).attr('id'));
 	unlockAccount($(button).attr('id'));
 }
 

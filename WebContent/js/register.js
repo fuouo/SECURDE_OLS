@@ -9,7 +9,6 @@
 $(document).ready(function(){
 	initBdayDatePicker();
     initEditDetailsButton();
-    console.log("lol");
     getSecretQuestions();
 });
 
