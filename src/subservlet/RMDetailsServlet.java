@@ -83,7 +83,7 @@ public class RMDetailsServlet{
 		Collections.reverse(rev);
 		session.setAttribute(Review.TABLE_NAME, rev);
 		
-		//Check if logg
+		//Check if logged in
 		boolean canEdit = false;
 		if(user != null){
 			

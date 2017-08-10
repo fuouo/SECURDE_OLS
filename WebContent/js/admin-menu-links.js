@@ -30,18 +30,18 @@ $(document).ready(function(){
 	   $("#GoToPage").submit();
 	});
 	
- 	$("#signInSignOut").click(function(e) {
- 	   e.preventDefault();
- 		console.log($("#account-name").text());
- 		$("#signInForm").submit();
- 	});
- 	
- 	$("#signInSignOut").click(function(e) {
- 	   e.preventDefault();
-  		console.log($("#account-name").text());
-  		if($("#account-name").text() == "Sign In"){
-  			console.log("GO TO SIGN IN");
-  			window.location.href = "sign-in-sign-up.jsp";
-  		}
-  	});
+	$('#logout').click(function(e) {
+		   e.preventDefault();
+		console.log("LOGGING OUT");
+		$("#logoutForm").submit();
+	});
+	
+	$("#signInSignOut").click(function(e) {
+	 	   e.preventDefault();
+	  		console.log($("#account-name").text());
+	  		if($("#account-name").text() == "Sign In"){
+	  			console.log("FUCKING SHIT");
+	  			$("#signInForm").submit();
+	  		}
+	  	});
 });

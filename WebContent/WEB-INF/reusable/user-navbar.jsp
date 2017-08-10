@@ -63,5 +63,6 @@
 <form id="yourReservationsForm" action="HomePageServlet" method="post"></form>
 <form id="logoutForm" action="SignOutServlet" method="post"></form>
 </body>
+<script src="js/jquery-3.0.0.min.js"></script>
 <script src="js/menu-links.js"></script>
 </html>

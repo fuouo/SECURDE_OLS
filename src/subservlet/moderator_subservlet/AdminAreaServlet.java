@@ -46,6 +46,7 @@ public class AdminAreaServlet{
     	User user = CookieService.isUser(request);
     	
     	
+    	
     	if(user.getStatus() == UserStatus.PENDING){
     		request.getRequestDispatcher("/WEB-INF/secured/change-pwd.jsp").forward(request, response);
     	}
@@ -54,18 +55,28 @@ public class AdminAreaServlet{
     		if(url == null)
     			url = (String) request.getSession().getAttribute("destination");
     		
+    		String userName;
+			System.out.println("User is not Null!!");
+			userName = (String) user.getFirstName() + " " + user.getLastName();
+			System.out.println(userName);
+			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
+					userName);
+    		
+			request.getSession().setAttribute(User.COL_USERTYPE, user.getUserType());
     		
     		System.out.println("URL: " + url);
-    		
+
     		if(url.equals("default")){
     			
     			if(user.getUserType() == UserType.LIBMNGR || user.getUserType() == UserType.LIBSTAFF){
     				url = "/WEB-INF/secured/a-manage-books.jsp";
     			}
     			else if(user.getUserType() == UserType.ADMIN)
-    				url = "AdminAccountsServlet";
+    				url = "/AdminAccountsServlet";
     			
     		}
+    		
+    		System.out.println("URL: " + url);
     	
     		request.getRequestDispatcher(url).forward(request, response);
     	}

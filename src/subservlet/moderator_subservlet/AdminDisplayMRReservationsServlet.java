@@ -51,7 +51,7 @@ public class AdminDisplayMRReservationsServlet {
     public static void process(HttpServletRequest request, HttpServletResponse response, int type) throws ServletException, IOException{
 		if(type == MasterServlet.TYPE_GET)
 			doGet(request, response);
-		doPost(request, response);
+		else doPost(request, response);
 	}
 	
 }

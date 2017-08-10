@@ -9,13 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import subservlet.AccountPageServlet;
+import subservlet.AnswerSecretQuestionServlet;
 import subservlet.CategoryRMServlet;
 import subservlet.DisplayAuthorServlet;
 import subservlet.DisplayCategoryServlet;
 import subservlet.DisplayPublisherServlet;
+import subservlet.EmailServlet;
 import subservlet.HomePageServlet;
 import subservlet.LoadSecretQuestionServlet;
 import subservlet.MeetingRoomPageServlet;
+import subservlet.NewPasswordServlet;
+import subservlet.PasswordChangeCodeServlet;
+import subservlet.PasswordChangeServlet;
 import subservlet.RMDetailsServlet;
 import subservlet.RMSearchResultsPageServlet;
 import subservlet.RegisterUserServlet;
@@ -28,8 +33,8 @@ import subservlet.SignInServlet;
 import subservlet.SignInSignUpPageServlet;
 import subservlet.SignOutServlet;
 import subservlet.SignUpServlet;
-import subservlet.SuccessPageServlet;
 import subservlet.StartServlet;
+import subservlet.SuccessPageServlet;
 import subservlet.moderator_subservlet.AddRMServlet;
 import subservlet.moderator_subservlet.AdminAccountsServlet;
 import subservlet.moderator_subservlet.AdminAreaServlet;
@@ -87,7 +92,12 @@ import subservlet.moderator_subservlet.ViewReservedRMServlet;
 							LoadSecretQuestionServlet.URL,
 							SuccessPageServlet.URL,
 							StartServlet.URL,
-							SessionTimeoutOnCloseBrowserServlet.URL
+							SessionTimeoutOnCloseBrowserServlet.URL,
+							AnswerSecretQuestionServlet.URL,
+							EmailServlet.URL,
+							PasswordChangeServlet.URL,
+							NewPasswordServlet.URL,
+							PasswordChangeCodeServlet.URL,
 							})
 
 public class MasterServlet extends HttpServlet {
@@ -190,6 +200,9 @@ public class MasterServlet extends HttpServlet {
 				case AdminDisplayMRReservationsServlet.URL:
 					AdminDisplayMRReservationsServlet.process(request, response, type);
 					break;
+				case AnswerSecretQuestionServlet.URL:
+					AnswerSecretQuestionServlet.process(request, response, type);
+					break;
 				case ReviewServlet.URL:
 					ReviewServlet.process(request, response, type);
 					break;
@@ -220,11 +233,23 @@ public class MasterServlet extends HttpServlet {
 				case ExportServlet.URL:
 					ExportServlet.process(request, response, type);
 					break;
+				case EmailServlet.URL:
+					EmailServlet.process(request, response, type);
+					break;
+				case NewPasswordServlet.URL:
+					NewPasswordServlet.process(request, response, type);
+					break;
 				case LoadSecretQuestionServlet.URL:
 					LoadSecretQuestionServlet.process(request, response, type);
 					break;
 				case SuccessPageServlet.URL:
 					SuccessPageServlet.process(request, response, type);
+				case PasswordChangeCodeServlet.URL:
+					PasswordChangeCodeServlet.process(request, response, type);
+					break;
+				case PasswordChangeServlet.URL:
+					PasswordChangeServlet.process(request, response, type);
+					break;
 				case StartServlet.URL:
 					StartServlet.process(request, response, type);
 					break;

@@ -22,21 +22,43 @@
       <div class="collapse navbar-collapse">
       <br>
         <ul class="nav navbar-nav" style="border-top: 1px solid #fff;">
-          <li class="">
-            <a href="" id="books-tab">Manage Books</a>
-          </li>
-          <li class="">
-            <a href="" id="rm-reserve-tab">Manage Book Reservations</a>
-          </li>
-          <li class="">
-            <a href="" id="mr-reserve-tab">Manage Meeting Room Reservations</a>
-          </li>
-          <li class="">
-            <a href="" id="accounts-tab">Manage Accounts</a>
-          </li>
-          <li class="end">
-            <a href="" id="log-tab">Export Log</a>
-          </li>
+          <c:choose>
+          	<c:when test="${user_type=='LIBSTAFF' or user_type=='LIBMNGR'}">
+          		<li class="">
+		            <a href="" id="books-tab">Manage Books</a>
+		          </li>
+          	</c:when>
+          </c:choose>
+          <c:choose>
+          	<c:when test="${user_type=='LIBMNGR'}">
+          		<li class="">
+		            <a href="" id="rm-reserve-tab">Manage Book Reservations</a>
+		          </li>
+          	</c:when>
+          </c:choose>
+          <c:choose>
+          	<c:when test="${user_type=='LIBSTAFF'}">
+          		<li class="">
+		            <a href="" id="mr-reserve-tab">Manage Meeting Room Reservations</a>
+		          </li>
+          	</c:when>
+          </c:choose>
+          <c:choose>
+          	<c:when test="${user_type=='ADMIN'}">
+          		<li class="">
+		            <a href="" id="accounts-tab">Manage Accounts</a>
+		          </li>
+          	</c:when>
+          </c:choose>
+          <c:choose>
+          	<c:when test="${user_type=='LIBMNGR' or user_type=='ADMIN'}">
+          		 <li class="end">
+		            <a href="" id="log-tab">Export Log</a>
+		          </li>
+          	</c:when>
+          </c:choose>
+          
+         
           <li class="divider"></li>
         </ul>
         <p class="navbar-text">
@@ -49,7 +71,8 @@
         	<div id="signInSignOut" style="margin: 10px 0;" class="re-navbar-link">
         		<i class="flaticon-user-2"></i><span id="account-name">${first_namelast_name }</span>
         	</div>
-		    <c:choose>
+        	
+        	<c:choose>
         		<c:when test="${isLoggedIn == 'true'}">
 		      		<div class="re-navbar-link" id = "logout">Log out</div>
 		      	</c:when>

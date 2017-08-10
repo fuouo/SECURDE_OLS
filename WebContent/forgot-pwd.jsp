@@ -19,23 +19,26 @@
     	<!-- SELF -->
     <link rel="stylesheet" type="text/css" href="css/navbar-redesigned.css"/>
     <link rel="stylesheet" type="text/css" href="img/icons_by_freepik/font/flaticon.css"> 
-    <link rel="stylesheet" type="text/css" href="css/content.css">
+    <link rel="stylesheet" type="text/css" href="css/content.css"> 
 </head>
 
 <body>
 <div class="container-fluid">
   <div class="row">
     <!-- NAV BAR -->
-    <jsp:include page="../reusable/navbar.jsp"/>    
+    <jsp:include page="/WEB-INF/reusable/navbar.jsp"/>    
     <!-- END OF NAV BAR -->
     <div class="col-sm-9 col-lg-10 content">
-
       <!-- your page content -->
       <div class="header">
        <h1>SHS Online Library System</h1>
        <h2>Reserve Books and Meeting Rooms anytime, anywhere!</h2>
       </div>
 
+      <div id="overlay-screen" style="display: none;"></div>
+      <!-- SEARCH BAR -->
+      <jsp:include page="/WEB-INF/reusable/search-bar-toggable.jsp"/>    
+      <!-- END OF SEARCH BAR -->  
       
       <div align="center" id="content-forgotten">
       <h2>Forgot your Password?</h2>
@@ -43,7 +46,7 @@
         <div class="col-md-6 col-md-offset-3">
           <form class="form-horizontal" id="username" action="LoadSecretQuestionServlet" method = "POST">
               <div class="form-group">
-                <label for="login-idnum" class="col-sm-2 control-label">Username</label>
+                <label for="login-idnum" class="col-sm-2 control-label">ID Number</label>
                 <div class="col-sm-10">
                   <input type="text" name="id_number" class="form-control form-components-rd erase-margin" id="login-idnum" placeholder="ID Number" value="${id_number}">
                 </div>
@@ -84,6 +87,10 @@
     </div> <!-- end of content -->
   </div> <!-- end of row -->
 </div> <!-- end of container-fluid -->
+<form id="meetingRoomForm" action="MeetingRoomPageServlet" method="post"></form>
+<form id="signInForm" action="SignInSignUpPageServlet" method="post"></form>
+<form id="homeForm" action="HomePageServlet" method="post"></form>
+<form id="yourReservationsForm" action="CalendarOrgRepServlet" method="post"></form>
 
 <!--  INSERT SCRIPT TAGS HERE -->
 <!-- must be in every page -->
@@ -94,6 +101,9 @@
 <!-- //////////////////// -->
 <script>
 $(document).ready(function() {
+	
+	console.log("Question" + $("#question").text());
+	
 	if($("#question").text() != "")
 	{
 		console.log($("#idnumber2").val() +" hehehhe" );

@@ -3,15 +3,12 @@ package subservlet;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.User;
-import model.UserStatus;
 import model.UserType;
 import service.CookieService;
-import service.UserService;
 import servlet.MasterServlet;
 
 public class HomePageServlet{
