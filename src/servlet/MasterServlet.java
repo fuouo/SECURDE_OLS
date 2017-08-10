@@ -79,6 +79,7 @@ import subservlet.moderator_subservlet.ViewReservedRMServlet;
 public class MasterServlet extends HttpServlet {
 	
 	
+	
 	public static int TYPE_GET = 0;
 	public static int TYPE_POST = 1;
 
