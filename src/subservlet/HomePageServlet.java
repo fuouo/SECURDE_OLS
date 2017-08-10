@@ -7,6 +7,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
+
 import model.User;
 import model.UserStatus;
 import model.UserType;

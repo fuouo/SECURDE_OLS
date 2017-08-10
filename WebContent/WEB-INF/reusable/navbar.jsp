@@ -8,8 +8,10 @@
 </head>
 <body>
 
+
 	<c:choose>
-		<c:when test = "${user.status == 'ADMIN' || user.status == 'LIBSTAFF' || user.status == 'LIBMNGR' }">
+		
+		<c:when test = "${user_type == 'ADMIN' or user_type == 'LIBSTAFF' or user_type == 'LIBMNGR' }">
 			<jsp:include page="admin-navbar.jsp"/>
 		</c:when>
 		<c:otherwise>

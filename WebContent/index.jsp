@@ -82,7 +82,6 @@
   </div> <!-- end of row -->
 </div> <!-- end of container-fluid -->
 
-
 <!--  INSERT SCRIPT TAGS HERE -->
 <!-- must be in every page -->
 <script src="js/jquery-3.0.0.min.js"></script>

@@ -1,7 +1,9 @@
 package subservlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -9,8 +11,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import com.google.gson.Gson;
 
 import model.ReadingMaterial;
 import model.Review;
@@ -22,6 +22,7 @@ import service.ReviewService;
 import service.SecretQuestionService;
 import service.UserService;
 import servlet.MasterServlet;
+import utils.Utils;
 
 /**
  * Servlet implementation class LoadSecretQuestionServlet
@@ -46,29 +47,22 @@ public class LoadSecretQuestionServlet{
     	System.out.println("LOAD SECRET QUESTION POST");
     	
 		String idNumber = (String) request.getParameter(User.COL_IDNUMBER);
-		User user = UserService.viewProfileUser(idNumber);
-		if(user != null){
-			String secretQuestion = SecretQuestionService.getSecretQuestionOfUser((Integer.parseInt(idNumber))).getQuestion();
-			System.out.println(secretQuestion);
-			PrintWriter pw = response.getWriter();
-			pw.write(secretQuestion);
-		}
+		String idnumber_hashed = Utils.get_SHA_256_SecureString(idNumber, "");
+		System.out.println("Hashed id number: " + idnumber_hashed);
+				
+		User user = UserService.viewProfileUser(idnumber_hashed);
+		System.out.println(user);
 		
-		/*
-		System.out.println(SecretQuestionService.getSecretQuestionOfUser((Integer.parseInt(idNumber))).getQuestion());
 		if(user != null)
 		{
-			request.setAttribute(User.COL_SQID, 
+			System.out.println("USER IS NOT NULL");
+			request.setAttribute("sqID", 
 					SecretQuestionService.getSecretQuestionOfUser((Integer.parseInt(idNumber))).getQuestion());
 			request.setAttribute(User.COL_IDNUMBER+"_ans", 
-					user.getIDNumber());
+					user.getIdnumber());
 		}
 		
-		request.getRequestDispatcher("forgot-pwd.jsp").forward(request, response);
-		 */
-		
-		
-		//request.getRequestDispatcher("forgot-pwd.jsp").forward(request, response);
+		request.getRequestDispatcher("/forgot-pwd.jsp").forward(request, response);
 	}
     
     public static void process(HttpServletRequest request, HttpServletResponse response, int type) throws ServletException, IOException{

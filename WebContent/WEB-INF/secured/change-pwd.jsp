@@ -26,7 +26,7 @@
 <div class="container-fluid">
   <div class="row">
     <!-- NAV BAR -->
-    <jsp:include page="../reusable/navbar.jsp"/>   
+    <jsp:include page="/WEB-INF/reusable/navbar.jsp"/>    
     <!-- END OF NAV BAR -->
     <div class="col-sm-9 col-lg-10 content">
       <!-- your page content -->
@@ -35,27 +35,31 @@
        <h2>Reserve Books and Meeting Rooms anytime, anywhere!</h2>
       </div>
 
+      <div id="overlay-screen" style="display: none;"></div>
+      <!-- SEARCH BAR -->
+      <jsp:include page="/WEB-INF/reusable/search-bar-toggable.jsp"/>    
+      <!-- END OF SEARCH BAR -->  
+      
       <div align="center" id="content-forgotten">
       <h2>Change Password</h2>
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
-          
-		<%-- 		<c:set var="id_number1">${id_number}</c:set> --%>
-			<form class="form-horizontal" id="secret-question" style="display:none" action="AnswerSecretQuestionServlet" method = "POST">
+			<form class="form-horizontal" id="chnge-password" action="PasswordChangeServlet" method = "POST">
               <div>
-             	 <input type="hidden" name="id_number_ans" id="idnumber2" value="${id_number_ans}">
-                <div class="form-group">
-                  <label for="login-idnum" class="col-sm-2 control-label">New Password</label>
+             	 <input type="hidden" name="id_number" id="idnumber" value="${id_number}">
+                
                   <div class="col-sm-10">
-                    <div id= "question" class="well">${sqID}</div>
+                                     
                     <div class="alert alert-danger" style="display: none;" role="alert">Password does not match!</div>
-                    <input type="password" class="form-control form-components-rd" name="passwordHash" id="password" placeholder="New Password" style="width:70%" required>
-                    <input type="password" class="form-control form-components-rd" name="confirm_passwordHash" id="confirm_password" placeholder="New Password" style="width:70%" required>
+             	 	<label>ID Number: </label></br>
+                    	<label for="password">New Password</label>
+                    	<input type="password" class="form-control form-components-rd" name="passwordHash" id="password" placeholder="New Password" style="width:70%" required>
+                    	<label for="confirm_password" >Confirm New Password</label>
+                    	<input type="password" class="form-control form-components-rd" name="confirm_passwordHash" id="confirm_password" placeholder="Confrim New Password" style="width:70%" required>
                   </div>
-                </div>
                 <div class="form-group" align="left">
                   <div class="col-sm-offset-2 col-sm-10">
-                    <div type="submit" id="verify-secret-answer" class="btn btn-default submit-btn form-components-rd auto-width erase-margin">Submit</div>
+                    <button type="submit" id="verify-new-password" class="btn btn-default submit-btn form-components-rd auto-width erase-margin">Submit</button>
                   </div>
                 </div>
               </div>
@@ -85,31 +89,27 @@
 <!-- //////////////////// -->
 <script>
 $(document).ready(function() {
-	if($("#question").text() != "")
-	{
-		console.log($("#idnumber2").val() +" hehehhe" );
-		$("#idnumber2").text($("#idnumber2").val())
-		console.log($("#idnumber2").text() +" hehehhe1" );
-		$("#username").fadeOut("fast", function(){});
-	    $("#secret-question").fadeIn("fast", function(){});
-	}
+	console.log($("#idnumber").val() +" hehehhe" );
+	$("#idnumber").text($("#idnumber").val())
+	console.log($("#idnumber").text() +" hehehhe1" );
 });
 
-$("#verify-secret-answer").click(function(){
+/* 
+ $("#verify-secret-answer").click(function(){
 	
   $('.alert-danger').show("fast", function(){});
   setTimeout(function(){
       $('.alert-danger').hide("fast", function(){});  
     }, 1000);
 });
-
- $("#verify-username").click(function(){
+ */
+/*  $("#verify-username").click(function(){
 	console.log("Load Secret Question");
 	$("#username").submit();
 	$("#username").fadeOut("fast", function(){});
     $("#secret-question").fadeIn("fast", function(){});
     
-}); 
+});  */
 </script>
 </body>
 </html>
