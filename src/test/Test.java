@@ -1,15 +1,12 @@
 package test;
 
-import utils.Utils;
+import java.sql.Timestamp;
 
 public class Test {
 	
 	public static void main(String[] args) {
-		String idnumber = "11427493";
-		
-		String encrypted = Utils.get_SHA_256_SecureString(idnumber, "");
-		
-		System.out.println(encrypted);
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		System.out.println(timestamp.toString());
 	}
 
 }

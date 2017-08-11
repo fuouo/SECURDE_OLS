@@ -71,10 +71,6 @@ public class ReadingMaterialService {
 		String query = "\nUPDATE " + ReadingMaterial.TABLE_RM + "\n"
 				+ " SET " + ReadingMaterial.COL_LIBSTATUS + " = ?\n"
 				+ " WHERE " + ReadingMaterial.COL_RMID + " = ?;";
-
-		System.out.println(rmID);
-		
-		System.out.println(query);
 		
 		ArrayList<Object> input = new ArrayList<>();
 		input.add(RMStatus.OUTSTOCK + "");

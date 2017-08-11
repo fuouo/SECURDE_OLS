@@ -39,7 +39,7 @@ public class SignInSignUpPageServlet{
     public static void process(HttpServletRequest request, HttpServletResponse response, int type) throws ServletException, IOException{
 		if(type == MasterServlet.TYPE_GET)
 			doGet(request, response);
-		else doPost(request, response);
+		doPost(request, response);
 	}
 
 

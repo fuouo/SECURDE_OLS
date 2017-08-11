@@ -56,12 +56,13 @@
       </div>
     </div>
   </nav>
-</div>
-<form id="meetingRoomForm" action="MeetingRoomPageServlet" method="post"></form>
+  <form id="meetingRoomForm" action="MeetingRoomPageServlet" method="post"></form>
 <form id="signInForm" action="SignInSignUpPageServlet" method="post"></form>
 <form id="homeForm" action="HomePageServlet" method="post"></form>
 <form id="yourReservationsForm" action="HomePageServlet" method="post"></form>
 <form id="logoutForm" action="SignOutServlet" method="post"></form>
+</div>
+
 </body>
 <script src="js/jquery-3.0.0.min.js"></script>
 <script src="js/menu-links.js" type="text/javascript" charset="utf-8"></script>

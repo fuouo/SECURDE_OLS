@@ -4,6 +4,9 @@
 
 <html lang="en">
 <head>
+
+	<meta http-equiv="refresh" content="600;url=./SignOutServlet">
+	
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="SHS Library Books and Meeting Room Reservations">
@@ -49,13 +52,31 @@
              	 <input type="hidden" name="id_number" id="idnumber" value="${id_number}">
                 
                   <div class="col-sm-10">
-                                     
+                  
                     <div class="alert alert-danger" style="display: none;" role="alert">Password does not match!</div>
-             	 	<label>ID Number: </label></br>
+                    <br>
                     	<label for="password">New Password</label>
-                    	<input type="password" class="form-control form-components-rd" name="passwordHash" id="password" placeholder="New Password" style="width:70%" required>
+                    	
+                    	<div class="row" align="left">
+				          <label for="password" class="form-label col-sm-2">Password</label>
+			               <input placeholder="New Password ..." class="form-control form-components-rd" type="password" id="password" name="passwordHash" style="width:70%" required/>
+		          		   <span id="passstrength"></span>
+		          		   <span id="passwordError"></span>
+			            </div>
+			            
+                    	 <div id="password-match" class="alert alert-danger" style="display: none;" role="alert">Password Do Not Match</div>
                     	<label for="confirm_password" >Confirm New Password</label>
                     	<input type="password" class="form-control form-components-rd" name="confirm_passwordHash" id="confirm_password" placeholder="Confrim New Password" style="width:70%" required>
+                  		
+                  
+                  <label for="password-rules">Password Rules:</label>
+		          	<ul>
+		          		<li>Must have at least 8 characters long</li>
+		          		<li>Must have at least one capital letter</li>
+		          		<li>Must have at least one number</li>
+		          		<li>Must have at least one special character</li>
+		          	</ul>
+                  
                   </div>
                 <div class="form-group" align="left">
                   <div class="col-sm-offset-2 col-sm-10">
@@ -87,29 +108,12 @@
 <script src="js/menu-links.js"></script>
 <script src="js/app.js" type="text/javascript" charset="utf-8"></script>			
 <!-- //////////////////// -->
-<script>
-$(document).ready(function() {
-	console.log($("#idnumber").val() +" hehehhe" );
-	$("#idnumber").text($("#idnumber").val())
-	console.log($("#idnumber").text() +" hehehhe1" );
-});
+<script src="js/password-meter.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/input-validation.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/change-password.js" type="text/javascript" charset="utf-8"></script>
 
-/* 
- $("#verify-secret-answer").click(function(){
-	
-  $('.alert-danger').show("fast", function(){});
-  setTimeout(function(){
-      $('.alert-danger').hide("fast", function(){});  
-    }, 1000);
-});
- */
-/*  $("#verify-username").click(function(){
-	console.log("Load Secret Question");
-	$("#username").submit();
-	$("#username").fadeOut("fast", function(){});
-    $("#secret-question").fadeIn("fast", function(){});
-    
-});  */
+<script>
+
 </script>
 </body>
 </html>

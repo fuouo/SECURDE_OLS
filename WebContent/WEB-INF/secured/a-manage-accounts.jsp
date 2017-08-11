@@ -4,6 +4,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+	<c:if test = "${first_namelast_name != 'Sign In'}">
+		<meta http-equiv="refresh" content="900;url=./SignOutServlet">
+	</c:if>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="SHS Library Books and Meeting Room Reservations">
@@ -106,7 +109,7 @@
 	        <input type="email" class="form-control form-components-rd" name="email_address" id="email-address" placeholder="Email" style="width:70%" required>
 	    
 	        <label for="idnumber">ID Number</label>
-	        <input type="number" class="form-control form-components-rd" name="id_number" id="idnumber" placeholder="Email" style="width:70%" required>
+	        <input type="text" class="form-control form-components-rd" name="id_number" id="idnumber" placeholder="Email" style="width:70%" required>
 	                    
 	        <label for="bdaypicker">Birthday</label>
 	        <div id="bdaypicker" class="input-append date" id="dp3" data-date-format="yyyy-mm-dd" style="width:70%">

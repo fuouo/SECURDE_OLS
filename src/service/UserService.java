@@ -141,7 +141,6 @@ public class UserService {
 			// id number exists
 			if(r.next()) {
 				UserStatus status = UserStatus.getValue(r.getString(User.COL_STATUS));
-				System.out.println("id number exists!!!");
 
 				// check password
 				input.clear();
@@ -152,8 +151,6 @@ public class UserService {
 
 				// login is successful
 				if(r2.next()) {
-
-					System.out.println("user exists!!!");
 
 					// create user
 					user = new User();
@@ -236,15 +233,11 @@ public class UserService {
 			input.clear();
 			input.add(idnumber);
 
-			System.out.println(query_select);
-
 			// get current num_attempts
 			r = q.runQuery(query_select, input);
 
 			if(r.next()) {
 				// if equal to 5, update status of user to LOCKOUT
-
-				System.out.println("ATTEMPTS: " + r.getString(User.COL_NUMATTEMPTS));
 
 				int num_attempts = Integer.parseInt(r.getString(User.COL_NUMATTEMPTS));
 

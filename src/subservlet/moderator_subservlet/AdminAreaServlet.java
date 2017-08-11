@@ -46,8 +46,6 @@ public class AdminAreaServlet{
     	
     	User user = CookieService.isUser(request);
     	
-    	
-    	
     	if(user.getStatus() == UserStatus.PENDING){
     		request.getRequestDispatcher("/WEB-INF/secured/change-pwd.jsp").forward(request, response);
     	}

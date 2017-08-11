@@ -97,8 +97,6 @@ public class RoomService {
 				room.setMrID(r.getInt(Room.COL_MRID));
 				room.setMr_name(XssSanitizerUtil.stripXSS(r.getString(Room.COL_MRNAME)));
 				
-				System.out.println("Room: " + room.getMr_name());
-				
 				roomList.add(room);
 			}
 		} catch (SQLException e) {
@@ -386,15 +384,11 @@ public class RoomService {
 					
 					r = q.runQuery(query, input);
 					
-					System.out.print(room.getMr_name() + " " + time_start + " - " + time_end + " ");
-					
 					if(r.next()) {
 						// there's a reservation at this time
 						room.setRoomStatus(RoomStatus.RESERVED);
-						System.out.println(RoomStatus.RESERVED);
 					} else {
 						room.setRoomStatus(RoomStatus.AVAILABLE);
-						System.out.println(RoomStatus.AVAILABLE);
 					}
 					
 					all_rooms.add(room);

@@ -28,6 +28,7 @@ public class SignInServlet {
 	private static void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub	
 		System.out.println("SIGN IN SERVLET  GET");
+		request.getRequestDispatcher("/SignInSignUpServlet").forward(request, response);
 
 	}
 
@@ -46,7 +47,7 @@ public class SignInServlet {
 		if(user!=null){
 			System.out.println("USER NOT NULL ");	
 			
-			/*
+			
 			// 1. session handling
 			
 			// invalidate current session
@@ -54,7 +55,7 @@ public class SignInServlet {
 
 			// create a new one
 			request.getSession(true);
-			*/
+			
 			
 			// 2. cookie handling
 
