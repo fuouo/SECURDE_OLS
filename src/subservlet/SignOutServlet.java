@@ -31,7 +31,7 @@ public class SignOutServlet{
 	private static void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("SignOutServlet GET");
-		doPost(request, response);
+		
 	}
 
 	private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -73,7 +73,7 @@ public class SignOutServlet{
 	public static void process(HttpServletRequest request, HttpServletResponse response, int type) throws ServletException, IOException{
 		if(type == MasterServlet.TYPE_GET)
 			doGet(request, response);
-		else doPost(request, response);
+		doPost(request, response);
 	}
 
 

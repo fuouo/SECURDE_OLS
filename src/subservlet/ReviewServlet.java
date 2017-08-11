@@ -31,6 +31,7 @@ public class ReviewServlet{
     private static void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
     	System.out.println("REVIEW GET");
+    	request.getRequestDispatcher("HomePageServlet").forward(request, response);
 	}
 
     private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -58,7 +59,9 @@ public class ReviewServlet{
 		rev.setRMID(request.getParameter("rmID"));
 		ReviewService.addReview(rev);
 		
-		request.getRequestDispatcher("HomePageServlet").forward(request, response);
+		request.getSession().setAttribute("message", "Successfully Reviewed Reading Material");
+    	request.getRequestDispatcher("SuccessPageServlet").forward(request, response);
+    	
 	}
     
     public static void process(HttpServletRequest request, HttpServletResponse response, int type) throws ServletException, IOException{

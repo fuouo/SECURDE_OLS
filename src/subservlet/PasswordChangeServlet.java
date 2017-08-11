@@ -51,9 +51,6 @@ public class PasswordChangeServlet{
     	String password2 = request.getParameter("confirm_" + User.COL_PASSWORD);
     	
     	System.out.println("Matching " + password1 + "with" + password2);
-    	
-    	
-    		
 	}
 
     private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -24,12 +24,13 @@ public class SignUpServlet {
     private static void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub	
     	System.out.println("SIGNUP SERVLET  GET");
+    	request.getRequestDispatcher("SignInSignUpServlet").forward(request, response);
     	
 	}
 
 	private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-System.out.println("SIGNUP SERVLET POST");
+		System.out.println("SIGNUP SERVLET POST");
 		
 		String idNum = request.getParameter(User.COL_IDNUMBER);
 		System.out.println("ID Num : " + idNum);

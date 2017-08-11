@@ -10,6 +10,16 @@ $(document).ready(function(){
 	initBdayDatePicker();
     initEditDetailsButton();
     getSecretQuestions();
+    
+    
+   $("#submit-register-id").click(function(e){
+	   e.preventDefault();
+	   if(validateForm())	 	
+	   		$("#register-details").submit();
+	   
+   });
+   
+   
 });
 
 

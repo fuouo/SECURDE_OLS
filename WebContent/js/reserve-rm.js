@@ -10,7 +10,7 @@ function clickedType(id)
 	$("#confirm-reservation").fadeIn("fast", function(){});
 	$("#overlay-screen").fadeIn("fast", function(){});
 	
-	submitReservation(id);
+	//submitReservation(id);
 }
 
 function submitReservation(id){
@@ -30,6 +30,7 @@ function review(id)
 	 $("#reviewForm").submit();
 	
 }
+
 
 $('.reserve-inline:not(.disabled)').click(function(){
 	console.log(status);

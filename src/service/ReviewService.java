@@ -8,6 +8,7 @@ import java.util.Calendar;
 import db.Query;
 import model.ReadingMaterial;
 import model.Review;
+import utils.MyLogger;
 import utils.Utils;
 import utils.XssSanitizerUtil;
 
@@ -71,7 +72,13 @@ public class ReviewService {
 
 		try {
 			result = q.runInsertUpdateDelete(query, input);
+			
+			if(result) {
+				MyLogger.getInstance().info("User " + review.getUser().getIdnumber() + " reviewed reading material " + review.getRMID());
+			}
+			
 		} catch (SQLException e) {
+			MyLogger.getInstance().severe("Error reviewing reading material " + review.getRMID());
 			e.printStackTrace();
 		} finally {
 			try {
@@ -83,41 +90,4 @@ public class ReviewService {
 
 		return result;
 	}
-
-	// edit review
-	public static boolean editReview(Review review) {
-		boolean result = false;
-
-		String query = "\nUPDATE " + Review.TABLE_NAME + " \n "
-				+ " SET "
-				+ Review.COL_IDNUMBER + " = ?, "
-				+ Review.COL_RMID + " = ?, "
-				+ Review.COL_REVIEW + " = ?, "
-				+ Review.COL_DATEREVIEWED + " = ?\n"
-				+ " WHERE " + Review.COL_REVIEWID + " = ?;";
-
-		ArrayList<Object> input = new ArrayList<>();
-		input.add(review.getUser().getIdnumber());
-		input.add(review.getRMID());
-		input.add(review.getReview());
-		input.add(Utils.convertDateJavaToStringDB(Calendar.getInstance().getTime()));
-
-		Query q = Query.getInstance();
-
-		try {
-			result = q.runInsertUpdateDelete(query, input);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				q.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-
-		return result;
-	}
-
-	
 }

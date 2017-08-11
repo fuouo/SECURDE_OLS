@@ -11,6 +11,7 @@ import model.UserType;
 import org.owasp.esapi.ESAPI;
 import org.owasp.esapi.Encoder;
 
+import utils.MyLogger;
 import utils.Utils;
 import utils.XssSanitizerUtil;
 import db.Query;
@@ -41,6 +42,8 @@ public class UserService {
 
 		try {
 			result = q.runInsertUpdateDelete(query, input);
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -141,7 +144,6 @@ public class UserService {
 			// id number exists
 			if(r.next()) {
 				UserStatus status = UserStatus.getValue(r.getString(User.COL_STATUS));
-				System.out.println("id number exists!!!");
 
 				// check password
 				input.clear();
@@ -152,8 +154,6 @@ public class UserService {
 
 				// login is successful
 				if(r2.next()) {
-
-					System.out.println("user exists!!!");
 
 					// create user
 					user = new User();
@@ -166,6 +166,8 @@ public class UserService {
 					input.clear();
 					input.add(User.TABLE_LOCKOUT + "_" + id_number);
 					q.runInsertUpdateDelete(query_delete, input);
+					
+					MyLogger.getInstance().info("User " + user.getIdnumber() + " logged in.");
 
 				} else {
 
@@ -236,15 +238,11 @@ public class UserService {
 			input.clear();
 			input.add(idnumber);
 
-			System.out.println(query_select);
-
 			// get current num_attempts
 			r = q.runQuery(query_select, input);
 
 			if(r.next()) {
 				// if equal to 5, update status of user to LOCKOUT
-
-				System.out.println("ATTEMPTS: " + r.getString(User.COL_NUMATTEMPTS));
 
 				int num_attempts = Integer.parseInt(r.getString(User.COL_NUMATTEMPTS));
 

@@ -3,11 +3,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	
-	<c:if test="${first_namelast_name != 'Sign In'}">
-	    <meta http-equiv="refresh" content="30;url=./SignOutServlet">
+	<c:if test = "${first_namelast_name != 'Sign In'}">
+		<meta http-equiv="refresh" content="900;url=./SignOutServlet">
 	</c:if>
-	    
+
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="SHS Library Books and Meeting Room Reservations">

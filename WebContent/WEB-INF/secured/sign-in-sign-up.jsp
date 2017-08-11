@@ -47,7 +47,7 @@
         <form action="SignUpServlet" method="post">
         <div class="form-group">
           <label for="exampleInputEmail1">ID Number</label>
-          <input type="number" id="register-idnum" name = "id_number" class="form-control form-components-rd erase-margin" id="exampleInputEmail1" placeholder="ID Number">
+          <input type="text" id="register-idnum" name = "id_number" class="form-control form-components-rd erase-margin" id="exampleInputEmail1" placeholder="ID Number">
         </div>
         <div class="form-group">
           <button type="submit" id="submit-register-id" class="btn btn-default submit-btn submit-btn form-components-rd auto-width erase-margin">Sign Up</button>
@@ -63,7 +63,7 @@
               <div class="form-group">
                 <label for="login-idnum" class="col-sm-2 control-label">ID #</label>
                 <div class="col-sm-10">
-                  <input type="number" name="id_number" class="form-control form-components-rd erase-margin" id="login-idnum" placeholder="ID Number">
+                  <input type="text" name="id_number" class="form-control form-components-rd erase-margin" id="login-idnum" placeholder="ID Number">
                 </div>
               </div>
               <div class="form-group">

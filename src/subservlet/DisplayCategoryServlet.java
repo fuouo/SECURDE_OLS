@@ -30,6 +30,7 @@ public class DisplayCategoryServlet{
     private static void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
     	System.out.println("DISPLAY CATEGORY GET");
+    	request.getRequestDispatcher("StartServlet").forward(request, response);
     	
 	}
 
@@ -79,7 +80,7 @@ public class DisplayCategoryServlet{
     public static void process(HttpServletRequest request, HttpServletResponse response, int type) throws ServletException, IOException{
 		if(type == MasterServlet.TYPE_GET)
 			doGet(request, response);
-		doPost(request, response);
+		else doPost(request, response);
 	}
 
 

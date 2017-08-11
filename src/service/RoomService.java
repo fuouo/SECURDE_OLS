@@ -11,6 +11,7 @@ import model.Room;
 import model.RoomStatus;
 import model.User;
 import model.UserType;
+import utils.MyLogger;
 import utils.Utils;
 import utils.XssSanitizerUtil;
 
@@ -39,7 +40,13 @@ public class RoomService {
 		
 		try {
 			result = q.runInsertUpdateDelete(query, input);
+			
+			if(result) {
+				MyLogger.getInstance().info("User " + reserved_room.getUser().getIdnumber() + " reserved room " + reserved_room.getMr_name());
+			}
+			
 		} catch (SQLException e) {
+			MyLogger.getInstance().info("Error reserving room " + reserved_room.getMr_name() + " by User " + reserved_room.getUser().getIdnumber());
 			e.printStackTrace();
 		} finally {
 			try {
@@ -66,7 +73,13 @@ public class RoomService {
 		
 		try {
 			result = q.runInsertUpdateDelete(query, input);
+			
+			if(result) {
+				MyLogger.getInstance().info("Overriding reservation of room succesful!");
+			}
+			
 		} catch (SQLException e) {
+			MyLogger.getInstance().severe("Error overriding reservation of room!");
 			e.printStackTrace();
 		} finally {
 			try {
@@ -96,8 +109,6 @@ public class RoomService {
 				room = new Room();
 				room.setMrID(r.getInt(Room.COL_MRID));
 				room.setMr_name(XssSanitizerUtil.stripXSS(r.getString(Room.COL_MRNAME)));
-				
-				System.out.println("Room: " + room.getMr_name());
 				
 				roomList.add(room);
 			}
@@ -386,15 +397,11 @@ public class RoomService {
 					
 					r = q.runQuery(query, input);
 					
-					System.out.print(room.getMr_name() + " " + time_start + " - " + time_end + " ");
-					
 					if(r.next()) {
 						// there's a reservation at this time
 						room.setRoomStatus(RoomStatus.RESERVED);
-						System.out.println(RoomStatus.RESERVED);
 					} else {
 						room.setRoomStatus(RoomStatus.AVAILABLE);
-						System.out.println(RoomStatus.AVAILABLE);
 					}
 					
 					all_rooms.add(room);

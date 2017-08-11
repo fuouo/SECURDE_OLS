@@ -55,7 +55,7 @@ public class NewPasswordServlet{
 
     private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	System.out.println("NEW PASSWORD POST");
-       	     request.getRequestDispatcher("change-pwd.jsp").forward(request, response);
+       	request.getRequestDispatcher("change-pwd.jsp").forward(request, response);
 	}
     
     public static void process(HttpServletRequest request, HttpServletResponse response, int type) throws ServletException, IOException{
