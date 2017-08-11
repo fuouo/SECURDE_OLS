@@ -41,7 +41,7 @@
       <jsp:include page="../reusable/search-bar-toggable.jsp"/>    
       <!-- END OF SEARCH BAR -->  
       	
-      <form id = "register-details" style="margin-right: 300px;" action="RegisterUserServlet" method="POST" onsubmit="return validateForm()">
+      <form id = "register-details" style="margin-right: 300px;" action="RegisterUserServlet" method="POST">
       <!-- names -->
         <div class="row">
           <div class="col-md-5"><label for="first-name">First Name</label></div>
@@ -59,19 +59,6 @@
           </div>
         </div>
 
-	<!--
-        <label for="password">Password</label>
-        <input type="password" class="form-control form-components-rd" name="passwordHash" id="password" placeholder="Password" style="width:70%" required>
-            
-         <div class="row" align="center">
-         	<label for="password" class="form-label col-sm-2">Password</label>
-         	<div class="col-sm-4">
-		         <input type="password" placeholder="Password ..." class="form-control form-components-rd" id="password" name="passwordHash" style="width:70%" required/>
-		    </div>
-		    <div class="col-sm-4" id="example-progress-bar-container" style="height:5%"></div>
-         </div>
-         -->
-         
          <div class="row" align="center">
 	         <label for="password" class="form-label col-sm-2">Password</label>
 	         	<input placeholder="Password ..." class="form-control form-components-rd" type="password" id="password" name="passwordHash" style="width:50%" required/>
@@ -94,7 +81,7 @@
     		</div>
     
         <label for="idnumber">ID Number</label>
-        <input type="number" class="form-control form-components-rd" name="id_number" id="idnumber" placeholder="ID Number" style="width:70%" value="${id_number}" required>
+        <input type="text" class="form-control form-components-rd" name="id_number" id="idnumber" placeholder="ID Number" style="width:70%" value="${id_number}" required>
                     
         <label for="bdaypicker">Birthday</label>
         <div id="bdaypicker" class="input-append date" id="dp3" data-date-format="yyyy-mm-dd" style="width:70%">
@@ -102,8 +89,7 @@
           style="width:87%" name="birthday" required>
           <span class="add-on" style="width:10%"><i class="flaticon-calendar"></i></span>
         </div>
-	
-      
+
         <div class="bordered-dark auto-width" style="margin: 10px 0; padding: 10px; width:70%; border-radius: 5px;">
           <label for="secret-question" required>Secret Question</label>
           <select id = "secret-question" name="sqID" class="form-control form-components-rd"  
@@ -126,15 +112,11 @@
     </div> <!-- end of content -->
   </div> <!-- end of row -->
 </div> <!-- end of container-fluid -->
-<form id="meetingRoomForm" action="MeetingRoomPageServlet" method="post"></form>
-<form id="signInForm" action="SignInSignUpPageServlet" method="post"></form>
-<form id="homeForm" action="HomePageServlet" method="post"></form>
 
 <!--  INSERT SCRIPT TAGS HERE -->
 <!-- must be in every page -->
 <script src="js/jquery-3.0.0.min.js"></script>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script src="js/menu-links.js"></script>
 <script src="js/app.js" type="text/javascript" charset="utf-8"></script>			
 <!-- //////////////////// -->
 <script src="js/register.js" type="text/javascript" charset="utf-8"></script>

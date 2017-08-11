@@ -15,7 +15,7 @@ public class MyLogger {
 	private MyLogger(){
 		try {
 			LOGGER = Logger.getLogger( MyLogger.class.getName() );
-			fileHandler = new FileHandler("/logs/logs.txt");
+			fileHandler = new FileHandler("/logs/logs.txt", true);
 			fileHandler.setFormatter(new SimpleFormatter());
 			LOGGER.addHandler(fileHandler);
 			LOGGER.setUseParentHandlers(false);  

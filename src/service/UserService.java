@@ -11,6 +11,7 @@ import model.UserType;
 import org.owasp.esapi.ESAPI;
 import org.owasp.esapi.Encoder;
 
+import utils.MyLogger;
 import utils.Utils;
 import utils.XssSanitizerUtil;
 import db.Query;
@@ -41,6 +42,8 @@ public class UserService {
 
 		try {
 			result = q.runInsertUpdateDelete(query, input);
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -163,6 +166,8 @@ public class UserService {
 					input.clear();
 					input.add(User.TABLE_LOCKOUT + "_" + id_number);
 					q.runInsertUpdateDelete(query_delete, input);
+					
+					MyLogger.getInstance().info("User " + user.getIdnumber() + " logged in.");
 
 				} else {
 
