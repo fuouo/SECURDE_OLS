@@ -11,6 +11,7 @@ import model.Room;
 import model.RoomStatus;
 import model.User;
 import model.UserType;
+import utils.MyLogger;
 import utils.Utils;
 import utils.XssSanitizerUtil;
 
@@ -39,7 +40,13 @@ public class RoomService {
 		
 		try {
 			result = q.runInsertUpdateDelete(query, input);
+			
+			if(result) {
+				MyLogger.getInstance().info("User " + reserved_room.getUser().getIdnumber() + " reserved room " + reserved_room.getMr_name());
+			}
+			
 		} catch (SQLException e) {
+			MyLogger.getInstance().info("Error reserving room " + reserved_room.getMr_name() + " by User " + reserved_room.getUser().getIdnumber());
 			e.printStackTrace();
 		} finally {
 			try {
@@ -66,7 +73,13 @@ public class RoomService {
 		
 		try {
 			result = q.runInsertUpdateDelete(query, input);
+			
+			if(result) {
+				MyLogger.getInstance().info("Overriding reservation of room succesful!");
+			}
+			
 		} catch (SQLException e) {
+			MyLogger.getInstance().severe("Error overriding reservation of room!");
 			e.printStackTrace();
 		} finally {
 			try {

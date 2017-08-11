@@ -5,6 +5,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+
+import com.sun.media.jfxmedia.logging.Logger;
 
 import db.Query;
 import model.RMFilter;
@@ -14,6 +17,7 @@ import model.ReadingMaterial;
 import model.Review;
 import model.User;
 import model.UserType;
+import utils.MyLogger;
 import utils.Utils;
 import utils.XssSanitizerUtil;
 
@@ -50,6 +54,11 @@ public class ReadingMaterialService {
 
 		try {
 			result = q.runInsertUpdateDelete(query, input);
+			
+			if(result) {
+				MyLogger.getInstance().info("Reading material " + myRM.getRMID_Location() +  " added");
+			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -57,6 +66,7 @@ public class ReadingMaterialService {
 				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
+				MyLogger.getInstance().severe("Error adding reading material: " + e.getMessage());
 			}
 		}
 
@@ -80,12 +90,18 @@ public class ReadingMaterialService {
 
 		try {
 			result = q.runInsertUpdateDelete(query, input);
+			if(result) {
+				MyLogger.getInstance().info("Reading material " + rmID +  " deleted");
+			}
+			
 		} catch (SQLException e) {
+			MyLogger.getInstance().severe("Error deleting reading material: " + e.getMessage());
 			e.printStackTrace();
 		} finally {
 			try {
 				q.close();
 			} catch (SQLException e) {
+				
 				e.printStackTrace();
 			}
 		}
@@ -120,8 +136,14 @@ public class ReadingMaterialService {
 
 		try {
 			result = q.runInsertUpdateDelete(query, input);
+			
+			if(result) {
+				MyLogger.getInstance().info("Reading material " + myRM.getRMID_Location() +  " edited");
+			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			MyLogger.getInstance().severe("Error editing reading material");
 		} finally {
 			try {
 				q.close();
@@ -135,6 +157,8 @@ public class ReadingMaterialService {
 
 	// check if user can still borrow
 	public static boolean checkIfUserCanReserve(User user) {
+		
+		MyLogger.getInstance().info("Checking if user " + user.getIdnumber() +  " can reserve.");
 		boolean result = true;
 
 		String query = "\nSELECT COUNT(*) "
@@ -206,7 +230,14 @@ public class ReadingMaterialService {
 
 		try {
 			result = q.runInsertUpdateDelete(query, input);
+			
+			if(result) {
+				MyLogger.getInstance().info("User " + rm.getUserReserved().getIdnumber() +  " reserved " + rm.getRMID_Location());
+			}
+			
 		} catch (SQLException e) {
+			MyLogger.getInstance().severe("Error reserving reading material " + rm.getRMID_Location() + 
+					" by " + " User " + rm.getUserReserved().getIdnumber());
 			e.printStackTrace();
 		} finally {
 			try {
@@ -233,7 +264,13 @@ public class ReadingMaterialService {
 
 		try {
 			result = q.runInsertUpdateDelete(query, input);
+			
+			if(result) {
+				MyLogger.getInstance().info("Override reading material successful!");
+			}
+			
 		} catch (SQLException e) {
+			MyLogger.getInstance().severe("Error overriding reading material.");
 			e.printStackTrace();
 		} finally {
 			try {
@@ -250,6 +287,8 @@ public class ReadingMaterialService {
 	// can only delete if no borrow or reserve
 	public static boolean checkIfCanDelete(String rmID) {
 		boolean result = false;
+		
+		MyLogger.getInstance().info("Checking if reading material " + rmID + " can be deleted.");
 
 		String query = "\nSELECT " + ReadingMaterial.COL_RMID
 				+ " FROM " + ReadingMaterial.TABLE_RESERVEDRM 
@@ -716,6 +755,9 @@ public class ReadingMaterialService {
 
 	// get all RM by search
 	public static ArrayList<ReadingMaterial> searchRM(RMFilter rmFilter, RMType rmType, String searchString) {
+		
+		MyLogger.getInstance().info("Searched reading material: " + searchString);
+		
 		ArrayList<ReadingMaterial> rmList = new ArrayList<>();
 		ReadingMaterial rm = null;
 
@@ -1232,6 +1274,9 @@ public class ReadingMaterialService {
 
 	// get id and status of ALL RM
 	public static ArrayList<ReadingMaterial> getDataForExport() {
+		
+		MyLogger.getInstance().info("Exporting data");
+		
 		ArrayList<ReadingMaterial> rmList = new ArrayList<>();	
 		ReadingMaterial rm = null;
 
@@ -1293,6 +1338,8 @@ public class ReadingMaterialService {
 			}
 
 		} catch (SQLException e) {
+			MyLogger.getInstance().severe("Error exporting data");
+			
 			e.printStackTrace();
 		} finally {
 			try {
