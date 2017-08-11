@@ -50,7 +50,6 @@ import subservlet.moderator_subservlet.ExportServlet;
 import subservlet.moderator_subservlet.OverrideReservationRMServlet;
 import subservlet.moderator_subservlet.OverrideReservationRoomServlet;
 import subservlet.moderator_subservlet.RegisterModeratorServlet;
-import subservlet.moderator_subservlet.ViewReservedRMServlet;
 
 /**
  * Servlet implementation class MasterServlet
@@ -83,7 +82,6 @@ import subservlet.moderator_subservlet.ViewReservedRMServlet;
 							RMDetailsServlet.URL,
 							RegisterModeratorServlet.URL,
 							CategoryRMServlet.URL,
-							ViewReservedRMServlet.URL,
 							DeleteRMServlet.URL,
 							EditRMServlet.URL,
 							OverrideReservationRMServlet.URL,
@@ -215,9 +213,6 @@ public class MasterServlet extends HttpServlet {
 				case CategoryRMServlet.URL:
 					CategoryRMServlet.process(request, response, type);
 					break;
-				case ViewReservedRMServlet.URL:
-					ViewReservedRMServlet.process(request, response, type);
-					break;
 				case DeleteRMServlet.URL:
 					DeleteRMServlet.process(request, response, type);
 					break;
@@ -244,6 +239,7 @@ public class MasterServlet extends HttpServlet {
 					break;
 				case SuccessPageServlet.URL:
 					SuccessPageServlet.process(request, response, type);
+					break;
 				case PasswordChangeCodeServlet.URL:
 					PasswordChangeCodeServlet.process(request, response, type);
 					break;

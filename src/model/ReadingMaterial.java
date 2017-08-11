@@ -157,7 +157,7 @@ public class ReadingMaterial {
 
 	public void setDateReturned(Date dateReturned) {
 		this.dateReturned = dateReturned;
-		this.strDateAvailable = Utils.dateToReadableString(dateAvailable);
+		this.strDateAvailable = Utils.dateToReadableString(dateReturned);
 	}
 
 	public Date getDateReserved() {

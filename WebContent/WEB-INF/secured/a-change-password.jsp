@@ -81,8 +81,8 @@
 <script src="vitalets-bootstrap-datepicker-c7af15b/js/bootstrap-datepicker.js"></script>
 <script src="js/app.js"></script>			
 <!-- //////////////////// -->
-<script src="js/register.js"></script>
-<script src="js/manage-books.js"></script>
+<script src="js/register.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/manage-books.js" type="text/javascript" charset="utf-8"></script>
 
 
 </body>

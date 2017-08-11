@@ -8,7 +8,7 @@
 function clickedType(id)
 {
 	$("#confirm-reservation").fadeIn("fast", function(){});
-	$("#overlay-screen").fadeIn(fast, function(){});
+	$("#overlay-screen").fadeIn("fast", function(){});
 	
 	submitReservation(id);
 }

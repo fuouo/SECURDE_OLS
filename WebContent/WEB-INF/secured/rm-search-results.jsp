@@ -115,10 +115,6 @@
     </div> <!-- end of content -->
   </div> <!-- end of row -->
 </div> <!-- end of container-fluid -->
-<form id="meetingRoomForm" action="MeetingRoomPageServlet" method="post"></form>
-<form id="signInForm" action="SignInSignUpPageServlet" method="post"></form>
-<form id="homeForm" action="HomePageServlet" method="post"></form>
-<form id="yourReservationsForm" action="CalendarOrgRepServlet" method="post"></form>
 <form id="signInFirstForm" action="sign_in_sign_up.jsp" method="post"></form>
 <form id="reserveForm" action="ReserveRMServlet" method="post">
 		 <input type = "hidden" name="locationID" id="locationID" value="hehehe">
@@ -131,11 +127,10 @@
 <!-- must be in every page -->
 <script src="js/jquery-3.0.0.min.js"></script>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script src="js/menu-links.js"></script>
-<script src="js/app.js"></script>			
+<script src="js/app.js" type="text/javascript" charset="utf-8"></script>			
 <!-- //////////////////// -->
-<script src="js/reserve-rm.js"></script>
-<script src="js/rmdetails.js"></script>
+<script src="js/reserve-rm.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/rmdetails.js" type="text/javascript" charset="utf-8"></script>
 
 </body>
 </html>

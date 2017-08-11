@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import model.ReadingMaterial;
 import model.ReservedRoom;
 import model.User;
+import model.UserType;
+import service.CookieService;
 import service.ReadingMaterialService;
 import service.RoomService;
 import service.UserService;
@@ -32,7 +34,7 @@ public class OverrideReservationRoomServlet{
 
     private static void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-    	System.out.println("OverrideReservationRoomServlet GET");
+    	request.getRequestDispatcher("/StartServlet").forward(request, response);
 	}
 
     private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

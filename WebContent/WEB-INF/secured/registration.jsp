@@ -41,7 +41,7 @@
       <jsp:include page="../reusable/search-bar-toggable.jsp"/>    
       <!-- END OF SEARCH BAR -->  
       	
-      <form id = "register-details" style="margin-right: 300px;" action="RegisterUserServlet" method="POST">
+      <form id = "register-details" style="margin-right: 300px;" action="RegisterUserServlet" method="POST" onsubmit="return validateForm()">
       <!-- names -->
         <div class="row">
           <div class="col-md-5"><label for="first-name">First Name</label></div>
@@ -76,6 +76,7 @@
 	         <label for="password" class="form-label col-sm-2">Password</label>
 	         	<input placeholder="Password ..." class="form-control form-components-rd" type="password" id="password" name="passwordHash" style="width:50%" required/>
           		<span id="passstrength"></span>
+          		<span id="passwordError"></span>
           </div>
           
           <label for="password-rules">Password Rules:</label>
@@ -86,8 +87,11 @@
           		<li>Must have at least one special character</li>
           	</ul>
           
-        <label for="email-address">Email Address</label>
-        <input type="email" class="form-control form-components-rd" name="email_address" id="email-address" placeholder="Email" style="width:70%" required>
+   		<label for="email-address">Email Address</label>
+   		      <div class="row">
+	        <input type="email" class="form-control form-components-rd" name="email_address" id="email-address" placeholder="Email" style="width:70%" required>
+	    	<span id="emailError"></span>
+    		</div>
     
         <label for="idnumber">ID Number</label>
         <input type="number" class="form-control form-components-rd" name="id_number" id="idnumber" placeholder="ID Number" style="width:70%" value="${id_number}" required>
@@ -131,11 +135,11 @@
 <script src="js/jquery-3.0.0.min.js"></script>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="js/menu-links.js"></script>
-<script src="js/app.js"></script>			
+<script src="js/app.js" type="text/javascript" charset="utf-8"></script>			
 <!-- //////////////////// -->
-<script src="js/register.js"></script>
-<script src="js/password-meter.js"></script>
-<script src="js/input-validation.js"></script>
+<script src="js/register.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/password-meter.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/input-validation.js" type="text/javascript" charset="utf-8"></script>
 </body>
 
 </html>

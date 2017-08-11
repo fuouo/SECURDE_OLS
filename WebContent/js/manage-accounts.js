@@ -52,7 +52,7 @@ function unlockAccount(idnumber){
 function getLockedAccounts(){
 	$.ajax({
 		url: "AdminDisplayAccountsServlet",
-		method: "get",
+		method: "post",
 		data: {
 		},
 		dataType: "json",

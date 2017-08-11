@@ -128,17 +128,12 @@
   </div> <!-- end of row --> 
 </div> <!-- end of container-fluid -->
 
-<form id="meetingRoomForm" action="MeetingRoomPageServlet" method="post"></form>
-<form id="servicesForm" action="CalendarOrgRepServlet" method="post"></form>
-<form id="homeForm" action="HomePageServlet" method="post"></form>
-<form id="yourReservationsForm" action="CalendarOrgRepServlet" method="post"></form>
 <!--  INSERT SCRIPT TAGS HERE -->
 <!-- must be in every page -->
 <script src="js/jquery-3.0.0.min.js"></script>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script src="js/menu-links.js"></script>
-<script src="js/app.js"></script>			
+<script src="js/app.js" type="text/javascript" charset="utf-8"></script>			
 <!-- //////////////////// -->
-<script src="js/reserve-slots.js"></script>
+<script src="js/reserve-slots.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

@@ -3,14 +3,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	
-	<c:if test="${first_namelast_name != 'Sign In'}">
-	    <meta http-equiv="refresh" content="30;url=./SignOutServlet">
-	</c:if>
-	    
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SHS Library Books and Meeting Room Reservations">
+    <meta name="description" content="Error Code">
     <title>Lib.U</title>
     
     <!--online resources-->
@@ -29,32 +24,29 @@
 <body>
 <div class="container-fluid">
   <div class="row">
-  	<!-- NAV BAR -->
-    <jsp:include page="WEB-INF/reusable/navbar.jsp"/>    
-    <!-- END OF NAV BAR -->
-    <div class="col-sm-9 col-lg-10 content">
+  
+    <div class="col-sm-9 col-lg-10 content" style="width: 100%">
 	  <!-- HEADER -->
       <div class="header">
-       <h1>SHS Online Library System</h1>
-       <h2>Reserve Books and Meeting Rooms anytime, anywhere!</h2>
+      <h1>You are not permitted to access this page</h1>
+       <h2>Authorized Personnel only</h2>
+       <h2>SHS Online Library System</h2>
+       
       </div>
       <!-- END OF HEADER -->
-      
-	  <!-- SEARCH BAR -->
-      <jsp:include page="WEB-INF/reusable/search-bar.jsp"/>    
-       <!-- END OF SEARCH BAR -->
 
 	<!-- don't go beyond this point -->
     </div> <!-- end of content -->
   </div> <!-- end of row -->
 </div> <!-- end of container-fluid -->
 
+
 <!--  INSERT SCRIPT TAGS HERE -->
 <!-- must be in every page -->
 <script src="js/jquery-3.0.0.min.js"></script>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script src="js/menu-links.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/app.js" type="text/javascript" charset="utf-8"></script>			
+<script src="js/menu-links.js"></script>
+<script src="js/app.js"></script>			
 <!-- //////////////////// -->
 </body>
 </html>
