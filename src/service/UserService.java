@@ -7,10 +7,6 @@ import java.util.ArrayList;
 import model.User;
 import model.UserStatus;
 import model.UserType;
-
-import org.owasp.esapi.ESAPI;
-import org.owasp.esapi.Encoder;
-
 import utils.MyLogger;
 import utils.Utils;
 import utils.XssSanitizerUtil;
@@ -43,8 +39,13 @@ public class UserService {
 		try {
 			result = q.runInsertUpdateDelete(query, input);
 			
+			if(result) {
+				MyLogger.getInstance().info("User " + user.getIdnumber() + " created an account.");
+			}
 			
 		} catch (SQLException e) {
+			MyLogger.getInstance().severe("Error creating an account for " + user.getIdnumber());
+			
 			e.printStackTrace();
 		} finally {
 			try {
@@ -95,8 +96,13 @@ public class UserService {
 			input.add(UserStatus.PENDING + "");
 
 			result = q.runSQLEvent(query_event, input);
+			
+			if(result) {
+				MyLogger.getInstance().info("User " + user.getIdnumber() + " created a moderator account.");
+			}
 
 		} catch (SQLException e) {
+			MyLogger.getInstance().severe("Error creating an account for " + user.getIdnumber());
 			e.printStackTrace();
 		} finally {
 			try {
@@ -175,12 +181,14 @@ public class UserService {
 					if(status == UserStatus.ACTIVATED) {
 						// login attempt may be brute force
 						isBruteForce = true;
+						MyLogger.getInstance().info("Brute force logged in for " + id_number);
 					}
 				}
 
 			}
 
 		} catch (SQLException e) {
+			MyLogger.getInstance().info("Wrong id number for logging in.");
 			e.printStackTrace();
 		} finally {
 			try {
@@ -419,7 +427,13 @@ public class UserService {
 		Query q = Query.getInstance();
 		try {
 			result = q.runInsertUpdateDelete(query, input);
+			
+			if(result) {
+				MyLogger.getInstance().info("Changed password for " + user.getIdnumber());
+			}
+			
 		} catch (SQLException e) {
+			MyLogger.getInstance().severe("Error changing password for " + user.getIdnumber());
 			e.printStackTrace();
 		} finally {
 			try {
@@ -450,7 +464,14 @@ public class UserService {
 		Query q = Query.getInstance();
 		try {
 			result = q.runInsertUpdateDelete(query, input);
+			
+			if(result) {
+				MyLogger.getInstance().info("Activated account of " + user.getIdnumber());
+			}
+			
 		} catch (SQLException e) {
+			MyLogger.getInstance().severe("Error activating account.");
+			
 			e.printStackTrace();
 		} finally {
 			try {
@@ -465,9 +486,11 @@ public class UserService {
 
 	// get all locked accounts
 	public static ArrayList<User> getLockedAccounts() {
+		
+		MyLogger.getInstance().info("Getting locked accounts");
+		
 		ArrayList<User> lockedAccounts = new ArrayList<>();
 		User user = null;
-		Encoder encoder = ESAPI.encoder();
 
 		String query = "\nSELECT * FROM " + User.TABLE_USER
 				+ " WHERE " + User.COL_STATUS + " = ?";
@@ -485,7 +508,6 @@ public class UserService {
 
 			while(r.next()) {
 
-
 				user = new User();
 				user.setIdnumber(XssSanitizerUtil.stripXSS(r.getString(User.COL_IDNUMBER)));
 				user.setFirstName(XssSanitizerUtil.stripXSS(r.getString(User.COL_FIRSTNAME)));
@@ -497,6 +519,7 @@ public class UserService {
 			}
 
 		} catch (SQLException e) {
+			MyLogger.getInstance().severe("Error getting locked accounts");
 			e.printStackTrace();
 		} finally {
 			try {
@@ -528,7 +551,13 @@ public class UserService {
 
 		try {
 			result = q.runInsertUpdateDelete(query, input);
+			
+			if(result) {
+				MyLogger.getInstance().info("Successfully locked account for " + idnumber);
+			}
+			
 		} catch (SQLException e) {
+			MyLogger.getInstance().severe("Error unlocking account for " + idnumber);
 			e.printStackTrace();
 		} finally {
 			try {

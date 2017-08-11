@@ -15,11 +15,9 @@ public class MyLogger {
 	private MyLogger(){
 		try {
 			LOGGER = Logger.getLogger( MyLogger.class.getName() );
-			fileHandler = new FileHandler("/logs/logs.txt", true);
+			fileHandler = new FileHandler("C:\\Users\\Ronnie Nieva\\Documents\\Dydy\\Eclipse EE Projects\\SECURDE_OLS\\logs\\logs.txt", true);
 			fileHandler.setFormatter(new SimpleFormatter());
 			LOGGER.addHandler(fileHandler);
-			LOGGER.setUseParentHandlers(false);  
-			LOGGER.setLevel(Level.ALL);
 			
 		} catch (SecurityException e) {
 			e.printStackTrace();

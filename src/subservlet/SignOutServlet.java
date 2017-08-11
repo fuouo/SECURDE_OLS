@@ -57,7 +57,7 @@ public class SignOutServlet{
 		}
 
 		// invalidate session
-		request.getSession(false).invalidate();
+		request.getSession().invalidate();
 
 		// web content caching
 		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
