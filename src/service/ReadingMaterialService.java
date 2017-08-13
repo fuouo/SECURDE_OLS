@@ -55,9 +55,7 @@ public class ReadingMaterialService {
 		try {
 			result = q.runInsertUpdateDelete(query, input);
 			
-			if(result) {
-				MyLogger.getInstance().info("Reading material " + myRM.getRMID_Location() +  " added");
-			}
+			MyLogger.getInstance().info("Reading material " + myRM.getRMID_Location() +  " added");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -90,9 +88,7 @@ public class ReadingMaterialService {
 
 		try {
 			result = q.runInsertUpdateDelete(query, input);
-			if(result) {
-				MyLogger.getInstance().info("Reading material " + rmID +  " deleted");
-			}
+			MyLogger.getInstance().info("Reading material " + rmID +  " deleted");
 			
 		} catch (SQLException e) {
 			MyLogger.getInstance().severe("Error deleting reading material: " + e.getMessage());
@@ -137,9 +133,7 @@ public class ReadingMaterialService {
 		try {
 			result = q.runInsertUpdateDelete(query, input);
 			
-			if(result) {
-				MyLogger.getInstance().info("Reading material " + myRM.getRMID_Location() +  " edited");
-			}
+			MyLogger.getInstance().info("Reading material " + myRM.getRMID_Location() +  " edited");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -231,9 +225,7 @@ public class ReadingMaterialService {
 		try {
 			result = q.runInsertUpdateDelete(query, input);
 			
-			if(result) {
-				MyLogger.getInstance().info("User " + rm.getUserReserved().getIdnumber() +  " reserved " + rm.getRMID_Location());
-			}
+			MyLogger.getInstance().info("User " + rm.getUserReserved().getIdnumber() +  " reserved " + rm.getRMID_Location());
 			
 		} catch (SQLException e) {
 			MyLogger.getInstance().severe("Error reserving reading material " + rm.getRMID_Location() + 
@@ -265,9 +257,7 @@ public class ReadingMaterialService {
 		try {
 			result = q.runInsertUpdateDelete(query, input);
 			
-			if(result) {
-				MyLogger.getInstance().info("Override reading material successful!");
-			}
+			MyLogger.getInstance().info("Override reading material successful!");
 			
 		} catch (SQLException e) {
 			MyLogger.getInstance().severe("Error overriding reading material.");

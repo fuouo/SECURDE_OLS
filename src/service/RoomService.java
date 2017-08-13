@@ -41,9 +41,7 @@ public class RoomService {
 		try {
 			result = q.runInsertUpdateDelete(query, input);
 			
-			if(result) {
-				MyLogger.getInstance().info("User " + reserved_room.getUser().getIdnumber() + " reserved room " + reserved_room.getMr_name());
-			}
+			MyLogger.getInstance().info("User " + reserved_room.getUser().getIdnumber() + " reserved room " + reserved_room.getMr_name());
 			
 		} catch (SQLException e) {
 			MyLogger.getInstance().info("Error reserving room " + reserved_room.getMr_name() + " by User " + reserved_room.getUser().getIdnumber());
@@ -74,9 +72,7 @@ public class RoomService {
 		try {
 			result = q.runInsertUpdateDelete(query, input);
 			
-			if(result) {
-				MyLogger.getInstance().info("Overriding reservation of room succesful!");
-			}
+			MyLogger.getInstance().info("Overriding reservation of room succesful!");
 			
 		} catch (SQLException e) {
 			MyLogger.getInstance().severe("Error overriding reservation of room!");

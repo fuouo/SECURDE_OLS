@@ -39,9 +39,7 @@ public class UserService {
 		try {
 			result = q.runInsertUpdateDelete(query, input);
 			
-			if(result) {
-				MyLogger.getInstance().info("User " + user.getIdnumber() + " created an account.");
-			}
+			MyLogger.getInstance().info("User " + user.getIdnumber() + " created an account.");
 			
 		} catch (SQLException e) {
 			MyLogger.getInstance().severe("Error creating an account for " + user.getIdnumber());
@@ -97,9 +95,7 @@ public class UserService {
 
 			result = q.runSQLEvent(query_event, input);
 			
-			if(result) {
-				MyLogger.getInstance().info("User " + user.getIdnumber() + " created a moderator account.");
-			}
+			MyLogger.getInstance().info("User " + user.getIdnumber() + " created a moderator account.");
 
 		} catch (SQLException e) {
 			MyLogger.getInstance().severe("Error creating an account for " + user.getIdnumber());
@@ -428,9 +424,7 @@ public class UserService {
 		try {
 			result = q.runInsertUpdateDelete(query, input);
 			
-			if(result) {
-				MyLogger.getInstance().info("Changed password for " + user.getIdnumber());
-			}
+			MyLogger.getInstance().info("Changed password for " + user.getIdnumber());
 			
 		} catch (SQLException e) {
 			MyLogger.getInstance().severe("Error changing password for " + user.getIdnumber());
@@ -465,9 +459,7 @@ public class UserService {
 		try {
 			result = q.runInsertUpdateDelete(query, input);
 			
-			if(result) {
-				MyLogger.getInstance().info("Activated account of " + user.getIdnumber());
-			}
+			MyLogger.getInstance().info("Activated account of " + user.getIdnumber());
 			
 		} catch (SQLException e) {
 			MyLogger.getInstance().severe("Error activating account.");
@@ -552,9 +544,7 @@ public class UserService {
 		try {
 			result = q.runInsertUpdateDelete(query, input);
 			
-			if(result) {
-				MyLogger.getInstance().info("Successfully locked account for " + idnumber);
-			}
+			MyLogger.getInstance().info("Successfully locked account for " + idnumber);
 			
 		} catch (SQLException e) {
 			MyLogger.getInstance().severe("Error unlocking account for " + idnumber);

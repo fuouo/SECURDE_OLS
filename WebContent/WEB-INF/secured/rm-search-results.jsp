@@ -92,7 +92,8 @@
 	              <c:choose>
 					    <c:when test="${status== 'AVAILABLE' || status == 'BORROWED'}">
 					    	<c:set var="loc">${i.RMID_Location}</c:set>
-					       <div onclick="clickedType('${loc}')" class="col-md-4"><button   onclick="clickedType(${i.RMID_Location })" class="reserve-inline btn btn-default">Reserve</button></div>
+					       <div onclick="clickedType('${loc}')" class="col-md-4">
+					       	<button   onclick="clickedType(${i.RMID_Location })" class="reserve-inline btn btn-default">Reserve</button></div>
 					       
 					    </c:when>    
 					    <c:otherwise>

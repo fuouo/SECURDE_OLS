@@ -7,18 +7,23 @@
 
 function clickedType(id)
 {
-	$("#confirm-reservation").fadeIn("fast", function(){});
-	$("#overlay-screen").fadeIn("fast", function(){});
+	alert(1);
+//	$("#confirm-reservation").fadeIn("fast", function(){});
+//	$("#overlay-screen").fadeIn("fast", function(){});
 	
-	//submitReservation(id);
+	submitReservation(id);
 }
 
 function submitReservation(id){
+	
+	alert(2);
+	
 	 console.log("hahaha " + id);
  	$("#locationID").val(id);
  	$("#locationID").text(id);
  	console.log("ehhe " + $("#locationID").val()); 
  	 $("#reserveForm").submit();
+	
 }
 
 function review(id)

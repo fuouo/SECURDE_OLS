@@ -157,7 +157,9 @@
 			      </div>
 			    </c:when>
 			    <c:when test="${reading_material.status == 'AVAILABLE'}">
-			      <div onclick="clickedType('${loc}')" class="col-md-3"><button onclick="clickedType(${reading_material.RMID_Location })" class="reserve-inline btn btn-default">Reserve</button></div>
+			      <!-- <div onclick="clickedType('${loc}')" class="col-md-3"> -->
+			      <button onclick="submitReservation(${reading_material.RMID_Location })" class="reserve-inline btn btn-default">Reserve</button>
+			      <!-- </div>  -->
 			      <div class="col-md-3"><span class="availability-date"></span>${reading_material.strDateAvailable }</div>
 			      <div class="col-md-3"></div>
 			    </c:when>

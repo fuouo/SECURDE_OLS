@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import servlet.MasterServlet;
+import utils.MyLogger;
 
 /**
  * Servlet implementation class SignOutServlet
@@ -48,6 +49,8 @@ public class SignOutServlet{
 			// delete all cookies
 			for(int i = 0; i < cookies.length; i ++) {
 				if(cookies[i].getName().equals(User.COL_IDNUMBER)) {
+
+					MyLogger.getInstance().info("User " + cookies[i].getValue() + " logged out.");
 					Cookie cookie = cookies[i];
 					cookie.setMaxAge(0);
 					cookie.setValue(null);
@@ -63,9 +66,6 @@ public class SignOutServlet{
 		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
 		response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
 		response.setDateHeader("Expires", 0); // Proxies.
-
-		System.out.println("Cookies: " + cookies.length);
-
 
 		request.getRequestDispatcher("HomePageServlet").forward(request, response);
 	}

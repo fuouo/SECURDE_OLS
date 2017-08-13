@@ -73,9 +73,7 @@ public class ReviewService {
 		try {
 			result = q.runInsertUpdateDelete(query, input);
 			
-			if(result) {
-				MyLogger.getInstance().info("User " + review.getUser().getIdnumber() + " reviewed reading material " + review.getRMID());
-			}
+			MyLogger.getInstance().info("User " + review.getUser().getIdnumber() + " reviewed reading material " + review.getRMID());
 			
 		} catch (SQLException e) {
 			MyLogger.getInstance().severe("Error reviewing reading material " + review.getRMID());

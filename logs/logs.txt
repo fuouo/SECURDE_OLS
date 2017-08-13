@@ -1,0 +1,30 @@
+Aug 11, 2017 2:00:40 PM utils.MyLogger info
+INFO: User 11427329 logged in.
+Aug 11, 2017 2:01:25 PM utils.MyLogger info
+INFO: Searched reading material: Harry Potter
+Aug 11, 2017 2:04:42 PM utils.MyLogger info
+INFO: Searched reading material: Harry Potter
+Aug 11, 2017 2:08:30 PM utils.MyLogger info
+INFO: Searched reading material: Harry Potter
+Aug 11, 2017 2:14:53 PM utils.MyLogger info
+INFO: Searched reading material: Harry Potter
+Aug 11, 2017 2:17:43 PM utils.MyLogger info
+INFO: Searched reading material: Harry Potter
+Aug 11, 2017 2:30:13 PM utils.MyLogger info
+INFO: Searched reading material: Harry Potter
+Aug 11, 2017 2:35:18 PM utils.MyLogger info
+INFO: Searched reading material: Harry Potter
+Aug 11, 2017 2:36:39 PM utils.MyLogger info
+INFO: Searched reading material: Harry Potter
+Aug 11, 2017 2:38:14 PM utils.MyLogger info
+INFO: Searched reading material: Harry Potter
+Aug 11, 2017 2:48:31 PM utils.MyLogger info
+INFO: Searched reading material: Harry Potter
+Aug 11, 2017 2:49:07 PM utils.MyLogger info
+INFO: Searched reading material: Harry Potter
+Aug 11, 2017 2:57:32 PM utils.MyLogger info
+INFO: Searched reading material: Harry Potter
+Aug 11, 2017 2:57:39 PM utils.MyLogger info
+INFO: User 11427329 reserved 111-AAH
+Aug 12, 2017 2:24:01 PM utils.MyLogger info
+INFO: User 19b7fd4fab72c806ad4841e87c4bb61ad72e3862b6b9f2b739627321aed4531d logged out.
