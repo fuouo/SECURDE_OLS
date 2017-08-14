@@ -67,10 +67,33 @@
 	            <div class="form-group">
 	              <label for="rm-type">Type of Reading Material</i></label>
 	              <select id="rm-type" class="form-control form-components-rd" style="width:70%">
-	                <option value="" selected disabled>Choose Collection</option>
-	                <option value="Book">Books</option>
-	                <option value="Thesis">Thesis</option>
-	                 <option value="Magazine">Magazine</option>    
+	                <c:choose>
+	                <c:when test="${reading_material.RMType == 'BOOK'}">
+	               		<option value="BOOK" selected>Books</option>
+	                </c:when>
+	                <c:otherwise>
+	                	<option value="BOOK">Books</option>
+	                </c:otherwise>
+	                </c:choose>
+	                
+	                <c:choose>
+	                <c:when test="${reading_material.RMType == 'THESIS'}">
+	               		<option value="THESIS" selected>Thesis</option>
+	                </c:when>
+	                <c:otherwise>
+	                	<option value="THESIS">Thesis</option>
+	                </c:otherwise>
+	                </c:choose>
+	                
+	                <c:choose>
+	                <c:when test="${reading_material.RMType == 'MAGAZINE'}">
+	               		<option value="MAGAZINE" selected>Books</option>
+	                </c:when>
+	                <c:otherwise>
+	                	<option value="MAGAZINE">Magazines</option>
+	                </c:otherwise>
+	                </c:choose> 
+	                
 	              </select>
 	            </div>
 	            

@@ -90,16 +90,25 @@
 	              <div class="col-md-4"><span class="reserved-status">${i.status}</span></div>
 	              <c:set var="status">${i.status}</c:set>
 	              <c:choose>
-					    <c:when test="${status== 'AVAILABLE' || status == 'BORROWED'}">
-					    	<c:set var="loc">${i.RMID_Location}</c:set>
-					       <div onclick="clickedType('${loc}')" class="col-md-4">
-					       	<button   onclick="clickedType(${i.RMID_Location })" class="reserve-inline btn btn-default">Reserve</button></div>
-					       
-					    </c:when>    
-					    <c:otherwise>
-					        <div class="col-md-4"><button class="reserve-inline btn btn-default disabled">Reserve</button></div>
-					    </c:otherwise>
-				 </c:choose>
+	              <c:when test = "${user_type == 'STUDENT' or user_type == 'FACULTY'}">
+			        	<c:choose>
+						    <c:when test="${status== 'AVAILABLE' || status == 'BORROWED'}">
+						    	<c:set var="loc">${i.RMID_Location}</c:set>
+						        <div onclick="clickedType('${loc}')" class="col-md-4">
+						       		<button   onclick="clickedType(${i.RMID_Location })" class="reserve-inline btn btn-default">Reserve</button>
+						       	</div>
+						       
+						    </c:when>    
+						    <c:otherwise>
+						        <div class="col-md-4"><button class="reserve-inline btn btn-default disabled">Reserve</button></div>
+						    </c:otherwise>
+					 	</c:choose>
+			      </c:when>
+			      <c:otherwise>
+			      		<div class="col-md-4"></div>
+			      </c:otherwise>
+				  </c:choose>
+	              
 	              
 	            </div>
 	          </div>

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import model.RMFilter;
 import model.RMType;
 import model.ReadingMaterial;
+import model.User;
+import service.CookieService;
 import service.ReadingMaterialService;
 import servlet.MasterServlet;
 
@@ -69,6 +71,11 @@ public class DisplayCategoryServlet{
 	    		readingMaterials = ReadingMaterialService.getRMByType(RMType.ALL);
 	    	}
     	}
+    	
+    	User user = CookieService.isUser(request);
+    	if(user != null)
+    		request.getSession().setAttribute(User.COL_USERTYPE, user.getUserType());
+
     	
     	request.getSession().setAttribute("numOfRM", readingMaterials.size());
     	request.getSession().setAttribute(ReadingMaterial.TABLE_RM, readingMaterials);

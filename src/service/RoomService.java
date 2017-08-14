@@ -41,7 +41,7 @@ public class RoomService {
 		try {
 			result = q.runInsertUpdateDelete(query, input);
 			
-			MyLogger.getInstance().info("User " + reserved_room.getUser().getIdnumber() + " reserved room " + reserved_room.getMr_name());
+			MyLogger.getInstance().info("User " + reserved_room.getUser().getIdnumber() + " reserved room " + reserved_room.getMrID());
 			
 		} catch (SQLException e) {
 			MyLogger.getInstance().info("Error reserving room " + reserved_room.getMr_name() + " by User " + reserved_room.getUser().getIdnumber());
