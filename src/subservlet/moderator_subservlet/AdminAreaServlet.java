@@ -38,19 +38,12 @@ public class AdminAreaServlet{
     private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
     	System.out.println("ADMIN AREA POST");
-    	
-    	//TODO: DEBUG PLS. please erase in final
-    	//UserType userType = UserType.ADMIN;
-    	//User user = new User();
-    	//user.setStatus(UserStatus.ACTIVATED);
-    	//user.setUserType(userType);
-    	
+
     	User user = CookieService.isUser(request);
     	
-    	System.out.println(request.getCookies().length);
-    	
-    	if(user!= null && user.getStatus() == UserStatus.PENDING){
-    		request.getRequestDispatcher("/WEB-INF/secured/change-pwd.jsp").forward(request, response);
+    	if(user.getStatus() == UserStatus.PENDING){
+    		request.getSession().setAttribute(User.COL_USERTYPE, user.getUserType());
+    		request.getRequestDispatcher("/AdminLoadSecretQuestionServlet").forward(request, response);
     	}
     	else {
     		String url = request.getParameter("destination");

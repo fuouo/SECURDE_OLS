@@ -61,6 +61,7 @@ public class AnswerSecretQuestionServlet{
 			//if the user entered the correct answer
 			if(answer.equals(user.getSecretAnswer()))
 			{
+				request.getSession().setAttribute("referrer", AnswerSecretQuestionServlet.URL);
 				request.getRequestDispatcher("/EmailServlet").forward(request, response);
 				MyLogger.getInstance().info("User " + user.getIdnumber() + " answered the secret question correctly.");
 			}

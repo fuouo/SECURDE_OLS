@@ -7,10 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
 <body>
-
-
 	<c:choose>
-		
 		<c:when test = "${user_type == 'ADMIN' or user_type == 'LIBSTAFF' or user_type == 'LIBMNGR' }">
 			<jsp:include page="admin-navbar.jsp"/>
 		</c:when>

@@ -14,8 +14,9 @@ $(document).ready(function(){
     
    $("#submit-register-id").click(function(e){
 	   e.preventDefault();
+	   console.log(validateForm());
 	   if(validateForm())	 	
-	   		$("#register-details").submit();
+		   $("#register-details").submit();
 	   
    });
    

@@ -34,6 +34,8 @@ public class HomePageServlet{
 			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
 					userName);
 			
+			request.getSession().setAttribute(User.COL_USERTYPE, user.getUserType());
+			
 			/* REDIRECT TO PROPER PAGES IF ADMIN */
 			if(user.getUserType() == UserType.ADMIN || 
 					user.getUserType() == UserType.LIBMNGR || 

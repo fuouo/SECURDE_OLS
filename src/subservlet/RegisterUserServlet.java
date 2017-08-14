@@ -71,7 +71,8 @@ public class RegisterUserServlet {
     	//Add user to db
     	UserService.registerUser(user);
     	//redirect to sign in page / sign in servlet
-    	request.getRequestDispatcher("SignInSignUpPageServlet").forward(request, response);
+    	request.getSession().setAttribute("message", "Successfully Registered Account");
+    	request.getRequestDispatcher("SuccessPageServlet").forward(request, response);
     	
     	
 	}

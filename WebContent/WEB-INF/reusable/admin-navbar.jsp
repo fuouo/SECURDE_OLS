@@ -82,12 +82,14 @@
       </div>
     </div>
   </nav>
+  
+  <form id="GoToPage" action="AdminAreaServlet" method="post">
+	<input type="hidden" value="" name="destination" id="destination"/>
+  </form>
+  <form id="logoutForm" action="SignOutServlet" method="post"></form>
 </div>
 
-<form id="GoToPage" action="AdminAreaServlet" method="post">
-	<input type="hidden" value="" name="destination" id="destination"/>
-</form>
-<form id="logoutForm" action="SignOutServlet" method="post"></form>
+
 
 </body>
 <script src="js/jquery-3.0.0.min.js"></script>

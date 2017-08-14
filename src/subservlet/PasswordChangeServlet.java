@@ -72,13 +72,14 @@ public class PasswordChangeServlet{
 			user.setPassword(password2);
 			UserService.changePassword(user);
 			
+			UserService.changePasswordToActivateAccount(user);
 			MyLogger.getInstance().info("User " + user.getIdnumber() + " changed password successfully!");
     	}
     	else {
     		MyLogger.getInstance().severe("Password did not match!");
     	}
     	
-    	request.getRequestDispatcher("HomePageServlet").forward(request, response);
+    	request.getRequestDispatcher("StartServlet").forward(request, response);
 	}
     
     public static void process(HttpServletRequest request, HttpServletResponse response, int type) throws ServletException, IOException{

@@ -57,10 +57,10 @@
     </div>
   </nav>
   <form id="meetingRoomForm" action="MeetingRoomPageServlet" method="post"></form>
-<form id="signInForm" action="SignInSignUpPageServlet" method="post"></form>
-<form id="homeForm" action="HomePageServlet" method="post"></form>
-<form id="yourReservationsForm" action="HomePageServlet" method="post"></form>
-<form id="logoutForm" action="SignOutServlet" method="post"></form>
+  <form id="signInForm" action="SignInSignUpPageServlet" method="post"></form>
+  <form id="homeForm" action="HomePageServlet" method="post"></form>
+  <form id="yourReservationsForm" action="DisplayUserReservationServlet" method="post"></form>
+  <form id="logoutForm" action="SignOutServlet" method="post"></form>
 </div>
 
 </body>

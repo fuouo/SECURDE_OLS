@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 	<c:if test = "${first_namelast_name != 'Sign In'}">
-		<meta http-equiv="refresh" content="900;url=./SignOutServlet">
+		<meta http-equiv="refresh" content="30;url=./SignOutServlet">
 	</c:if>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

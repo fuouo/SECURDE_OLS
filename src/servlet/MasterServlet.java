@@ -9,11 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import subservlet.AccountPageServlet;
+import subservlet.AdminLoadSecretQuestionServlet;
 import subservlet.AnswerSecretQuestionServlet;
 import subservlet.CategoryRMServlet;
 import subservlet.DisplayAuthorServlet;
 import subservlet.DisplayCategoryServlet;
 import subservlet.DisplayPublisherServlet;
+import subservlet.DisplayUserReservationServlet;
 import subservlet.EmailServlet;
 import subservlet.HomePageServlet;
 import subservlet.LoadSecretQuestionServlet;
@@ -87,6 +89,7 @@ import subservlet.moderator_subservlet.RegisterModeratorServlet;
 							OverrideReservationRMServlet.URL,
 							OverrideReservationRoomServlet.URL,
 							ExportServlet.URL,
+							AdminLoadSecretQuestionServlet.URL,
 							LoadSecretQuestionServlet.URL,
 							SuccessPageServlet.URL,
 							StartServlet.URL,
@@ -96,6 +99,7 @@ import subservlet.moderator_subservlet.RegisterModeratorServlet;
 							PasswordChangeServlet.URL,
 							NewPasswordServlet.URL,
 							PasswordChangeCodeServlet.URL,
+							DisplayUserReservationServlet.URL
 							})
 
 public class MasterServlet extends HttpServlet {
@@ -234,6 +238,9 @@ public class MasterServlet extends HttpServlet {
 				case NewPasswordServlet.URL:
 					NewPasswordServlet.process(request, response, type);
 					break;
+				case AdminLoadSecretQuestionServlet.URL:
+					AdminLoadSecretQuestionServlet.process(request, response, type);
+					break;
 				case LoadSecretQuestionServlet.URL:
 					LoadSecretQuestionServlet.process(request, response, type);
 					break;
@@ -251,6 +258,9 @@ public class MasterServlet extends HttpServlet {
 					break;
 				case SessionTimeoutOnCloseBrowserServlet.URL:
 					SessionTimeoutOnCloseBrowserServlet.process(request, response, type);
+					break;
+				case DisplayUserReservationServlet.URL:
+					DisplayUserReservationServlet.process(request, response, type);
 					break;
 			}
 			

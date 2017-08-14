@@ -13,6 +13,7 @@ import service.SecretQuestionService;
 import service.UserService;
 import servlet.MasterServlet;
 import utils.Utils;
+import utils.XssSanitizerUtil;
 
 /**
  * Servlet implementation class SignInSignUpPageServlet
@@ -55,15 +56,15 @@ public class RegisterModeratorServlet{
     	
     	// create user object
     	User user = new User();
-    	user.setIdnumber(idNumber);
-    	user.setFirstName(firstname);
-    	user.setMiddleInitial(middleInitial);
-    	user.setLastName(lastname);
-    	user.setEmail(emailAddress);
-    	user.setPassword(password);
+    	user.setIdnumber(XssSanitizerUtil.stripXSS(idNumber));
+    	user.setFirstName(XssSanitizerUtil.stripXSS(firstname));
+    	user.setMiddleInitial(XssSanitizerUtil.stripXSS(middleInitial));
+    	user.setLastName(XssSanitizerUtil.stripXSS(lastname));
+    	user.setEmail(XssSanitizerUtil.stripXSS(emailAddress));
+    	user.setPassword(XssSanitizerUtil.stripXSS(password));
     	user.setBirthdate(Utils.convertStringToDate((bday)));
     	user.setSecretQuestion(secretQuestion);
-    	user.setSecretAnswer(secretAnswer);
+    	user.setSecretAnswer(XssSanitizerUtil.stripXSS(secretAnswer));
     	user.setUserType(UserType.getValue(userType));
     	
     	// add to db

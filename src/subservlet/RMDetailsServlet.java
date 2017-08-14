@@ -31,28 +31,19 @@ public class RMDetailsServlet{
        
     public RMDetailsServlet() {
         super();
-        // TODO Auto-generated constructor stub
         
     }
 
     private static void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
     	System.out.println("RM SEARCH RESULTS PAGE GET");
     	request.getRequestDispatcher("HomePageServlet").forward(request, response);
 	}
 
     private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-    	// TODO Auto-generated method stub
     	System.out.println("RESERVE RM PAGE POST");
     	
     	User user = CookieService.isUser(request);
     	
-    	//TODO: THIS IS FOR DEBUGGING. PLEASE ERASE THIS!!
-    	//User user = null;s
-    	//user = new User();
-    	//user.setIdnumber("11400366");
-    	//user.setUserType(UserType.LIBMNGR);
     	
     	//If user is logged in		
 		if(user!=null)

@@ -39,33 +39,9 @@
 
       <div id="overlay-screen" style="display: none;"></div>
 
-      <div id="confirm-reservation" class="pop-up" style="display: none;">
-        <h3 align="center">Confirm Reservation?</h3>
-        <div align="center" class="divider"></div>
-
-        <h3>Reserving <a href="rm-details.html" class="title">Title</a></h3>
-
-        <div style="padding: 0 20%;" align="left">
-          <b>Reservation Date</b>: <span class="confirm-reserve-date">07 / 02 / 2017</span><br>
-          <b>Anticipated Return Date</b>: <span class="confirm-return-date">07 / 09 / 2017</span>
-        </div>
-
-        <br>
-
-        <div class="row">
-          <div class="col-md-1"></div>
-          <div class="col-md-2"></div>
-          <div class="col-md-2"><button id="submit-reserve" class="btn btn-default">Confirm</button></div>
-          <div class="col-md-1"></div>
-          <div class="col-md-2"><button id="cancel-reserve" class="btn btn-default">Cancel</button></div>
-          <div class="col-md-2"></div>
-          <div class="col-md-1"></div>
-
-        </div>
-      </div>
 
       <div class="rm-results">
-      <b id="results-found" style="margin: -1px;" >${numOfRM} results found</b>
+      <b class="results-found" style="margin: -1px;" >${numOfRM} results found</b>
       <c:forEach items="${reading_material}" var = "i" >
       <!-- START -->
       <div class="row rm-gen-details">
@@ -87,19 +63,37 @@
 	          <div class="location-status">
 	            <div class="row">
 	              <div class="col-md-4"><span class="location">${i.RMID_Location}</span></div>
-	              <div class="col-md-4"><span class="reserved-status">${i.status}</span></div>
+	              <c:choose>
+		              <c:when test="${i.status == 'AVAILABLE'}">
+		              	<div class="col-md-4"><span class="available-status">${i.status}</span></div>
+		              </c:when>
+		              <c:when test="${i.status == 'RESERVED'}">
+		              	<div class="col-md-4"><span class="reserved-status">${i.status}</span></div>
+		              </c:when>
+		              <c:when test="${i.status == 'BORROWED'}">
+		              	<div class="col-md-4"><span class="borrowed-status">${i.status}</span></div>
+		              </c:when>
+	              </c:choose>
 	              <c:set var="status">${i.status}</c:set>
 	              <c:choose>
-					    <c:when test="${status== 'AVAILABLE' || status == 'BORROWED'}">
+	              <c:when test = "${user_type == 'STUDENT' or user_type == 'FACULTY'}">
+		        	<c:choose>
+					    <c:when test="${status== 'AVAILABLE' or status == 'BORROWED'}">
 					    	<c:set var="loc">${i.RMID_Location}</c:set>
-					       <div onclick="clickedType('${loc}')" class="col-md-4">
-					       	<button   onclick="clickedType(${i.RMID_Location })" class="reserve-inline btn btn-default">Reserve</button></div>
-					       
+					        <div class="col-md-4">
+					       		<button id="${i.RMID_Location}" class="reserve-inline btn btn-default">Reserve</button>
+					       	</div>
 					    </c:when>    
 					    <c:otherwise>
 					        <div class="col-md-4"><button class="reserve-inline btn btn-default disabled">Reserve</button></div>
 					    </c:otherwise>
-				 </c:choose>
+				 	</c:choose>
+			      </c:when>
+			      <c:otherwise> <!--  if moderator, shouldn't be able to reserve -->
+			      	<div class="col-md-4"></div>
+			      </c:otherwise>
+				  </c:choose>
+	              
 	              
 	            </div>
 	          </div>

@@ -9,14 +9,16 @@ function view_details(id)
 }
 
 $("#edit-rm-btn").click(function(e){
-	  e.preventDefault();
-	  $("#content-edit-book").fadeIn("fast", function(){});
-	  $(".rm-gen-details").fadeOut("fast", function(){});
-	  $(".rm-reviews").fadeOut("fast", function(){});
-	})
+  e.preventDefault();
+  $("#content-edit-book").fadeIn("fast", function(){});
+  $(".rm-gen-details").fadeOut("fast", function(){});
+  $(".rm-reviews").fadeOut("fast", function(){});
+});
 
-	$("#submit-edit-rm").click(function(e){
-	  //temporary
-	  location.reload();
+$("#submit-edit-rm").click(function(e){
+  e.preventDefault();
+  alert(1);
+  $("#newRMType").val($("#rm-type").find(":selected").val());
+  $("#EditRMDetails").submit();
 
-	});
+});

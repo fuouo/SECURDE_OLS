@@ -66,8 +66,6 @@
 	        	style="margin-left: 0; margin-right: 0;" required>
 	        	<!-- STUDENT, FACULTY, ADMIN, LIBSTAFF, LIBMNGR -->
 	        	<option value="" selected disabled>Select User Type</option>
-	        	<option value="STUDENT">Student</option>
-	        	<option value="FACULTY">Faculty</option>
 	        	<option value="ADMIN">Administrator</option>
 	        	<option value="LIBSTAFF">Library Staff</option>
 	        	<option value="LIBMNGR">Library Manager</option>
@@ -90,21 +88,22 @@
 	            <input type="text" class="form-control form-components-rd" name="last_name" id="last-name" placeholder="Dela Cruz " required>
 	          </div>
 	        </div>
+		    
+		    <div class="row" align="center">
+	         <label for="password" class="form-label col-sm-2">Password</label>
+	         	<input placeholder="Password ..." class="form-control form-components-rd" type="password" id="password" name="passwordHash" style="width:50%" required/>
+          		<span id="passstrength"></span>
+          		<span id="passwordError"></span>
+          	</div>
+          
+          	<label for="password-rules">Password Rules:</label>
+          	<ul>
+          		<li>Must have at least 8 characters long</li>
+          		<li>Must have at least one capital letter</li>
+          		<li>Must have at least one number</li>
+          		<li>Must have at least one special character</li>
+          	</ul>
 	
-			<label class="text-muted">Automated Password</label>
-		    <div class="input-group">
-		      <input type="text" class="form-control form-components-rd" id="auto-pass" name="passwordHash"
-		      rel="gp" data-size="6" data-character-set="a-z,A-Z,0-9,#" style="width:70%">
-		      <button type="button" class="btn btn-default getNewPass button-w-icon-wo-bg">
-		      	<i class="flaticon-reload"></i>
-		      </button>
-		    </div>
-	
-			<!-- 
-	        <label for="password">Password</label>
-	        <input type="password" class="form-control form-components-rd" name="passwordHash" id="password" placeholder="Password" style="width:70%" required>
-	         -->
-	        
 	        <label for="email-address">Email Address</label>
 	        <input type="email" class="form-control form-components-rd" name="email_address" id="email-address" placeholder="Email" style="width:70%" required>
 	    
@@ -144,11 +143,14 @@
 <script src="js/jquery-3.0.0.min.js"></script>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="js/app.js"></script>				
+<script src="vitalets-bootstrap-datepicker-c7af15b/js/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
 <!-- //////////////////// -->
-<script src="vitalets-bootstrap-datepicker-c7af15b/js/bootstrap-datepicker.js"></script>
 <script src="js/manage-accounts.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/bootbox.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/PasswordGenerator.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/register.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/password-meter.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/input-validation.js" type="text/javascript" charset="utf-8"></script>
 
 
 </body>

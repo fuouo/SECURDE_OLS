@@ -46,7 +46,7 @@
 
          <div class="row">
            <br><br>
-           <form action="HomePageServlet" method="post">
+           <form action="StartServlet" method="post">
            		<button type="submit" class="btn btn-default">Return to Home page</button>
            </form>
    	     </div>
