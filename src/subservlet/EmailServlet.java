@@ -60,6 +60,7 @@ public class EmailServlet{
 			String refererURI = new URI(request.getHeader("referer")).getPath();
 			System.out.println("[FROM]" + refererURI);
 			
+			//TODO: What is this for? :o
 			//FORGOT PASSWORD
             if(refererURI.contains("LoadSecretQuestionServlet"))
             {
