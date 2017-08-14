@@ -41,7 +41,7 @@
       <!-- END OF SEARCH BAR -->  
       
       <div align="center" id="content-forgotten">
-      <h2>Forgot your Password?</h2>
+      <h2>Change Your Password</h2>
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
 			

@@ -41,9 +41,8 @@ public class AdminAreaServlet{
 
     	User user = CookieService.isUser(request);
     	
-    	System.out.println(request.getCookies().length);
-    	
-    	if(user!= null && user.getStatus() == UserStatus.PENDING){
+    	if(user.getStatus() == UserStatus.PENDING){
+    		request.getSession().setAttribute(User.COL_USERTYPE, user.getUserType());
     		request.getRequestDispatcher("/AdminLoadSecretQuestionServlet").forward(request, response);
     	}
     	else {

@@ -57,12 +57,13 @@ public class EmailServlet{
 			System.out.println(user.getFirstName() + " " + user.getLastName());
 			System.out.println("Answer: " + answer);
 			System.out.println("Right Answer: " + user.getSecretAnswer());
-			String refererURI = new URI(request.getHeader("referer")).getPath();
+			//String refererURI = new URI(request.getHeader("referer")).getPath();
+			String refererURI = (String)request.getSession().getAttribute("referrer");
 			System.out.println("[FROM]" + refererURI);
 			
 			//TODO: What is this for? :o
 			//FORGOT PASSWORD
-            if(refererURI.contains("LoadSecretQuestionServlet"))
+            if(refererURI.contains("LoadSecretQuestionServlet") || refererURI.contains(AnswerSecretQuestionServlet.URL))
             {
             	final String username = "securde.shs.ols@gmail.com";
        	      	final String password = "securdeshsols";
