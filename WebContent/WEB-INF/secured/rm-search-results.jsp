@@ -39,30 +39,6 @@
 
       <div id="overlay-screen" style="display: none;"></div>
 
-      <div id="confirm-reservation" class="pop-up" style="display: none;">
-        <h3 align="center">Confirm Reservation?</h3>
-        <div align="center" class="divider"></div>
-
-        <h3>Reserving <a href="rm-details.html" class="title">Title</a></h3>
-
-        <div style="padding: 0 20%;" align="left">
-          <b>Reservation Date</b>: <span class="confirm-reserve-date">07 / 02 / 2017</span><br>
-          <b>Anticipated Return Date</b>: <span class="confirm-return-date">07 / 09 / 2017</span>
-        </div>
-
-        <br>
-
-        <div class="row">
-          <div class="col-md-1"></div>
-          <div class="col-md-2"></div>
-          <div class="col-md-2"><button id="submit-reserve" class="btn btn-default">Confirm</button></div>
-          <div class="col-md-1"></div>
-          <div class="col-md-2"><button id="cancel-reserve" class="btn btn-default">Cancel</button></div>
-          <div class="col-md-2"></div>
-          <div class="col-md-1"></div>
-
-        </div>
-      </div>
 
       <div class="rm-results">
       <b class="results-found" style="margin: -1px;" >${numOfRM} results found</b>

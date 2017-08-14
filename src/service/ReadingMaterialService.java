@@ -1060,6 +1060,7 @@ public class ReadingMaterialService {
 		String query = "\nSELECT "
 				+ ReadingMaterial.COL_RMID + ", "
 				+ ReadingMaterial.COL_TITLE + ", "
+				+ ReadingMaterial.COL_DATERESERVED + ", "
 				+ ReadingMaterial.COL_DATEBORROWED + ", "
 				+ ReadingMaterial.COL_DATERETURNED + ", "
 				+ ReadingMaterial.COL_LIBSTATUS + "\n"
@@ -1083,6 +1084,7 @@ public class ReadingMaterialService {
 				rm = new ReadingMaterial();
 				rm.setRMID_Location(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_RMID)));
 				rm.setTitle(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_TITLE)));
+				rm.setDateReserved(r.getDate(ReadingMaterial.COL_DATERESERVED));
 				rm.setDateBorrowed(r.getDate(ReadingMaterial.COL_DATEBORROWED));
 				rm.setDateReturned(r.getDate(ReadingMaterial.COL_DATERETURNED));
 				rm.setStatus(RMStatus.getStockValue(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_LIBSTATUS))));
@@ -1113,6 +1115,7 @@ public class ReadingMaterialService {
 		String query = "\nSELECT "
 				+ ReadingMaterial.COL_RMID + ", "
 				+ ReadingMaterial.COL_TITLE + ", "
+				+ ReadingMaterial.COL_DATERESERVED + ", "
 				+ ReadingMaterial.COL_DATEBORROWED + ", "
 				+ ReadingMaterial.COL_DATERETURNED + ", "
 				+ ReadingMaterial.COL_LIBSTATUS + "\n"
@@ -1136,9 +1139,9 @@ public class ReadingMaterialService {
 				
 				rm.setRMID_Location(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_RMID)));
 				rm.setTitle(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_TITLE)));
+				rm.setDateReserved(r.getDate(ReadingMaterial.COL_DATERESERVED));
 				rm.setDateBorrowed(r.getDate(ReadingMaterial.COL_DATEBORROWED));
 				rm.setDateReturned(r.getDate(ReadingMaterial.COL_DATERETURNED));
-				rm.setTags(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_TAG)));
 				rm.setStatus(RMStatus.getStockValue(XssSanitizerUtil.stripXSS(r.getString(ReadingMaterial.COL_LIBSTATUS))));
 				
 
