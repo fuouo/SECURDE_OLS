@@ -2,16 +2,13 @@ package subservlet;
 
 import java.io.IOException;
 
-import com.sun.org.apache.xerces.internal.util.URI;
-
-import model.User;
-import service.CookieService;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.User;
+import service.UserService;
 import servlet.MasterServlet;
 import utils.MyLogger;
 
@@ -38,6 +35,8 @@ public class SignOutServlet{
 	private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("SignOutServlet POST");
+		
+		User user = null;
 
 		// get all cookies
 		Cookie[] cookies = request.getCookies();
@@ -49,14 +48,15 @@ public class SignOutServlet{
 			// delete all cookies
 			for(int i = 0; i < cookies.length; i ++) {
 				if(cookies[i].getName().equals(User.COL_IDNUMBER)) {
-
-					MyLogger.getInstance().info("User " + cookies[i].getValue() + " logged out.");
+					user = UserService.viewProfileUser(cookies[i].getValue());
 					Cookie cookie = cookies[i];
 					cookie.setMaxAge(0);
 					cookie.setValue(null);
 					response.addCookie(cookie);
 				}
 			}
+			
+			MyLogger.getInstance().info("User " + user.getIdnumber() + " logged out.");
 		}
 
 		// invalidate session
@@ -67,7 +67,7 @@ public class SignOutServlet{
 		response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
 		response.setDateHeader("Expires", 0); // Proxies.
 
-		request.getRequestDispatcher("HomePageServlet").forward(request, response);
+		request.getRequestDispatcher("StartServlet").forward(request, response);
 	}
 
 	public static void process(HttpServletRequest request, HttpServletResponse response, int type) throws ServletException, IOException{

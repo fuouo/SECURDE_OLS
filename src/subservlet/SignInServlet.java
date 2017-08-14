@@ -13,6 +13,7 @@ import model.UserType;
 import service.CookieService;
 import service.UserService;
 import servlet.MasterServlet;
+import utils.MyLogger;
 import utils.Utils;
 import utils.XssSanitizerUtil;
 
@@ -78,24 +79,17 @@ public class SignInServlet {
 
 			System.out.println(UserService.getUserType(user.getIdnumber()));
 
-			if(UserService.getUserType(user.getIdnumber()) == UserType.STUDENT || 
-					UserService.getUserType(user.getIdnumber()) == UserType.FACULTY) {
+			request.setAttribute("referrer", refererURI);
+			request.setAttribute("ErrMessage", "");
+			request.getRequestDispatcher("/StartServlet").forward(request, response);
 
-				request.setAttribute("referrer", refererURI);
-				/*if (refererURI.contains("RMSearchResultsPageServlet"))
-					request.getRequestDispatcher("/RMSearchResultsPageServlet").forward(request, response);
-				else*/
-				request.setAttribute("ErrMessage", "");
-				request.getRequestDispatcher("/HomePageServlet").forward(request, response);
-
-			} else {
-				request.getRequestDispatcher("/AdminAreaServlet").forward(request, response);
-			}
+			
 		}
 		else{
 			UserStatus userStatus = UserService.getUserStatus(idNumber);
 			
 			if(userStatus != null && userStatus.equals(UserStatus.LOCKOUT)) {
+				MyLogger.getInstance().warn("Attempted to log in a locked out account for " + idNumber);
 				request.getRequestDispatcher("/WEB-INF/error/error-lock-out.jsp").forward(request, response);
 				
 			} else {

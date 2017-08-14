@@ -13,6 +13,7 @@ import model.UserType;
 import service.CookieService;
 import service.UserService;
 import servlet.MasterServlet;
+import utils.MyLogger;
 
 /**
  * Servlet implementation class SignInSignUpPageServlet
@@ -46,7 +47,9 @@ public class AdminAreaServlet{
     	
     	User user = CookieService.isUser(request);
     	
-    	if(user.getStatus() == UserStatus.PENDING){
+    	System.out.println(request.getCookies().length);
+    	
+    	if(user!= null && user.getStatus() == UserStatus.PENDING){
     		request.getRequestDispatcher("/WEB-INF/secured/change-pwd.jsp").forward(request, response);
     	}
     	else {
@@ -85,6 +88,7 @@ public class AdminAreaServlet{
     			System.out.println("Unauthorized User. Redirect to error page");
     			request.getRequestDispatcher("/WEB-INF/error/error-unauthorized.jsp").forward(request, response);
     			//request.getRequestDispatcher("/HomePageServlet").forward(request, response);
+    			MyLogger.getInstance().severe("Unauthorized user " + user.getIdnumber() + " attempted to access admin homepage.");
     		}
     	}
     	

@@ -22,6 +22,7 @@ import service.ReviewService;
 import service.SecretQuestionService;
 import service.UserService;
 import servlet.MasterServlet;
+import utils.MyLogger;
 import utils.Utils;
 
 /**
@@ -61,10 +62,12 @@ public class AnswerSecretQuestionServlet{
 			if(answer.equals(user.getSecretAnswer()))
 			{
 				request.getRequestDispatcher("/EmailServlet").forward(request, response);
-				//
+				MyLogger.getInstance().info("User " + user.getIdnumber() + " answered the secret question correctly.");
 			}
-			else
-				System.out.println("NOPE :( ");
+			else {
+				MyLogger.getInstance().severe("User " + user.getIdnumber() + " answered the secret question incorrectly.");
+    			request.getRequestDispatcher("/WEB-INF/error/error-default.jsp").forward(request, response);
+			}
 			
 		}
 	}

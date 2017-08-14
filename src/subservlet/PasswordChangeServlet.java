@@ -32,6 +32,7 @@ import service.ReviewService;
 import service.SecretQuestionService;
 import service.UserService;
 import servlet.MasterServlet;
+import utils.MyLogger;
 import utils.Utils;
 
 public class PasswordChangeServlet{
@@ -65,17 +66,18 @@ public class PasswordChangeServlet{
     		String idNumber = request.getParameter(User.COL_IDNUMBER);
     		System.out.println("Password Match");
     		System.out.println(idNumber + "Id Number");
-    		try {
-    			String idnumber_hashed = Utils.get_SHA_256_SecureString(idNumber, "");
-				User user = UserService.viewProfileUser(idnumber_hashed);
-				user.setPassword(password2);
-				UserService.changePassword(user);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
+
+			String idnumber_hashed = Utils.get_SHA_256_SecureString(idNumber, "");
+			User user = UserService.viewProfileUser(idnumber_hashed);
+			user.setPassword(password2);
+			UserService.changePassword(user);
+			
+			MyLogger.getInstance().info("User " + user.getIdnumber() + " changed password successfully!");
     	}
-    	else
-    		System.out.println("Password did not match");
+    	else {
+    		MyLogger.getInstance().severe("Password did not match!");
+    	}
+    	
     	request.getRequestDispatcher("HomePageServlet").forward(request, response);
 	}
     

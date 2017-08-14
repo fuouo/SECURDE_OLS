@@ -1,30 +1,52 @@
-Aug 11, 2017 2:00:40 PM utils.MyLogger info
-INFO: User 11427329 logged in.
-Aug 11, 2017 2:01:25 PM utils.MyLogger info
-INFO: Searched reading material: Harry Potter
-Aug 11, 2017 2:04:42 PM utils.MyLogger info
-INFO: Searched reading material: Harry Potter
-Aug 11, 2017 2:08:30 PM utils.MyLogger info
-INFO: Searched reading material: Harry Potter
-Aug 11, 2017 2:14:53 PM utils.MyLogger info
-INFO: Searched reading material: Harry Potter
-Aug 11, 2017 2:17:43 PM utils.MyLogger info
-INFO: Searched reading material: Harry Potter
-Aug 11, 2017 2:30:13 PM utils.MyLogger info
-INFO: Searched reading material: Harry Potter
-Aug 11, 2017 2:35:18 PM utils.MyLogger info
-INFO: Searched reading material: Harry Potter
-Aug 11, 2017 2:36:39 PM utils.MyLogger info
-INFO: Searched reading material: Harry Potter
-Aug 11, 2017 2:38:14 PM utils.MyLogger info
-INFO: Searched reading material: Harry Potter
-Aug 11, 2017 2:48:31 PM utils.MyLogger info
-INFO: Searched reading material: Harry Potter
-Aug 11, 2017 2:49:07 PM utils.MyLogger info
-INFO: Searched reading material: Harry Potter
-Aug 11, 2017 2:57:32 PM utils.MyLogger info
-INFO: Searched reading material: Harry Potter
-Aug 11, 2017 2:57:39 PM utils.MyLogger info
-INFO: User 11427329 reserved 111-AAH
-Aug 12, 2017 2:24:01 PM utils.MyLogger info
-INFO: User 19b7fd4fab72c806ad4841e87c4bb61ad72e3862b6b9f2b739627321aed4531d logged out.
+Aug 14, 2017 2:05:42 PM utils.MyLogger warn
+WARNING: Brute force logged in for the account of 11427493
+Aug 14, 2017 2:07:27 PM utils.MyLogger info
+INFO: User 11427493 logged in.
+Aug 14, 2017 2:08:43 PM utils.MyLogger info
+INFO: User 11427493logged out.
+Aug 14, 2017 2:09:56 PM utils.MyLogger info
+INFO: User 11400355 logged in.
+Aug 14, 2017 2:10:01 PM utils.MyLogger info
+INFO: User 11400355 logged in.
+Aug 14, 2017 2:10:20 PM utils.MyLogger info
+INFO: User 11400355 reserved 444-ABC
+Aug 14, 2017 2:11:10 PM utils.MyLogger info
+INFO: User 11400355logged out.
+Aug 14, 2017 2:11:20 PM utils.MyLogger info
+INFO: User 11427493 logged in.
+Aug 14, 2017 2:12:57 PM utils.MyLogger info
+INFO: Override reading material successful!
+Aug 14, 2017 2:26:54 PM utils.MyLogger info
+INFO: User 11427493 logged out.
+Aug 14, 2017 2:58:33 PM utils.MyLogger warn
+WARNING: Attempted to log in a locked out account for 11400366
+Aug 14, 2017 2:59:35 PM utils.MyLogger info
+INFO: User 11400366 logged in.
+Aug 14, 2017 3:01:08 PM utils.MyLogger info
+INFO: User 11400366 logged out.
+Aug 14, 2017 3:01:16 PM utils.MyLogger info
+INFO: User 11400366 logged in.
+Aug 14, 2017 3:02:54 PM utils.MyLogger info
+INFO: User 11400366 logged out.
+Aug 14, 2017 3:03:05 PM utils.MyLogger info
+INFO: User 11400355 logged in.
+Aug 14, 2017 3:10:47 PM utils.MyLogger info
+INFO: User 11400355 logged out.
+Aug 14, 2017 3:10:52 PM utils.MyLogger info
+INFO: User 11400355 logged in.
+Aug 14, 2017 3:10:54 PM utils.MyLogger info
+INFO: User 11400355 logged out.
+Aug 14, 2017 3:10:59 PM utils.MyLogger info
+INFO: User 11400366 logged in.
+Aug 14, 2017 3:13:33 PM utils.MyLogger info
+INFO: User 11400366 logged out.
+Aug 14, 2017 3:15:26 PM utils.MyLogger info
+INFO: User 11400355 logged in.
+Aug 14, 2017 3:15:33 PM utils.MyLogger info
+INFO: User 11400355 reserved room null
+Aug 14, 2017 3:15:36 PM utils.MyLogger info
+INFO: User 11400355 reserved room null
+Aug 14, 2017 3:15:41 PM utils.MyLogger info
+INFO: User 11400355 logged out.
+Aug 14, 2017 3:43:45 PM utils.MyLogger info
+INFO: User 11455777 logged in.

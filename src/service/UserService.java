@@ -39,10 +39,10 @@ public class UserService {
 		try {
 			result = q.runInsertUpdateDelete(query, input);
 			
-			MyLogger.getInstance().info("User " + user.getIdnumber() + " created an account.");
+			MyLogger.getInstance().info(user.getUserType() + " " + user.getIdnumber() + " created an account.");
 			
 		} catch (SQLException e) {
-			MyLogger.getInstance().severe("Error creating an account for " + user.getIdnumber());
+			MyLogger.getInstance().warn("Error creating an account for " + user.getIdnumber());
 			
 			e.printStackTrace();
 		} finally {
@@ -95,10 +95,10 @@ public class UserService {
 
 			result = q.runSQLEvent(query_event, input);
 			
-			MyLogger.getInstance().info("User " + user.getIdnumber() + " created a moderator account.");
+			MyLogger.getInstance().info(user.getUserType() + " " + user.getIdnumber() + " created an account.");
 
 		} catch (SQLException e) {
-			MyLogger.getInstance().severe("Error creating an account for " + user.getIdnumber());
+			MyLogger.getInstance().warn("Error creating an account for " + user.getIdnumber());
 			e.printStackTrace();
 		} finally {
 			try {
@@ -151,12 +151,14 @@ public class UserService {
 				input.clear();
 				input.add(id_number);
 				input.add(password);
+				
+				System.out.println("Status: " + status);
 
 				r2 = q.runQuery(query_select, input);
 
 				// login is successful
-				if(r2.next()) {
-
+				
+				if(r2.next() && (status == UserStatus.ACTIVATED || status == UserStatus.PENDING)) {
 					// create user
 					user = new User();
 					user.setIdnumber(XssSanitizerUtil.stripXSS(id_number));
@@ -177,7 +179,7 @@ public class UserService {
 					if(status == UserStatus.ACTIVATED) {
 						// login attempt may be brute force
 						isBruteForce = true;
-						MyLogger.getInstance().info("Brute force logged in for " + id_number);
+						MyLogger.getInstance().warn("Login error: Incorrect password for " + id_number);
 					}
 				}
 
@@ -427,7 +429,7 @@ public class UserService {
 			MyLogger.getInstance().info("Changed password for " + user.getIdnumber());
 			
 		} catch (SQLException e) {
-			MyLogger.getInstance().severe("Error changing password for " + user.getIdnumber());
+			MyLogger.getInstance().warn("Error changing password for " + user.getIdnumber());
 			e.printStackTrace();
 		} finally {
 			try {
@@ -462,7 +464,7 @@ public class UserService {
 			MyLogger.getInstance().info("Activated account of " + user.getIdnumber());
 			
 		} catch (SQLException e) {
-			MyLogger.getInstance().severe("Error activating account.");
+			MyLogger.getInstance().warn("Error activating account.");
 			
 			e.printStackTrace();
 		} finally {
@@ -478,8 +480,6 @@ public class UserService {
 
 	// get all locked accounts
 	public static ArrayList<User> getLockedAccounts() {
-		
-		MyLogger.getInstance().info("Getting locked accounts");
 		
 		ArrayList<User> lockedAccounts = new ArrayList<>();
 		User user = null;
@@ -511,7 +511,7 @@ public class UserService {
 			}
 
 		} catch (SQLException e) {
-			MyLogger.getInstance().severe("Error getting locked accounts");
+			MyLogger.getInstance().warn("Error getting locked accounts");
 			e.printStackTrace();
 		} finally {
 			try {
@@ -547,7 +547,7 @@ public class UserService {
 			MyLogger.getInstance().info("Successfully locked account for " + idnumber);
 			
 		} catch (SQLException e) {
-			MyLogger.getInstance().severe("Error unlocking account for " + idnumber);
+			MyLogger.getInstance().warn("Error unlocking account for " + idnumber);
 			e.printStackTrace();
 		} finally {
 			try {

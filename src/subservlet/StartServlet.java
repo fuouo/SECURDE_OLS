@@ -26,17 +26,21 @@ public class StartServlet{
     	
     	User user = CookieService.isUser(request);
     	
-    	if(user!=null) {
-    		if(UserService.getUserType(user.getIdnumber()) == UserType.ADMIN ||
-        			UserService.getUserType(user.getIdnumber()) == UserType.LIBSTAFF || 
-        			UserService.getUserType(user.getIdnumber()) == UserType.LIBMNGR) {
-    			request.getSession().setAttribute("destination", "default");
-        		request.getRequestDispatcher("/AdminAreaServlet").forward(request, response);
-        	} else {
-        		request.getRequestDispatcher("/HomePageServlet").forward(request, response);
-        	}
-    	} else {
-    		request.getRequestDispatcher("/HomePageServlet").forward(request, response);
+    	try{
+	    	if(user!=null) {
+	    		if(UserService.getUserType(user.getIdnumber()) == UserType.ADMIN ||
+	        			UserService.getUserType(user.getIdnumber()) == UserType.LIBSTAFF || 
+	        			UserService.getUserType(user.getIdnumber()) == UserType.LIBMNGR) {
+	    			request.getSession().setAttribute("destination", "default");
+	        		request.getRequestDispatcher("/AdminAreaServlet").forward(request, response);
+	        	} else {
+	        		request.getRequestDispatcher("/HomePageServlet").forward(request, response);
+	        	}
+	    	} else {
+	    		request.getRequestDispatcher("/HomePageServlet").forward(request, response);
+	    	}
+    	}catch(Exception e){
+    		response.sendRedirect("StartServlet");
     	}
 	}
     
@@ -46,13 +50,18 @@ public class StartServlet{
     	
     	User user = CookieService.isUser(request);
     	
-    	if(UserService.getUserType(user.getIdnumber()) == UserType.ADMIN ||
-    			UserService.getUserType(user.getIdnumber()) == UserType.LIBSTAFF || 
-    			UserService.getUserType(user.getIdnumber()) == UserType.LIBMNGR) {
-    		request.getSession().setAttribute("destination", "default");
-			request.getRequestDispatcher("/AdminAreaServlet").forward(request, response);
-    	} else {
-    		request.getRequestDispatcher("/HomePageServlet").forward(request, response);
+    	
+    	try{
+	    	if(UserService.getUserType(user.getIdnumber()) == UserType.ADMIN ||
+	    			UserService.getUserType(user.getIdnumber()) == UserType.LIBSTAFF || 
+	    			UserService.getUserType(user.getIdnumber()) == UserType.LIBMNGR) {
+	    		request.getSession().setAttribute("destination", "default");
+				request.getRequestDispatcher("/AdminAreaServlet").forward(request, response);
+	    	} else {
+	    		request.getRequestDispatcher("/HomePageServlet").forward(request, response);
+	    	}
+    	}catch(Exception e){
+    		response.sendRedirect("StartServlet");
     	}
 	}
 	

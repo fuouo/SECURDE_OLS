@@ -34,6 +34,7 @@ import service.ReviewService;
 import service.SecretQuestionService;
 import service.UserService;
 import servlet.MasterServlet;
+import utils.MyLogger;
 
 /**
  * Servlet implementation class LoadSecretQuestionServlet
@@ -74,11 +75,13 @@ public class PasswordChangeCodeServlet{
     	
     	if(code.equals(inputCode)){
     		System.out.println("CODE MATCH");
+    		MyLogger.getInstance().info("Verification code correct.");
     		request.setAttribute(User.COL_IDNUMBER, idNumber);
     		request.getRequestDispatcher("/WEB-INF/secured/change-pwd.jsp").forward(request, response);
     	}
     	else{
     		System.out.println("CODE DID NOT MATCH");
+    		MyLogger.getInstance().severe("Verification code incorrect.");
     		request.getRequestDispatcher("/HomePageServlet").forward(request, response);
     	}
 	}

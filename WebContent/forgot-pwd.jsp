@@ -57,7 +57,7 @@
                 </div>
               </div>
 			</form>
-		<%-- 		<c:set var="id_number1">${id_number}</c:set> --%>
+			
 			<form class="form-horizontal" id="secret-question" style="display:none" action="AnswerSecretQuestionServlet" method = "POST">
               <div>
              	 <input type="hidden" name="id_number_ans" id="idnumber2" value="${id_number_ans}">

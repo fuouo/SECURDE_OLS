@@ -7,17 +7,13 @@
 
 function clickedType(id)
 {
-	alert(1);
 //	$("#confirm-reservation").fadeIn("fast", function(){});
 //	$("#overlay-screen").fadeIn("fast", function(){});
 	
 	submitReservation(id);
 }
 
-function submitReservation(id){
-	
-	alert(2);
-	
+function submitReservation(id){	
 	 console.log("hahaha " + id);
  	$("#locationID").val(id);
  	$("#locationID").text(id);

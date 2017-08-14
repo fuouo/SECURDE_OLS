@@ -10,6 +10,7 @@ import model.User;
 import service.SecretQuestionService;
 import service.UserService;
 import servlet.MasterServlet;
+import utils.MyLogger;
 import utils.Utils;
 
 /**
@@ -48,6 +49,8 @@ public class LoadSecretQuestionServlet{
 					SecretQuestionService.getSecretQuestionOfUser((Integer.parseInt(idNumber))).getQuestion());
 			request.setAttribute(User.COL_IDNUMBER+"_ans", 
 					user.getIdnumber());
+			
+			MyLogger.getInstance().info("User " + user.getIdnumber() + " tries to remember his/her forgotten password.");
 		}
 		
 		request.getRequestDispatcher("/forgot-pwd.jsp").forward(request, response);
