@@ -52,9 +52,6 @@
       
       <div id="overlay-screen" style="display: none;"></div>
       
-      <!-- SEARCH BAR -->
-      <jsp:include page="../reusable/search-bar-toggable.jsp"/>    
-      <!-- END OF SEARCH BAR -->  
 	
 	  <c:choose>
 	  	<c:when test="${canEdit == 'true'}">
@@ -158,8 +155,8 @@
             <div class="col-md-3"></div>
             <div class="col-md-3">
             <c:choose>
-              <c:when test="${reading_material.status == 'BORROWED' or reading_material.status == 'AVAILABLE'}">
-            	<u>Returned By: </u>
+              <c:when test="${reading_material.status == 'BORROWED' or reading_material.status == 'RESERVED'}">
+            	<u>Anticipated Return Date: </u>
               </c:when>
             </c:choose>
             </div></b>
@@ -169,27 +166,30 @@
               <div class="col-md-3"><span class="location">${reading_material.RMID_Location}</span></div>
               <div class="col-md-3"><span class="available-status">${reading_material.status}</span></div>
               <c:choose>
-              	<c:when test="${canEdit =='true'}">
+              	<c:when test="${canEdit =='true'}"> <!-- if can edit -->
               		<div class="col-md-3"></div>
               		<div class="col-md-3"></div>
               	</c:when>
-			    <c:when test="${reading_material.status == 'BORROWED'}">
-			      <div onclick="clickedType('${loc}')" class="col-md-3"><button onclick="clickedType(${reading_material.RMID_Location })" class="reserve-inline btn btn-default">Reserve</button></div>
-			      <div class="col-md-3">
-			      	<div class="col-md-3"><span class="availability-date"></span>${reading_material.strDateAvailable }</div>
-			      </div>
-			    </c:when>
-			    <c:when test="${reading_material.status == 'AVAILABLE'}">
-			      <!-- <div onclick="clickedType('${loc}')" class="col-md-3"> -->
-			      <button onclick="submitReservation(${reading_material.RMID_Location })" class="reserve-inline btn btn-default">Reserve</button>
-			      <!-- </div>  -->
-			      <div class="col-md-3"><span class="availability-date"></span>${reading_material.strDateAvailable }</div>
-			      <div class="col-md-3"></div>
-			    </c:when>
-			    <c:otherwise>
-			        <div class="col-md-3"><button class="reserve-inline btn btn-default disabled">Reserve</button></div>
-			        <div class="col-md-3"><span class="availability-date"></span>${reading_material.strDateAvailable }</div>
-			    </c:otherwise>
+              	<c:otherwise> <!--  if can't edit -->
+	              	<c:choose>
+	              		<c:when test="${reading_material.status == 'BORROWED'}">
+					      <div class="col-md-3">
+					      	<button id="${reading_material.RMID_Location}" class="reserve-inline btn btn-default">Reserve</button>
+					      </div>
+					      <div class="col-md-3"><span class="availability-date"></span>${reading_material.strDateAvailable }</div>
+					    </c:when>
+					    <c:when test="${reading_material.status == 'AVAILABLE'}">
+					      <div class="col-md-3">
+					      	<button id="${reading_material.RMID_Location}" class="reserve-inline btn btn-default">Reserve</button>
+					      </div>
+					      <div class="col-md-3"></div>
+					    </c:when>
+					    <c:otherwise>
+					        <div class="col-md-3"><button class="reserve-inline btn btn-default disabled">Reserve</button></div>
+					        <div class="col-md-3"><span class="availability-date"></span>${reading_material.strDateAvailable }</div>
+					    </c:otherwise>
+	              	</c:choose>
+              	</c:otherwise>
 			  </c:choose>
             </div> 
           </div>
@@ -197,12 +197,16 @@
         </div>
       </div>
       
+      <form id="reserveForm" method="post" action="ReserveRMServlet">
+      	<input type="hidden" name="locationID" id="locationID"/>
+      </form>
+      
       <br>
       <div class="divider"></div>
       <br>
 
       <div class="rm-reviews">
-        <b id="results-found" style="margin: -1px;">Reviews</b>
+        <b class="results-found" style="margin: -1px;">Reviews</b>
         
         <c:choose>
           <c:when test="${hasBorrowed == 'true'}">
@@ -219,26 +223,13 @@
           </c:when>
         </c:choose>
         
-        
         <c:forEach items="${review}" var = "r" >
       	<div class="review divider">Reviewed on <i>${r.date_reviewed}</i>
           <br>${r.review}
         </div>
         </c:forEach>
 
-		<!-- Sample Data -->
-        <div class="review divider">Reviewed on <i>6 / 30 / 2017</i>
-          <br>
-          • Library Manager - can only edit book information, add new book, delete book and override reservations. In addition, the manager can export to an excel sheet/XML of the status of all books and meeting rooms. • Library Staff - can only edit book information, add new book, delete book and availability of meeting rooms. • Administrator – can create new Library Manager, Library Staff, Library Student Assistant and accounts and assign temporary passwords, which if not changed within 24 hours, will render the account expired. Also, the administrator can export to an excel sheet/XML file of the status of all books and meeting rooms.
-        </div>
-
-        <div class="review divider">Reviewed on  <i>6 / 30 / 2017</i>
-          <br>
-
-          • Library Manager - can only edit book information, add new book, delete book and override reservations. In addition, the manager can export to an excel sheet/XML of the status of all books and meeting rooms. • Library Staff - can only edit book information, add new book, delete book and availability of meeting rooms. • Administrator – can create new Library Manager, Library Staff, Library Student Assistant and accounts and assign temporary passwords, which if not changed within 24 hours, will render the account expired. Also, the administrator can export to an excel sheet/XML file of the status of all books and meeting rooms.
-
-        </div>
-        <!-- End of Sample Data -->
+		
 
       </div> <!--  END OF RM-REVIEWS -->
 

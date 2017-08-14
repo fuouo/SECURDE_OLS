@@ -7,16 +7,11 @@
 
 function clickedType(id)
 {
-//	$("#confirm-reservation").fadeIn("fast", function(){});
-//	$("#overlay-screen").fadeIn("fast", function(){});
-	
 	submitReservation(id);
 }
 
 function submitReservation(id){	
-	 console.log("hahaha " + id);
  	$("#locationID").val(id);
- 	$("#locationID").text(id);
  	console.log("ehhe " + $("#locationID").val()); 
  	 $("#reserveForm").submit();
 	
@@ -33,18 +28,21 @@ function review(id)
 }
 
 
-$('.reserve-inline:not(.disabled)').click(function(){
-	console.log(status);
-	$("#location").val(status);
-	//$("#reserveForm").submit();
-});
- 
-$('#cancel-reserve').click(function(){
-    $('#overlay-screen').fadeOut("fast", function(){})
-    $('#confirm-reservation').fadeOut(350, function(){});
-});
+$(document).ready(function(){
+	$('.reserve-inline:not(.disabled)').click(function(){
+		console.log($(this).attr('id'));
+		clickedType($(this).attr('id'));
+		//$("#reserveForm").submit();
+	});
+	 
+	$('#cancel-reserve').click(function(){
+	    $('#overlay-screen').fadeOut("fast", function(){});
+	    $('#confirm-reservation').fadeOut(350, function(){});
+	});
 
-$('#overlay-screen').click(function(){
-    $('#overlay-screen').fadeOut("fast", function(){})
-    $('#confirm-reservation').fadeOut(350, function(){});
+	$('#overlay-screen').click(function(){
+	    $('#overlay-screen').fadeOut("fast", function(){});
+	    $('#confirm-reservation').fadeOut(350, function(){});
+	});
+
 });

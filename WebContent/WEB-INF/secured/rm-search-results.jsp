@@ -65,7 +65,7 @@
       </div>
 
       <div class="rm-results">
-      <b id="results-found" style="margin: -1px;" >${numOfRM} results found</b>
+      <b class="results-found" style="margin: -1px;" >${numOfRM} results found</b>
       <c:forEach items="${reading_material}" var = "i" >
       <!-- START -->
       <div class="row rm-gen-details">
@@ -87,25 +87,34 @@
 	          <div class="location-status">
 	            <div class="row">
 	              <div class="col-md-4"><span class="location">${i.RMID_Location}</span></div>
-	              <div class="col-md-4"><span class="reserved-status">${i.status}</span></div>
+	              <c:choose>
+		              <c:when test="${i.status == 'AVAILABLE'}">
+		              	<div class="col-md-4"><span class="available-status">${i.status}</span></div>
+		              </c:when>
+		              <c:when test="${i.status == 'RESERVED'}">
+		              	<div class="col-md-4"><span class="reserved-status">${i.status}</span></div>
+		              </c:when>
+		              <c:when test="${i.status == 'BORROWED'}">
+		              	<div class="col-md-4"><span class="borrowed-status">${i.status}</span></div>
+		              </c:when>
+	              </c:choose>
 	              <c:set var="status">${i.status}</c:set>
 	              <c:choose>
 	              <c:when test = "${user_type == 'STUDENT' or user_type == 'FACULTY'}">
-			        	<c:choose>
-						    <c:when test="${status== 'AVAILABLE' || status == 'BORROWED'}">
-						    	<c:set var="loc">${i.RMID_Location}</c:set>
-						        <div onclick="clickedType('${loc}')" class="col-md-4">
-						       		<button   onclick="clickedType(${i.RMID_Location })" class="reserve-inline btn btn-default">Reserve</button>
-						       	</div>
-						       
-						    </c:when>    
-						    <c:otherwise>
-						        <div class="col-md-4"><button class="reserve-inline btn btn-default disabled">Reserve</button></div>
-						    </c:otherwise>
-					 	</c:choose>
+		        	<c:choose>
+					    <c:when test="${status== 'AVAILABLE' or status == 'BORROWED'}">
+					    	<c:set var="loc">${i.RMID_Location}</c:set>
+					        <div class="col-md-4">
+					       		<button id="${i.RMID_Location}" class="reserve-inline btn btn-default">Reserve</button>
+					       	</div>
+					    </c:when>    
+					    <c:otherwise>
+					        <div class="col-md-4"><button class="reserve-inline btn btn-default disabled">Reserve</button></div>
+					    </c:otherwise>
+				 	</c:choose>
 			      </c:when>
-			      <c:otherwise>
-			      		<div class="col-md-4"></div>
+			      <c:otherwise> <!--  if moderator, shouldn't be able to reserve -->
+			      	<div class="col-md-4"></div>
 			      </c:otherwise>
 				  </c:choose>
 	              
