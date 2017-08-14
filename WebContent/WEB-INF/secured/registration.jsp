@@ -117,6 +117,7 @@
 <!-- must be in every page -->
 <script src="js/jquery-3.0.0.min.js"></script>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="vitalets-bootstrap-datepicker-c7af15b/js/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/app.js" type="text/javascript" charset="utf-8"></script>			
 <!-- //////////////////// -->
 <script src="js/register.js" type="text/javascript" charset="utf-8"></script>
