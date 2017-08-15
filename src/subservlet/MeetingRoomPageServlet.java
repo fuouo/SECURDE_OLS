@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.ReservedRoom;
 import model.Room;
 import model.User;
+import model.UserType;
 import service.CookieService;
 import service.RoomService;
 import servlet.MasterServlet;
@@ -57,6 +58,9 @@ public class MeetingRoomPageServlet {
 			String userName = (String) user.getFirstName() + " " + user.getLastName();
 			request.getSession().setAttribute(User.COL_FIRSTNAME+User.COL_LASTNAME,
 					userName);
+			
+			if(user.getUserType() == UserType.ADMIN || user.getUserType() == UserType.LIBMNGR || user.getUserType() == UserType.LIBSTAFF)
+				request.getRequestDispatcher("StartServlet").forward(request, response);
 		}
 		else {
 			System.out.println("User is null");
