@@ -67,7 +67,7 @@ public class AdminAreaServlet{
 	    				url = "/WEB-INF/secured/a-manage-books.jsp";
 	    			}
 	    			else if(user.getUserType() == UserType.ADMIN)
-	    				url = "/AdminAccountsServlet";
+	    				url = "/AdminDisplayAccountsServlet";
 	    			else{
 	    				url = "/HomePageServlet";
 	    			}

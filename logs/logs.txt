@@ -1,52 +1,118 @@
-Aug 14, 2017 2:05:42 PM utils.MyLogger warn
-WARNING: Brute force logged in for the account of 11427493
-Aug 14, 2017 2:07:27 PM utils.MyLogger info
-INFO: User 11427493 logged in.
-Aug 14, 2017 2:08:43 PM utils.MyLogger info
-INFO: User 11427493logged out.
-Aug 14, 2017 2:09:56 PM utils.MyLogger info
+Aug 15, 2017 11:16:29 AM utils.MyLogger info
+INFO: Searched reading material: Twilight
+Aug 15, 2017 11:17:37 AM utils.MyLogger info
+INFO: Searched reading material: Twilight
+Aug 15, 2017 11:18:40 AM utils.MyLogger warn
+WARNING: Login error: Incorrect password for 11400355
+Aug 15, 2017 11:19:04 AM utils.MyLogger info
 INFO: User 11400355 logged in.
-Aug 14, 2017 2:10:01 PM utils.MyLogger info
-INFO: User 11400355 logged in.
-Aug 14, 2017 2:10:20 PM utils.MyLogger info
-INFO: User 11400355 reserved 444-ABC
-Aug 14, 2017 2:11:10 PM utils.MyLogger info
-INFO: User 11400355logged out.
-Aug 14, 2017 2:11:20 PM utils.MyLogger info
-INFO: User 11427493 logged in.
-Aug 14, 2017 2:12:57 PM utils.MyLogger info
-INFO: Override reading material successful!
-Aug 14, 2017 2:26:54 PM utils.MyLogger info
-INFO: User 11427493 logged out.
-Aug 14, 2017 2:58:33 PM utils.MyLogger warn
-WARNING: Attempted to log in a locked out account for 11400366
-Aug 14, 2017 2:59:35 PM utils.MyLogger info
-INFO: User 11400366 logged in.
-Aug 14, 2017 3:01:08 PM utils.MyLogger info
-INFO: User 11400366 logged out.
-Aug 14, 2017 3:01:16 PM utils.MyLogger info
-INFO: User 11400366 logged in.
-Aug 14, 2017 3:02:54 PM utils.MyLogger info
-INFO: User 11400366 logged out.
-Aug 14, 2017 3:03:05 PM utils.MyLogger info
-INFO: User 11400355 logged in.
-Aug 14, 2017 3:10:47 PM utils.MyLogger info
+Aug 15, 2017 11:19:09 AM utils.MyLogger info
+INFO: Searched reading material: Twilight
+Aug 15, 2017 11:19:31 AM utils.MyLogger info
 INFO: User 11400355 logged out.
-Aug 14, 2017 3:10:52 PM utils.MyLogger info
-INFO: User 11400355 logged in.
-Aug 14, 2017 3:10:54 PM utils.MyLogger info
-INFO: User 11400355 logged out.
-Aug 14, 2017 3:10:59 PM utils.MyLogger info
+Aug 15, 2017 11:20:21 AM utils.MyLogger warn
+WARNING: Login error: Incorrect password for 11400355
+Aug 15, 2017 11:20:30 AM utils.MyLogger warn
+WARNING: Login error: Incorrect password for 11400355
+Aug 15, 2017 11:20:35 AM utils.MyLogger warn
+WARNING: Login error: Incorrect password for 11400355
+Aug 15, 2017 11:20:37 AM utils.MyLogger warn
+WARNING: Login error: Incorrect password for 11400355
+Aug 15, 2017 11:20:46 AM utils.MyLogger warn
+WARNING: Login error: Incorrect password for 11400355
+Aug 15, 2017 11:20:46 AM utils.MyLogger warn
+WARNING: Attempted to log in a locked out account for 11400355
+Aug 15, 2017 11:21:17 AM utils.MyLogger info
 INFO: User 11400366 logged in.
-Aug 14, 2017 3:13:33 PM utils.MyLogger info
+Aug 15, 2017 11:22:44 AM utils.MyLogger info
+INFO: Successfully locked account for 11400355
+Aug 15, 2017 11:22:48 AM utils.MyLogger info
 INFO: User 11400366 logged out.
-Aug 14, 2017 3:15:26 PM utils.MyLogger info
+Aug 15, 2017 11:22:56 AM utils.MyLogger info
 INFO: User 11400355 logged in.
-Aug 14, 2017 3:15:33 PM utils.MyLogger info
-INFO: User 11400355 reserved room null
-Aug 14, 2017 3:15:36 PM utils.MyLogger info
-INFO: User 11400355 reserved room null
-Aug 14, 2017 3:15:41 PM utils.MyLogger info
+Aug 15, 2017 11:23:26 AM utils.MyLogger info
 INFO: User 11400355 logged out.
-Aug 14, 2017 3:43:45 PM utils.MyLogger info
-INFO: User 11455777 logged in.
+Aug 15, 2017 11:25:58 AM utils.MyLogger info
+INFO: STUDENT 12345677 created an account.
+Aug 15, 2017 11:26:55 AM utils.MyLogger warn
+WARNING: Login error: Incorrect password for 12345677
+Aug 15, 2017 11:27:08 AM utils.MyLogger warn
+WARNING: Login error: Incorrect password for 12345677
+Aug 15, 2017 11:27:19 AM utils.MyLogger info
+INFO: User 12345677 tries to remember his/her forgotten password.
+Aug 15, 2017 11:27:27 AM utils.MyLogger info
+INFO: User 12345677 answered the secret question correctly.
+Aug 15, 2017 11:27:40 AM utils.MyLogger info
+INFO: Verification code correct.
+Aug 15, 2017 11:27:59 AM utils.MyLogger info
+INFO: Changed password for 12345677
+Aug 15, 2017 11:27:59 AM utils.MyLogger info
+INFO: Activated account of 12345677
+Aug 15, 2017 11:27:59 AM utils.MyLogger info
+INFO: User 12345677 changed password successfully!
+Aug 15, 2017 11:28:30 AM utils.MyLogger info
+INFO: User 12345677 logged in.
+Aug 15, 2017 11:28:45 AM utils.MyLogger info
+INFO: User 12345677 logged out.
+Aug 15, 2017 11:34:41 AM utils.MyLogger warn
+WARNING: Login error: Incorrect password for 11400355
+Aug 15, 2017 11:34:54 AM utils.MyLogger info
+INFO: User 11400355 logged in.
+Aug 15, 2017 11:35:01 AM utils.MyLogger severe
+SEVERE: Unauthorized user 11400355 attempted to access admin homepage.
+Aug 15, 2017 11:36:40 AM utils.MyLogger info
+INFO: User 11400355 logged out.
+Aug 15, 2017 11:39:42 AM utils.MyLogger info
+INFO: User 11400355 logged in.
+Aug 15, 2017 11:40:17 AM utils.MyLogger info
+INFO: User 11400355 logged out.
+Aug 15, 2017 11:41:03 AM utils.MyLogger info
+INFO: User 11400355 logged in.
+Aug 15, 2017 11:42:17 AM utils.MyLogger info
+INFO: User 11400355 logged out.
+Aug 15, 2017 11:42:59 AM utils.MyLogger info
+INFO: User 11400355 logged in.
+Aug 15, 2017 11:43:18 AM utils.MyLogger info
+INFO: User 11400355 logged out.
+Aug 15, 2017 11:43:27 AM utils.MyLogger warn
+WARNING: Login error: Incorrect password for 11400366
+Aug 15, 2017 11:43:34 AM utils.MyLogger warn
+WARNING: Login error: Incorrect password for 11400366
+Aug 15, 2017 11:43:49 AM utils.MyLogger info
+INFO: User 11400366 logged in.
+Aug 15, 2017 11:46:13 AM utils.MyLogger info
+INFO: User 11400366 logged out.
+Aug 15, 2017 11:46:47 AM utils.MyLogger info
+INFO: User 11400355 logged in.
+Aug 15, 2017 11:46:52 AM utils.MyLogger severe
+SEVERE: Unauthorized user 11400355 attempted to access admin homepage.
+Aug 15, 2017 11:47:56 AM utils.MyLogger info
+INFO: User 11400355 logged out.
+Aug 15, 2017 11:48:22 AM utils.MyLogger info
+INFO: User 11427329 logged in.
+Aug 15, 2017 11:50:08 AM utils.MyLogger info
+INFO: User 11427329 logged out.
+Aug 15, 2017 11:50:17 AM utils.MyLogger info
+INFO: User 11400355 logged in.
+Aug 15, 2017 11:50:38 AM utils.MyLogger severe
+SEVERE: Unauthorized user 11400355 attempted to access admin homepage.
+Aug 15, 2017 11:54:15 AM utils.MyLogger info
+INFO: User 11400355 logged in.
+Aug 15, 2017 11:54:29 AM utils.MyLogger info
+INFO: User 11400355 logged in.
+Aug 15, 2017 11:54:42 AM utils.MyLogger info
+INFO: User 11400355 logged out.
+Aug 15, 2017 11:55:48 AM utils.MyLogger info
+INFO: User 11400366 logged in.
+Aug 15, 2017 11:57:14 AM utils.MyLogger info
+INFO: User 11400366 logged out.
+Aug 15, 2017 11:57:50 AM utils.MyLogger info
+INFO: Searched reading material: $id_number = '1
+Aug 15, 2017 11:58:00 AM utils.MyLogger info
+INFO: Searched reading material: $id_number =  '1'
+Aug 15, 2017 11:58:21 AM utils.MyLogger info
+INFO: Searched reading material: $id_number =  '1' AND password = '1
+Aug 15, 2017 12:02:23 PM utils.MyLogger info
+INFO: User 11400366 logged in.
+Aug 15, 2017 1:06:49 PM utils.MyLogger info
+INFO: User 11400366 logged out.

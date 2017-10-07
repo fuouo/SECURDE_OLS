@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.User;
+import model.UserType;
+import service.CookieService;
 import service.UserService;
 import servlet.MasterServlet;
 
@@ -26,7 +28,14 @@ public class AdminDisplayAccountsServlet {
     private static void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
     	System.out.println("ADMIN DISPLAY ACCOUNTS GET");
-    	request.getRequestDispatcher("/HomePageServlet").forward(request, response);
+    	User user = CookieService.isUser(request);
+    	
+    	if(user==null || user.getUserType() != UserType.ADMIN)
+    		request.getRequestDispatcher("/WEB-INF/error/error-unauthorized.jsp").forward(request, response);
+    	
+    	if(user != null && user.getUserType() == UserType.ADMIN){
+    		request.getRequestDispatcher("/WEB-INF/secured/a-manage-accounts.jsp").forward(request, response);
+    	}
 	}
 
     private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

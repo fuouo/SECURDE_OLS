@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.SecretQuestion;
 import model.User;
 import model.UserType;
+import service.CookieService;
 import service.SecretQuestionService;
 import service.UserService;
 import servlet.MasterServlet;
@@ -26,7 +27,14 @@ public class AdminAccountsServlet {
     private static void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
     	System.out.println("ADMIN ACCOUNTS GET");
-	}
+    	User user = CookieService.isUser(request);
+    	
+    	if(user==null || user.getUserType() == UserType.STUDENT || user.getUserType() == UserType.FACULTY)
+    		request.getRequestDispatcher("/WEB-INF/error/error-unauthorized.jsp").forward(request, response);
+    
+    }
+    
+    
 
     private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -39,7 +47,7 @@ public class AdminAccountsServlet {
     public static void process(HttpServletRequest request, HttpServletResponse response, int type) throws ServletException, IOException{
  		if(type == MasterServlet.TYPE_GET)
  			doGet(request, response);
- 		doPost(request, response);
+ 		else doPost(request, response);
  	}
 
 }

@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.ReadingMaterial;
 import model.ReservedRoom;
+import model.User;
+import model.UserType;
+import service.CookieService;
 import service.ReadingMaterialService;
 import service.RoomService;
 import servlet.MasterServlet;
@@ -29,7 +32,15 @@ public class AdminDisplayRMReservationsServlet {
 	private static void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
     	System.out.println("DISPLAY RM RESERVATIONS GET");
-    	request.getRequestDispatcher("/StartServlet").forward(request, response);
+    	
+    	User user = CookieService.isUser(request);
+    	
+    	if(user==null || user.getUserType() == UserType.ADMIN || user.getUserType() == UserType.STUDENT || user.getUserType() == UserType.FACULTY )
+    		request.getRequestDispatcher("/WEB-INF/error/error-unauthorized.jsp").forward(request, response);
+    	
+    	if(user != null && user.getUserType() != UserType.ADMIN){
+    		request.getRequestDispatcher("/WEB-INF/secured/a-manage-accounts.jsp").forward(request, response);
+    	}
 	}
 
     private static void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
